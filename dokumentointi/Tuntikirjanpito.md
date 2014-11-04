@@ -1,3 +1,13 @@
 #31.10.2014
 **Määrä:** 3h
 **Mitä tein:** Tein ohjelman perusdomainluokat ja toteutin luokan, joka katsoo mihin pelikentän ruutuihin valittu liikkuva olio pystyy liikkumaan. Lisäksi tein ohjelman kuvauksen ja aloitin tämän tuntikirjanpidon tekemisen.
+
+#3.11.2014
+**Määrä:** 2h
+**Mitä tein:** Tein suuren osan mavenin yms. konfiguroinnista ja aloitin hyökkäyslogiikan tekemisen.
+
+#4.11.2014
+**Määrä:** 3,5h
+**Mitä tein:** Jatkoin hiukan hyökkäyslogiikkaa ja parantelin ja jatkoin liikkumislogiikkaa. Lisäsin mm. joukot ja niiden liikkumiseen liittyvän logiikan.
+
+
