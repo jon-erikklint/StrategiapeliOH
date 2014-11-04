@@ -12,25 +12,39 @@ import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
 
 public class LiikkuvuusTarkastelija {
     
-    private Map<Ruutu, Integer> liikuttavat;
+    private Map<Vektori, Integer> liikuttavat;
     
-    private Kartta kartta;
+    private final Kartta kartta;
     private Liikkuva liikkuva;
     private Liikkuvuus liikuntakyky;
     
-    public LiikkuvuusTarkastelija(Liikkuva liikkuva, Kartta kartta){
-        this.liikkuva=liikkuva;
-        this.liikuntakyky=liikkuva.liikuntakyky();
-        
+    public LiikkuvuusTarkastelija(Kartta kartta){
         liikuttavat=new HashMap<>();
+        
+        this.kartta=kartta;
     }
     
     public void laskeLiikkumismatkat(){
         laskeMatkaViereisiinRuutuihin(liikkuva.liikkuvuus(), kartta.getRuutu(liikkuva.getSijainti()));
     }
     
-    public Map<Ruutu, Integer> getLiikuttavatRuudut(){
+    public Map<Vektori, Integer> getLiikuttavatRuudut(){
         return liikuttavat;
+    }
+    
+    public Map<Vektori, Integer> laskeLiikkuva(Liikkuva liikkuva){
+        liikuttavat.clear();
+        
+        this.liikkuva=liikkuva;
+        this.liikuntakyky=liikkuva.liikuntakyky();
+        
+        laskeLiikkumismatkat();
+        
+        return liikuttavat;
+    }
+    
+    public void nollaa(){
+        liikuttavat.clear();
     }
     
     private void laskeMatkaViereisiinRuutuihin(int liikkuvuus, Ruutu nykyinenRuutu){
@@ -39,21 +53,26 @@ public class LiikkuvuusTarkastelija {
         for(Ruutu ruutu : viereisetRuudut){
             if(voikoLiikkuaRuutuun(nykyinenRuutu, ruutu)){
                 
-                int kuluvaLiikkuvuus=laskeMatkaViereiseenRuutuun(nykyinenRuutu.getMaasto(), ruutu.getMaasto());
+                int kuluvaLiikkuvuus = laskeMatkaViereiseenRuutuun( nykyinenRuutu.getMaasto(), ruutu.getMaasto() );
                 
-                try{
-                    int matka=liikuttavat.get(ruutu);
-                    if(matka>kuluvaLiikkuvuus){
-                        liikuttavat.put(ruutu, kuluvaLiikkuvuus);
-                    }
-                }catch(Exception e){
-                    liikuttavat.put(ruutu, kuluvaLiikkuvuus);
-                }
+                lisaaLiikuttavaRuutu(kuluvaLiikkuvuus, ruutu.getSijainti());
                 
                 if(!(liikkuvuus-kuluvaLiikkuvuus<0)){
                     laskeMatkaViereisiinRuutuihin(liikkuvuus-kuluvaLiikkuvuus, ruutu);
                 } 
+                
             }
+        }
+    }
+    
+    private void lisaaLiikuttavaRuutu(int kuluvaLiikkuvuus, Vektori sijainti){
+        try{
+            int matka=liikuttavat.get(sijainti);
+            if(matka>kuluvaLiikkuvuus){
+                liikuttavat.put(sijainti, kuluvaLiikkuvuus);
+            }
+        }catch(Exception e){
+            liikuttavat.put(sijainti, kuluvaLiikkuvuus);
         }
     }
     

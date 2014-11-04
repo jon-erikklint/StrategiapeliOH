@@ -5,11 +5,12 @@ import java.util.List;
 import jek.gameprojects.strategiapelioh.domain.Hyokkaava;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
+import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
 import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
 
 public class HyokkaysTarkastelija {
     
-    private List<Ruutu> hyokattavat;
+    private List<Vektori> hyokattavat;
     
     private Hyokkaava hyokkaava;
     private Kartta kartta;
@@ -25,15 +26,23 @@ public class HyokkaysTarkastelija {
         katsoViereisetHyokattavat(hyokkaava.hyokkays().getKantama(), kartta.getRuutu(hyokkaava.getSijainti()));
     }
     
-    private void katsoViereisetHyokattavat(int kantama, Ruutu nykyinenRuutu){
+    private void katsoViereisetHyokattavat(double kantama, Ruutu nykyinenRuutu){
         List<Ruutu> viereisetRuudut = kartta.getViereisetRuudut( nykyinenRuutu.getSijainti() );
         
         for(Ruutu ruutu:viereisetRuudut){
             if(voikoAmpua(ruutu)){
                 
+                if(!hyokattavat.contains(ruutu.getSijainti())){
+                    hyokattavat.add(ruutu.getSijainti());
+                }
+                
                 double mennytKantama=kuluvaKantama(ruutu.getMaasto(), nykyinenRuutu.getMaasto());
                 
-                
+                if(kantama-mennytKantama>0){
+                    
+                    katsoViereisetHyokattavat(kantama-mennytKantama,ruutu);
+                    
+                }
             }
         }
         
@@ -44,7 +53,7 @@ public class HyokkaysTarkastelija {
     }
     
     private boolean onkoVihollisia(Ruutu kohderuutu){
-        return false;
+        return kohderuutu.kenenHallussa().equals(hyokkaava.getOmistaja());
     }
     
     private double kuluvaKantama(Maasto kohdemaasto, Maasto nykyinenMaasto){
