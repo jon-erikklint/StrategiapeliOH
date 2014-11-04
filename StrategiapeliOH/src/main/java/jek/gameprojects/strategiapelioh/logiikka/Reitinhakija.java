@@ -3,14 +3,14 @@ package jek.gameprojects.strategiapelioh.logiikka;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import jek.gameprojects.strategiapelioh.domain.Liikkuva;
-import jek.gameprojects.strategiapelioh.domain.pelaajat.Liikkuvuus;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuva;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
 import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
 
-public class LiikkuvuusTarkastelija {
+public class Reitinhakija {
     
     private Map<Vektori, Integer> liikuttavat;
     
@@ -18,54 +18,67 @@ public class LiikkuvuusTarkastelija {
     private Liikkuva liikkuva;
     private Liikkuvuus liikuntakyky;
     
-    public LiikkuvuusTarkastelija(Kartta kartta){
+    public Reitinhakija(Kartta kartta){
         liikuttavat=new HashMap<>();
         
         this.kartta=kartta;
     }
     
-    public void laskeLiikkumismatkat(){
+    public void alustaRuudutJoihinVoiLiikkua(){
         laskeMatkaViereisiinRuutuihin(liikkuva.liikkuvuus(), kartta.getRuutu(liikkuva.getSijainti()));
     }
     
-    public Map<Vektori, Integer> getLiikuttavatRuudut(){
-        return liikuttavat;
-    }
-    
-    public Map<Vektori, Integer> laskeLiikkuva(Liikkuva liikkuva){
+    public Map<Vektori, Integer> ruudutJoihinVoiLiikkua(Liikkuva liikkuva){
         liikuttavat.clear();
         
         this.liikkuva=liikkuva;
         this.liikuntakyky=liikkuva.liikuntakyky();
         
-        laskeLiikkumismatkat();
+        alustaRuudutJoihinVoiLiikkua();
         
         return liikuttavat;
     }
     
-    public void nollaa(){
-        liikuttavat.clear();
-    }
-    
-    private void laskeMatkaViereisiinRuutuihin(int liikkuvuus, Ruutu nykyinenRuutu){
+    private void laskeMatkaViereisiinRuutuihin(double liikuntamaara, Ruutu nykyinenRuutu){
         List<Ruutu> viereisetRuudut=kartta.getViereisetRuudut(nykyinenRuutu.getSijainti());
         
         for(Ruutu ruutu : viereisetRuudut){
             if(voikoLiikkuaRuutuun(nykyinenRuutu, ruutu)){
                 
-                int kuluvaLiikkuvuus = laskeMatkaViereiseenRuutuun( nykyinenRuutu.getMaasto(), ruutu.getMaasto() );
+                double kuluvaLiikkuvuus = kuluvaLiikkuntamaara( nykyinenRuutu.getMaasto(), ruutu.getMaasto() );
                 
-                lisaaLiikuttavaRuutu(kuluvaLiikkuvuus, ruutu.getSijainti());
+                yhdistaLiikkuminenLiikuttaviin((int)kuluvaLiikkuvuus, ruutu.getSijainti());
                 
-                if(!(liikkuvuus-kuluvaLiikkuvuus<0)){
-                    laskeMatkaViereisiinRuutuihin(liikkuvuus-kuluvaLiikkuvuus, ruutu);
+                if(!(liikuntamaara-kuluvaLiikkuvuus<0)){
+                    laskeMatkaViereisiinRuutuihin(liikuntamaara-kuluvaLiikkuvuus, ruutu);
                 } 
                 
             }
         }
     }
     
-    private void lisaaLiikuttavaRuutu(int kuluvaLiikkuvuus, Vektori sijainti){
+    private boolean voikoLiikkuaRuutuun(Ruutu nykyinenRuutu, Ruutu kohdeRuutu){
+        
+        if(!liikuntakyky.getMihinVoiLiikkua().get( kohdeRuutu.getMaasto().getAluetyyppi() )){ //Voiko yksikkö liikkua kohdealuetyyppiin: esim. laiva ei voi liikkua maalle
+            return false;
+        }
+        
+        if(!(Math.abs( nykyinenRuutu.getMaasto().getKorkeus()-kohdeRuutu.getMaasto().getKorkeus())<5)){//Tarkistetaan onko korkeusero tarpeeksi pieni
+            return false;
+        }
+        
+        return this.liikkuva.getOmistaja().equals(kohdeRuutu.kenenHallussa()); //Tarksitetaan onko ruutu vihollisen hallussa
+    }
+    
+    private int kuluvaLiikkuntamaara(Maasto nykyinenMaasto, Maasto kohdeMaasto){
+        
+        double kuluvaLiikkuvuus=1+liikuntakyky.getHitauskertoimetMaastossa().get(kohdeMaasto.getMaastotyyppi()); //Otetaan huomioon liikkuvan hitauskerroin kohdemaastossa
+        kuluvaLiikkuvuus*=0.5*Math.abs(nykyinenMaasto.getKorkeus()-kohdeMaasto.getKorkeus()); //Otetaan huomioon korkeuseroista johtuva hitaus
+        
+        return (int) kuluvaLiikkuvuus;
+    }
+    
+    private void yhdistaLiikkuminenLiikuttaviin(int kuluvaLiikkuvuus, Vektori sijainti){
         try{
             int matka=liikuttavat.get(sijainti);
             if(matka>kuluvaLiikkuvuus){
@@ -76,20 +89,12 @@ public class LiikkuvuusTarkastelija {
         }
     }
     
-    private boolean voikoLiikkuaRuutuun(Ruutu nykyinenRuutu, Ruutu kohdeRuutu){
-        
-        if(!liikuntakyky.getMihinVoiLiikkua().get( kohdeRuutu.getMaasto().getAluetyyppi() )){ //Voiko yksikkö liikkua kohdealuetyyppiin: esim. laiva ei voi liikkua maalle
-            return false;
-        }
-        
-        return Math.abs( nykyinenRuutu.getMaasto().getKorkeus()-kohdeRuutu.getMaasto().getKorkeus())<5; //Tarkistetaan onko korkeusero tarpeeksi pieni
+    public void nollaa(){
+        liikuttavat.clear();
     }
     
-    private int laskeMatkaViereiseenRuutuun(Maasto nykyinenMaasto, Maasto kohdeMaasto){
-        
-        double kuluvaLiikkuvuus=1+liikuntakyky.getHitauskertoimetMaastossa().get(kohdeMaasto.getMaastotyyppi()); //Otetaan huomioon liikkuvan hitauskerroin kohdemaastossa
-        kuluvaLiikkuvuus*=0.5*Math.abs(nykyinenMaasto.getKorkeus()-kohdeMaasto.getKorkeus()); //Otetaan huomioon korkeuseroista johtuva hitaus
-        
-        return (int) kuluvaLiikkuvuus;
+    public Map<Vektori, Integer> getLiikuttavatRuudut(){
+        return liikuttavat;
     }
+    
 }

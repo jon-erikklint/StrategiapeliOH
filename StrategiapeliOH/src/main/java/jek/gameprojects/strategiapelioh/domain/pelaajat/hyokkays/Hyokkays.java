@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.domain.pelaajat;
+package jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays;
 
 public class Hyokkays {
     

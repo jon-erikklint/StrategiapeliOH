@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.domain.pelaajat;
+package jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen;
 
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.maasto.Aluetyyppi;

@@ -2,6 +2,7 @@ package jek.gameprojects.strategiapelioh.domain.pelaajat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
 
 public class Joukko implements Omistettava{
@@ -61,6 +62,31 @@ public class Joukko implements Omistettava{
         for(Yksikko yksikko:yksikot){
             yksikko.setSijainti(sijainti);
         }
+        
+        this.sijainti=sijainti;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if(o==null){
+            return false;
+        }
+        
+        if(o.getClass()!=this.getClass()){
+            return false;
+        }
+        
+        Joukko toinenJoukko=(Joukko) o;
+        
+        return toinenJoukko.getYksikot().get(0).equals(yksikot.get(0));
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 13 * hash + Objects.hashCode(this.yksikot);
+        hash = 13 * hash + Objects.hashCode(this.sijainti);
+        return hash;
     }
     
 }

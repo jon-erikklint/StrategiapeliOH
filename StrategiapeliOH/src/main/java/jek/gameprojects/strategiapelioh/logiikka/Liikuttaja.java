@@ -2,10 +2,10 @@ package jek.gameprojects.strategiapelioh.logiikka;
 
 import java.util.HashMap;
 import java.util.Map;
-import jek.gameprojects.strategiapelioh.domain.Liike;
-import jek.gameprojects.strategiapelioh.domain.Liikkuva;
+import java.util.Set;
+import java.util.HashSet;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuva;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
-import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
@@ -13,24 +13,60 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 public class Liikuttaja {
     
     private Map<Liikkuva,Map<Vektori,Integer>> yksikoidenMahdollisetLiikkeet;
+    private Map<Joukko,Set<Vektori>> joukkojenMahdollisetLiikkeet;
     
-    private LiikkuvuusTarkastelija liikkuvuusTarkastelija;
+    private Reitinhakija liikkuvuusTarkastelija;
     
     public Liikuttaja(Kartta kartta){
         yksikoidenMahdollisetLiikkeet=new HashMap<>();
+        joukkojenMahdollisetLiikkeet=new HashMap<>();
         
-        liikkuvuusTarkastelija=new LiikkuvuusTarkastelija(kartta);
+        liikkuvuusTarkastelija=new Reitinhakija(kartta);
+    }
+    
+    public Map<Vektori, Integer> alustaLiikkuvanMahdollisetLiikkeet(Liikkuva liikkuva){
+        Map<Vektori,Integer> mahdollisetLiikkeet=liikkuvuusTarkastelija.ruudutJoihinVoiLiikkua(liikkuva);
+        
+        yksikoidenMahdollisetLiikkeet.put(liikkuva, mahdollisetLiikkeet);
+        
+        return mahdollisetLiikkeet;
     }
     
     public void alustaJoukonMahdollisetLiikkeet(Joukko joukko){
+        Map<Vektori, Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun=new HashMap<>();
+        
         for(Yksikko yksikko:joukko.getYksikot()){
-            alustaLiikkuvanMahdollisetLiikkeet(yksikko);
+            Map<Vektori,Integer> yksikonMahdollisetLiikkeet=alustaLiikkuvanMahdollisetLiikkeet(yksikko);
+            
+            for(Vektori sijainti:yksikonMahdollisetLiikkeet.keySet()){
+                try{
+                    int maara=kuinkaMontaYksikkoaVoiLiikkuaRuutuun.get(sijainti);
+                    kuinkaMontaYksikkoaVoiLiikkuaRuutuun.put(sijainti, maara+1);
+                }catch(Exception e){
+                    kuinkaMontaYksikkoaVoiLiikkuaRuutuun.put(sijainti, 1);
+                }
+            }
         }
+        
+        lisaaJoukonLiikkeet(joukko, kuinkaMontaYksikkoaVoiLiikkuaRuutuun);
     }
     
-    public void alustaLiikkuvanMahdollisetLiikkeet(Liikkuva liikkuva){
-        yksikoidenMahdollisetLiikkeet.put(liikkuva, liikkuvuusTarkastelija.laskeLiikkuva(liikkuva));
+    private void lisaaJoukonLiikkeet(Joukko joukko, Map<Vektori,Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun){
+        Set<Vektori> joukonLiikkeet=new HashSet<>();
         
+        int joukonKoko=joukko.getYksikot().size();
+        
+        for(Vektori sijainti:kuinkaMontaYksikkoaVoiLiikkuaRuutuun.keySet()){
+            if(kuinkaMontaYksikkoaVoiLiikkuaRuutuun.get(sijainti)==joukonKoko){
+                joukonLiikkeet.add(sijainti);
+            }
+        }
+        
+        joukkojenMahdollisetLiikkeet.put(joukko, joukonLiikkeet);
+    }
+    
+    public void liikutaLiikkuva(Liikkuva liikkuva, Vektori sijainti){
+        liikkuva.liiku( yksikoidenMahdollisetLiikkeet.get(liikkuva).get(sijainti),sijainti);
     }
     
     public void liikutaJoukko(Joukko joukko, Vektori sijainti){
@@ -39,13 +75,18 @@ public class Liikuttaja {
         }
     }
     
-    public void liikutaLiikkuva(Liikkuva liikkuva, Vektori sijainti){
-        liikkuva.liiku( new Liike( sijainti, yksikoidenMahdollisetLiikkeet.get(liikkuva).get(sijainti) ) );
-    }
-    
     public void nollaa(){
         yksikoidenMahdollisetLiikkeet.clear();
+        joukkojenMahdollisetLiikkeet.clear();
         
         liikkuvuusTarkastelija.nollaa();
+    }
+    
+    public Set<Vektori> annaYksikonMahdollisetLiikkeet(Liikkuva liikkuva){
+        return yksikoidenMahdollisetLiikkeet.get(liikkuva).keySet();
+    }
+    
+    public Set<Vektori> annaJoukonMahdollisetLiikkeet(Joukko joukko){
+        return joukkojenMahdollisetLiikkeet.get(joukko);
     }
 }

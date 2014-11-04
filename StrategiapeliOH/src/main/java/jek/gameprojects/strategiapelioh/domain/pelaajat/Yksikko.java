@@ -1,8 +1,8 @@
 package jek.gameprojects.strategiapelioh.domain.pelaajat;
 
+import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuva;
 import java.util.Objects;
-import jek.gameprojects.strategiapelioh.domain.Liike;
-import jek.gameprojects.strategiapelioh.domain.Liikkuva;
 import jek.gameprojects.strategiapelioh.domain.RajoitettuLaskuri;
 import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
 
@@ -31,9 +31,9 @@ public class Yksikko implements Liikkuva, Omistettava{
     }
 
     @Override
-    public void liiku(Liike liike) {
-        this.sijainti=liike.getKohde();
-        liikkuvuus.lisaaArvoa(liike.getTarvittavaLiikunta());
+    public void liiku(int kuluvaLiikemaara, Vektori kohdesijainti) {
+        this.sijainti=kohdesijainti;
+        liikkuvuus.lisaaArvoa(-kuluvaLiikemaara);
     }
     
     @Override

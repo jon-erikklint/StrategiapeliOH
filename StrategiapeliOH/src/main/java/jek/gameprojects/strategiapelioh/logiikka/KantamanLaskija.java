@@ -2,20 +2,20 @@ package jek.gameprojects.strategiapelioh.logiikka;
 
 import java.util.ArrayList;
 import java.util.List;
-import jek.gameprojects.strategiapelioh.domain.Hyokkaava;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkaava;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
 import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
 
-public class HyokkaysTarkastelija {
+public class KantamanLaskija {
     
     private List<Vektori> hyokattavat;
     
     private Hyokkaava hyokkaava;
     private Kartta kartta;
     
-    public HyokkaysTarkastelija(Hyokkaava hyokkaava, Kartta kartta){
+    public KantamanLaskija(Hyokkaava hyokkaava, Kartta kartta){
         this.kartta=kartta;
         this.hyokkaava=hyokkaava;
         

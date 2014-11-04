@@ -1,5 +1,7 @@
 package jek.gameprojects.strategiapelioh.domain.pelaajat;
 
+import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
+
 public class Yksikkotyyppi {
     
     private int liikkuvuus;
