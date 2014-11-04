@@ -1,13 +1,11 @@
 package jek.gameprojects.strategiapelioh.domain.pelaajat;
 
-import jek.gameprojects.strategiapelioh.domain.Liikuntakyky;
-
 public class Yksikkotyyppi {
     
     private int liikkuvuus;
-    private Liikuntakyky liikuntakyky;
+    private Liikkuvuus liikuntakyky;
     
-    public Yksikkotyyppi(int liikkuvuus, Liikuntakyky liikuntakyky) {
+    public Yksikkotyyppi(int liikkuvuus, Liikkuvuus liikuntakyky) {
         this.liikkuvuus = liikkuvuus;
         this.liikuntakyky = liikuntakyky;
     }
@@ -20,11 +18,11 @@ public class Yksikkotyyppi {
         this.liikkuvuus = liikkuvuus;
     }
 
-    public Liikuntakyky getLiikuntakyky() {
+    public Liikkuvuus getLiikuntakyky() {
         return liikuntakyky;
     }
 
-    public void setLiikuntakyky(Liikuntakyky liikuntakyky) {
+    public void setLiikuntakyky(Liikkuvuus liikuntakyky) {
         this.liikuntakyky = liikuntakyky;
     }
 

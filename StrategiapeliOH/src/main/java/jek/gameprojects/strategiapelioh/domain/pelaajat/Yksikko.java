@@ -2,7 +2,6 @@ package jek.gameprojects.strategiapelioh.domain.pelaajat;
 
 import jek.gameprojects.strategiapelioh.domain.Liike;
 import jek.gameprojects.strategiapelioh.domain.Liikkuva;
-import jek.gameprojects.strategiapelioh.domain.Liikuntakyky;
 import jek.gameprojects.strategiapelioh.domain.RajoitettuLaskuri;
 import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
 
@@ -30,7 +29,7 @@ public class Yksikko implements Liikkuva{
     }
     
     @Override
-    public Liikuntakyky liikuntakyky() {
+    public Liikkuvuus liikuntakyky() {
         return yksikkotyyppi.getLiikuntakyky();
     }
     

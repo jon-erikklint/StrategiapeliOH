@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.Liikkuva;
-import jek.gameprojects.strategiapelioh.domain.Liikuntakyky;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.Liikkuvuus;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
@@ -16,7 +16,7 @@ public class LiikkuvuusTarkastelija {
     
     private Kartta kartta;
     private Liikkuva liikkuva;
-    private Liikuntakyky liikuntakyky;
+    private Liikkuvuus liikuntakyky;
     
     public LiikkuvuusTarkastelija(Liikkuva liikkuva, Kartta kartta){
         this.liikkuva=liikkuva;

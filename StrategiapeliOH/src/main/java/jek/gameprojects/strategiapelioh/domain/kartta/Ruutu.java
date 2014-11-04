@@ -2,6 +2,7 @@ package jek.gameprojects.strategiapelioh.domain.kartta;
 
 import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
 import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 
 public class Ruutu {
     
@@ -11,6 +12,10 @@ public class Ruutu {
     public Ruutu(Vektori sijainti, Maasto maasto) {
         this.sijainti = sijainti;
         this.maasto = maasto;
+    }
+    
+    public Pelaaja kenenHallussa(){
+        return null;
     }
     
     public Maasto getMaasto() {

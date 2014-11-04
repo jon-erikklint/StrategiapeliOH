@@ -1,15 +1,16 @@
-package jek.gameprojects.strategiapelioh.domain;
+package jek.gameprojects.strategiapelioh.domain.pelaajat;
 
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.maasto.Aluetyyppi;
 import jek.gameprojects.strategiapelioh.domain.maasto.Maastotyyppi;
 
-public class Liikuntakyky {
+public class Liikkuvuus {
     
     private Map<Aluetyyppi, Boolean> mihinVoiLiikkua;
     private Map<Maastotyyppi, Double> hitauskertoimetMaastossa;
+    private int liikkuvuus;
 
-    public Liikuntakyky(Map<Aluetyyppi, Boolean> mihinVoiLiikkua, Map<Maastotyyppi, Double> hitauskertoimetMaastossa) {
+    public Liikkuvuus(Map<Aluetyyppi, Boolean> mihinVoiLiikkua, Map<Maastotyyppi, Double> hitauskertoimetMaastossa) {
         this.mihinVoiLiikkua = mihinVoiLiikkua;
         this.hitauskertoimetMaastossa = hitauskertoimetMaastossa;
     }
@@ -29,6 +30,13 @@ public class Liikuntakyky {
     public void setHitauskertoimetMaastossa(Map<Maastotyyppi, Double> hitauskertoimetMaastossa) {
         this.hitauskertoimetMaastossa = hitauskertoimetMaastossa;
     }
-    
+
+    public int getLiikkuvuus() {
+        return liikkuvuus;
+    }
+
+    public void setLiikkuvuus(int liikkuvuus) {
+        this.liikkuvuus = liikkuvuus;
+    }
     
 }
