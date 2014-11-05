@@ -10,7 +10,12 @@ public class RajoitettuLaskuri {
         this.ylaraja=ylaraja;
         this.alaraja=alaraja;
         
-        this.arvo=alkuArvo;
+        if(alkuArvo>ylaraja||alkuArvo<alaraja){
+            arvo=ylaraja;
+        }else{
+            arvo=alkuArvo;
+        }
+        
     }
     
     public RajoitettuLaskuri(int ylaraja, int alaraja){
@@ -33,11 +38,7 @@ public class RajoitettuLaskuri {
     }
     
     public void asetaArvo(int uusiArvo){
-        if(uusiArvo<alaraja){
-            arvo=alaraja;
-        }else if(uusiArvo>ylaraja){
-            arvo=ylaraja;
-        }else{
+        if(uusiArvo>=alaraja && uusiArvo<=ylaraja){
             arvo=uusiArvo;
         }
     }

@@ -10,4 +10,6 @@
 **Määrä:** 3,5h
 **Mitä tein:** Jatkoin hiukan hyökkäyslogiikkaa ja parantelin ja jatkoin liikkumislogiikkaa. Lisäsin mm. joukot ja niiden liikkumiseen liittyvän logiikan.
 
-
+#5.11.2014
+**Määrä:** 2h
+**Mitä tein:** Aloitin testien tekemisen ja tein muutamia pikkulisäyksiä koodiin

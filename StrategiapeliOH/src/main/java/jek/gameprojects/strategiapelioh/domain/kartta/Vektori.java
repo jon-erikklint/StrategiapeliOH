@@ -39,5 +39,32 @@ public class Vektori {
         this.Y = Y;
     }
     
+    @Override
+    public boolean equals(Object o){
+        if(o==null){
+            return false;
+        }
+        
+        if(o.getClass()!=this.getClass()){
+            return false;
+        }
+        
+        Vektori toinen=(Vektori) o;
+        
+        return toinen.X==this.X && toinen.Y==this.Y;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + this.X;
+        hash = 43 * hash + this.Y;
+        return hash;
+    }
+    
+    @Override
+    public String toString(){
+        return "["+X+","+Y+"]";
+    }
     
 }

@@ -24,17 +24,19 @@ public class Reitinhakija {
         this.kartta=kartta;
     }
     
-    public void alustaRuudutJoihinVoiLiikkua(){
+    public void laskeRuudutJoihinVoiLiikkua(){
+        liikuttavat.put(liikkuva.getSijainti(),0);
+        
         laskeMatkaViereisiinRuutuihin(liikkuva.liikkuvuus(), kartta.getRuutu(liikkuva.getSijainti()));
     }
     
     public Map<Vektori, Integer> ruudutJoihinVoiLiikkua(Liikkuva liikkuva){
-        liikuttavat.clear();
+        nollaa();
         
         this.liikkuva=liikkuva;
         this.liikuntakyky=liikkuva.liikuntakyky();
         
-        alustaRuudutJoihinVoiLiikkua();
+        laskeRuudutJoihinVoiLiikkua();
         
         return liikuttavat;
     }
