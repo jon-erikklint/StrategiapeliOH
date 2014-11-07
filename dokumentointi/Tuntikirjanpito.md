@@ -13,3 +13,7 @@
 #5.11.2014
 **Määrä:** 2h
 **Mitä tein:** Aloitin testien tekemisen ja tein muutamia pikkulisäyksiä koodiin
+
+#7.11.2014
+**Määrä:** 2h
+**Mitä tein:** Tein lisää testejä ja korjasin kasan virheitä koodista. Lisäksi tein pit-raportin ja konfiguraatiot loppuun.

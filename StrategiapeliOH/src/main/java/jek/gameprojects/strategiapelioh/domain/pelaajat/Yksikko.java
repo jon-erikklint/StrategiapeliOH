@@ -21,6 +21,7 @@ public class Yksikko implements Liikkuva, Omistettava{
         this.yksikkotyyppi=yksikkotyyppi;
         liikkuvuus=new RajoitettuLaskuri(yksikkotyyppi.getLiikkuvuus(), 0);
         this.omistaja=pelaaja;
+        this.sijainti=sijainti;
         
         this.id=id;
     }

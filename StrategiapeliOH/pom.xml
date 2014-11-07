@@ -48,10 +48,10 @@
                 <version>0.30</version>
                 <configuration>
                     <targetClasses>
-                        <param>strategiapelioh.logiikka.*</param>
+                        <param>jek.gameprojects.strategiapelioh.logiikka.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>strategiapelioh.logiikka.*</param>
+                        <param>jek.gameprojects.strategiapelioh.logiikka.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

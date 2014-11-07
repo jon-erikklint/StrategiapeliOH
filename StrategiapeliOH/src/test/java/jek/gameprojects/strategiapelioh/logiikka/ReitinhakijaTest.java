@@ -23,6 +23,7 @@ import static org.junit.Assert.*;
 public class ReitinhakijaTest {
     
     public Reitinhakija reitinhakija;
+    public Kartta kartta;
     
     public Liikkuva yksikko1;
     public Liikkuva yksikko2;
@@ -44,7 +45,7 @@ public class ReitinhakijaTest {
             }
         }
         
-        Kartta kartta = new Kartta(ruudut,4,4);
+        this.kartta = new Kartta(ruudut,4,4);
         reitinhakija = new Reitinhakija(kartta);
         
         Map<Aluetyyppi,Boolean> aluetyyppikartta1 = new HashMap<>();
@@ -94,10 +95,53 @@ public class ReitinhakijaTest {
     }
     
     @Test
-    public void reitinhakijaLoytaaKaikkiMentavatRuudutVakiomaastossa(){
+    public void reitinhakijaLoytaaKaikkiMentavatRuudutVakiomaastossa1(){
+        Map<Vektori, Integer> liikuttavatRuudut = reitinhakija.ruudutJoihinVoiLiikkua(yksikko2);
+        
+        assertEquals(16, liikuttavatRuudut.keySet().size());
+    }
+    
+    @Test
+    public void reitinhakijaLoytaaKaikkiMentavatRuudutVakiomaastossa2(){
         Map<Vektori, Integer> liikuttavatRuudut = reitinhakija.ruudutJoihinVoiLiikkua(yksikko1);
         
         assertEquals(6, liikuttavatRuudut.keySet().size());
+    }
+    
+    @Test
+    public void reitinhakijaLoytaaLyhyimmanReitinVakiomaastossa(){
+        Map<Vektori, Integer> liikuttavatRuudut = reitinhakija.ruudutJoihinVoiLiikkua(yksikko1);
+        
+        int luku=liikuttavatRuudut.get(new Vektori(1,1));
+        int luku2=liikuttavatRuudut.get(new Vektori(0,0));
+        
+        assertEquals(2,luku);
+        assertEquals(0,luku2);
+    }
+    
+    @Test
+    public void reitinhakijaOttaaHuomioonKorkeuserotTarkastaessaanVoikoJohonkinLiikkua(){
+        Ruutu[][] ruudut=kartta.getRuudut();
+        ruudut[1][1] = new Ruutu(new Vektori(1,1), new Maasto(Aluetyyppi.MAA, Maastotyyppi.AVOMAA, 10));
+        
+        kartta.setRuudut(ruudut);
+        
+        Map<Vektori, Integer> liikuttavatRuudut = reitinhakija.ruudutJoihinVoiLiikkua(yksikko2);
+        
+        assertEquals(15, liikuttavatRuudut.keySet().size());
+    }
+    
+    @Test
+    public void reitinhakijaLoytaaTienVuorelleJohonEiPaaseSuoraan(){
+        Ruutu[][] ruudut = kartta.getRuudut();
+        ruudut[2][2] = new Ruutu(new Vektori(2,2), new Maasto(Aluetyyppi.MAA, Maastotyyppi.AVOMAA, 5));
+        ruudut[3][2] = new Ruutu(new Vektori(3,2), new Maasto(Aluetyyppi.MAA, Maastotyyppi.AVOMAA, 1));
+        
+        kartta.setRuudut(ruudut);
+        
+        Map<Vektori, Integer> liikuttavatRuudut = reitinhakija.ruudutJoihinVoiLiikkua(yksikko2);
+        
+        assertEquals(16, liikuttavatRuudut.keySet().size());
     }
 
     

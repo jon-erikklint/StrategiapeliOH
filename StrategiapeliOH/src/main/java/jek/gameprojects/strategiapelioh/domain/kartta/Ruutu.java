@@ -2,6 +2,7 @@ package jek.gameprojects.strategiapelioh.domain.kartta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
 import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
@@ -46,6 +47,10 @@ public class Ruutu {
     }
     
     public Pelaaja kenenHallussa(){
+        if(joukot.isEmpty()){
+            return null;
+        }
+        
         return joukot.get(0).getOmistaja();
     }
     
@@ -67,6 +72,29 @@ public class Ruutu {
 
     public List<Joukko> getJoukot() {
         return joukot;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if(o==null){
+            return false;
+        }
+        
+        if(o.getClass()!=this.getClass()){
+            return false;
+        }
+        
+        Ruutu ruutu = (Ruutu) o;
+        
+        return this.sijainti.equals(ruutu.sijainti);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.sijainti);
+        hash = 71 * hash + Objects.hashCode(this.maasto);
+        return hash;
     }
     
 }

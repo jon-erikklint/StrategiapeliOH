@@ -72,6 +72,28 @@ public class KarttaTest {
         
         assertEquals(3, ruudut.size());
     }
+    
+    @Test
+    public void karttaAntaaOikeatRuudut1(){
+        List<Ruutu> ruudut = kartta.getViereisetRuudut(new Vektori(0,0));
+        
+        boolean onko10 = ruudut.contains(kartta.getRuutu(new Vektori(1,0)));
+        boolean onko01 = ruudut.contains(kartta.getRuutu(new Vektori(0,1)));
+        
+        assertEquals(true, onko10);
+        assertEquals(true, onko01);
+    }
+    
+    @Test
+    public void karttaAntaaOikeatRuudut2(){
+        List<Ruutu> ruudut = kartta.getViereisetRuudut(new Vektori (0,2));
+        
+        boolean onko13 = ruudut.contains(kartta.getRuutu(new Vektori(1,2)));
+        boolean onko02 = ruudut.contains(kartta.getRuutu(new Vektori(0,1)));
+        
+        assertEquals(true, onko13);
+        assertEquals(true, onko02);
+    }
 
     
 }
