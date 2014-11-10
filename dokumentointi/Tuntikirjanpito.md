@@ -17,3 +17,8 @@
 #7.11.2014
 **Määrä:** 2h
 **Mitä tein:** Tein lisää testejä ja korjasin kasan virheitä koodista. Lisäksi tein pit-raportin ja konfiguraatiot loppuun.
+
+#10.11.2014
+**Määrä:** 3,5h
+**Mitä tein:** Tein taistelulaskurin ja useita domainluokkia taistelulogiikka varten. Tein myös joukkojen hallinnoijan, sillä kaikki yksiköt kuuluvat johonkin joukkoon. Lisäksi tein muutaman lisätestin.
+

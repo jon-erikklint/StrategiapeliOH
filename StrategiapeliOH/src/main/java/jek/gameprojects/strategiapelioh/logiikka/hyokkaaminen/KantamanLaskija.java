@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.logiikka;
+package jek.gameprojects.strategiapelioh.logiikka.hyokkaaminen;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -12,7 +12,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
-import jek.gameprojects.strategiapelioh.logiikka.Reitinhakija;
+import jek.gameprojects.strategiapelioh.logiikka.liikkuminen.Reitinhakija;
 
 
 public class Kokeiluliittyma { //debuggerointia yms. varten väliaikainen!

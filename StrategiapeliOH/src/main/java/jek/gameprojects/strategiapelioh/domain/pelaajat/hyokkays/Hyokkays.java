@@ -59,5 +59,23 @@ public class Hyokkays {
     public void setMaksimiElamat(int maksimiElamat) {
         this.maksimiElamat = maksimiElamat;
     }
+
+    public List<Ase> getAseet() {
+        return aseet;
+    }
+
+    public void setAseet(List<Ase> aseet) {
+        this.aseet = aseet;
+    }
+
+    public List<Panssari> getPanssarit() {
+        return panssarit;
+    }
+
+    public void setPanssarit(List<Panssari> panssarit) {
+        this.panssarit = panssarit;
+    }
+    
+    
     
 }

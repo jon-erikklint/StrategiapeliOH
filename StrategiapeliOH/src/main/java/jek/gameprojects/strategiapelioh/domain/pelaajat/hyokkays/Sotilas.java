@@ -10,6 +10,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
 public class Sotilas extends Yksikko implements Hyokkaava{
 
     private RajoitettuLaskuri elamat;
+    private Ase aktiivinenAse;
     
     public Sotilas(Yksikkotyyppi yksikkotyyppi, Koordinaatti sijainti, Pelaaja pelaaja, Joukko joukko, int id){
         super(yksikkotyyppi, sijainti, pelaaja, joukko, id);
@@ -49,5 +50,15 @@ public class Sotilas extends Yksikko implements Hyokkaava{
     public int getMaksimiElamat() {
         return elamat.getYlaraja();
     }   
+
+    @Override
+    public Ase getAktiivinenAse() {
+        return aktiivinenAse;
+    }
+
+    @Override
+    public void setAktiivinenAse(Ase aktiivinenAse) {
+        this.aktiivinenAse = aktiivinenAse;
+    }
     
 }

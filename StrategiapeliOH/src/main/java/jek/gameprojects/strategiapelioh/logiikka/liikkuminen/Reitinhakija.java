@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.logiikka;
+package jek.gameprojects.strategiapelioh.logiikka.liikkuminen;
 
 import java.util.HashMap;
 import java.util.List;

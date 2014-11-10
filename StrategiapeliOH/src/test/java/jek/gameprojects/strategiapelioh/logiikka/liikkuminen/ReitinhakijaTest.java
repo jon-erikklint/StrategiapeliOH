@@ -1,5 +1,6 @@
-package jek.gameprojects.strategiapelioh.logiikka;
+package jek.gameprojects.strategiapelioh.logiikka.liikkuminen;
 
+import jek.gameprojects.strategiapelioh.logiikka.liikkuminen.Reitinhakija;
 import java.util.HashMap;
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;

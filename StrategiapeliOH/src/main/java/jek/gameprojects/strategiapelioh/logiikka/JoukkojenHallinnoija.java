@@ -62,4 +62,8 @@ public class JoukkojenHallinnoija {
         yksikko.getJoukko().lisaaYksikko(yksikko);
     }
     
+    public void poistayksikkoJoukostaan(Yksikko yksikko){
+        yksikko.getJoukko().poistaYksikko(yksikko);
+    }
+    
 }

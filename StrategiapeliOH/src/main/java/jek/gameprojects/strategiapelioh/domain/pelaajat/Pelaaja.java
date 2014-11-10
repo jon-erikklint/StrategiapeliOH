@@ -8,21 +8,21 @@ public class Pelaaja {
     private final int id;
     private String nimi;
     
-    private List<Yksikko> yksikot;
+    private List<Joukko> joukot;
     
     public Pelaaja(int id, String nimi) {
         this.id = id;
         this.nimi = nimi;
         
-        yksikot=new ArrayList<>();
+        joukot=new ArrayList<>();
     }
     
-    public void lisaaYksikko(Yksikko yksikko){
-        yksikot.add(yksikko);
+    public void lisaaJoukko(Joukko joukko){
+        joukot.add(joukko);
     }
 
-    public List<Yksikko> getYksikot() {
-        return yksikot;
+    public List<Joukko> getJoukot() {
+        return joukot;
     }
     
     public String getNimi() {

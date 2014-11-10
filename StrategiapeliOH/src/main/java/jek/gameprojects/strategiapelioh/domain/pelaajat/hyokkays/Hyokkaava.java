@@ -22,6 +22,10 @@ public interface Hyokkaava extends Omistettava{
     
     public Koordinaatti getSijainti();
     
+    public Ase getAktiivinenAse();
+    
+    public void setAktiivinenAse(Ase ase);
+    
     @Override
     public Pelaaja getOmistaja();
     
