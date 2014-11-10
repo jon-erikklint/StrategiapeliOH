@@ -4,25 +4,26 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuva;
 import java.util.Objects;
 import jek.gameprojects.strategiapelioh.domain.RajoitettuLaskuri;
-import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
+import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 
 public class Yksikko implements Liikkuva, Omistettava{
     
-    private Pelaaja omistaja;
-    
     private final int id;
+    private Pelaaja omistaja;
+    private Joukko joukko;
     
     private final Yksikkotyyppi yksikkotyyppi;
-    
-    private Vektori sijainti;
     private final RajoitettuLaskuri liikkuvuus;
     
-    public Yksikko(Yksikkotyyppi yksikkotyyppi, Vektori sijainti, Pelaaja pelaaja, int id){
+    private Koordinaatti sijainti;
+    
+    public Yksikko(Yksikkotyyppi yksikkotyyppi, Koordinaatti sijainti, Pelaaja pelaaja, Joukko joukko, int id){
         this.yksikkotyyppi=yksikkotyyppi;
         liikkuvuus=new RajoitettuLaskuri(yksikkotyyppi.getLiikkuvuus(), 0);
-        this.omistaja=pelaaja;
         this.sijainti=sijainti;
         
+        this.omistaja=pelaaja;
+        this.joukko=joukko;
         this.id=id;
     }
 
@@ -32,7 +33,7 @@ public class Yksikko implements Liikkuva, Omistettava{
     }
 
     @Override
-    public void liiku(int kuluvaLiikemaara, Vektori kohdesijainti) {
+    public void liiku(int kuluvaLiikemaara, Koordinaatti kohdesijainti) {
         this.sijainti=kohdesijainti;
         liikkuvuus.lisaaArvoa(-kuluvaLiikemaara);
     }
@@ -47,11 +48,11 @@ public class Yksikko implements Liikkuva, Omistettava{
     }
 
     @Override
-    public Vektori getSijainti() {
+    public Koordinaatti getSijainti() {
         return sijainti;
     }
 
-    public void setSijainti(Vektori sijainti) {
+    public void setSijainti(Koordinaatti sijainti) {
         this.sijainti = sijainti;
     }
 
@@ -62,6 +63,14 @@ public class Yksikko implements Liikkuva, Omistettava{
 
     public void setOmistaja(Pelaaja omistaja) {
         this.omistaja = omistaja;
+    }
+
+    public Joukko getJoukko() {
+        return joukko;
+    }
+
+    public void setJoukko(Joukko joukko) {
+        this.joukko = joukko;
     }
 
     @Override

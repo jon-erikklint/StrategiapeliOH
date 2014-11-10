@@ -1,7 +1,7 @@
 package jek.gameprojects.strategiapelioh.domain.kartta;
 
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
-import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
+import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,30 +19,42 @@ public class Kartta {
         this.korkeus=korkeus;
     }
     
-    public List<Ruutu> getViereisetRuudut(Vektori sijainti){
+    public List<Ruutu> getViereisetRuudut(Koordinaatti sijainti){
         List<Ruutu> viereisetRuudut=new ArrayList<>();
         
-        if(sijainti.getX()-1>=0){
+        if(onkoKartalla( sijainti.summaVektori( Ilmansuunta.LANSI.suuntakoordinaatti() ) )){
             viereisetRuudut.add(ruudut[sijainti.getX()-1][sijainti.getY()]);
         }
         
-        if(sijainti.getX()+1<leveys){
+        if(onkoKartalla( sijainti.summaVektori( Ilmansuunta.ITA.suuntakoordinaatti() ) )){
             viereisetRuudut.add(ruudut[sijainti.getX()+1][sijainti.getY()]);
         }
         
-        if(sijainti.getY()-1>=0){
+        if(onkoKartalla( sijainti.summaVektori( Ilmansuunta.POHJOINEN.suuntakoordinaatti() ) )){
             viereisetRuudut.add(ruudut[sijainti.getX()][sijainti.getY()-1]);
         }
         
-        if(sijainti.getY()+1<korkeus){
+        if(onkoKartalla( sijainti.summaVektori( Ilmansuunta.ETELA.suuntakoordinaatti() ) )){
             viereisetRuudut.add(ruudut[sijainti.getX()][sijainti.getY()+1]);
         }
         
         return viereisetRuudut;
     }
     
-    public Ruutu getRuutu(Vektori sijainti){
+    public Ruutu getRuutu(Koordinaatti sijainti){
         return ruudut[sijainti.getX()][sijainti.getY()];
+    }
+    
+    public boolean onkoKartalla(Koordinaatti koordinaatti){
+        if(koordinaatti.getX()<0 || koordinaatti.getX()>=leveys){
+            return false;
+        }
+        
+        if(koordinaatti.getY()<0 || koordinaatti.getY()>=korkeus){
+            return false;
+        }
+        
+        return true;
     }
 
     public Ruutu[][] getRuudut() {

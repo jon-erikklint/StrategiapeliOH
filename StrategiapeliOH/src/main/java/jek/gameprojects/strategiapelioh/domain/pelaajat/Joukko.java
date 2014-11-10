@@ -3,20 +3,16 @@ package jek.gameprojects.strategiapelioh.domain.pelaajat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
+import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 
 public class Joukko implements Omistettava{
 
     private List<Yksikko> yksikot;
     
-    private Vektori sijainti;
+    private Koordinaatti sijainti;
     
-    public Joukko(Vektori sijainti, Yksikko yksikko){
+    public Joukko(){
         yksikot=new ArrayList<>();
-        
-        yksikot.add(yksikko);
-        
-        this.sijainti=sijainti;
     }
     
     @Override
@@ -25,6 +21,12 @@ public class Joukko implements Omistettava{
     }
     
     public boolean lisaaYksikko(Yksikko yksikko){
+        if(yksikot.isEmpty()){
+            yksikot.add(yksikko);
+            
+            sijainti=yksikko.getSijainti();
+        }
+        
         if(yksikko.getOmistaja().equals(getOmistaja())){
             yksikot.add(yksikko);
             
@@ -54,11 +56,11 @@ public class Joukko implements Omistettava{
         return liikkuvuus;
     }
 
-    public Vektori getSijainti() {
+    public Koordinaatti getSijainti() {
         return sijainti;
     }
     
-    public void setSijainti(Vektori sijainti){
+    public void setSijainti(Koordinaatti sijainti){
         for(Yksikko yksikko:yksikot){
             yksikko.setSijainti(sijainti);
         }

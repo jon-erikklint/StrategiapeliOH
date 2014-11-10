@@ -5,12 +5,12 @@ import java.util.List;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkaava;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
-import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
+import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
 
 public class KantamanLaskija {
     
-    private List<Vektori> hyokattavat;
+    private List<Koordinaatti> hyokattavat;
     
     private Hyokkaava hyokkaava;
     private Kartta kartta;

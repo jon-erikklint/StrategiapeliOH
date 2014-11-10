@@ -35,7 +35,7 @@ public class KarttaTest {
         
         for(int i=0;i<3;i++){
             for (int j=0;j<3;j++){
-                Ruutu ruutu=new Ruutu(new Vektori(i,j), maasto);
+                Ruutu ruutu=new Ruutu(new Koordinaatti(i,j), maasto);
                 ruudut[i][j]=ruutu;
             }
         }
@@ -49,36 +49,62 @@ public class KarttaTest {
     }
     
     @Test
+    public void karttaLoytaaKartallaOlevanRuudun(){
+        boolean onkoKartalla=kartta.onkoKartalla(new Koordinaatti(0,0));
+        
+        assertEquals(true, onkoKartalla);
+    }
+    
+    @Test
+    public void karttaEiLoydaNegatiivisiaRuutuja(){
+        boolean onkoKartalla = kartta.onkoKartalla(new Koordinaatti(-1, 0));
+        boolean onkoKartalla2 = kartta.onkoKartalla(new Koordinaatti(0, -1));
+        
+        assertEquals(false, onkoKartalla);
+        assertEquals(false, onkoKartalla2);
+        
+    }
+    
+    @Test
+    public void karttaEiLoydaLiianSuuriaRuutuja(){
+        boolean onkoKartalla = kartta.onkoKartalla(new Koordinaatti(5,0));
+        boolean onkoKartalla2 = kartta.onkoKartalla(new Koordinaatti(0,5));
+        
+        assertEquals(false, onkoKartalla);
+        assertEquals(false, onkoKartalla2);
+    }
+    
+    @Test
     public void karttaAntaaRuudun(){
-        Ruutu ruutu=kartta.getRuutu(new Vektori(0,0));
+        Ruutu ruutu=kartta.getRuutu(new Koordinaatti(0,0));
         
         assertEquals("[0,0]",ruutu.getSijainti().toString());
     }
     
     @Test
     public void karttaAntaaViereisetRuudutOikeinJosKaikissaSuunnissaOnRuutu(){
-        List<Ruutu> ruudut = kartta.getViereisetRuudut(new Vektori(1,1));
+        List<Ruutu> ruudut = kartta.getViereisetRuudut(new Koordinaatti(1,1));
         
         assertEquals(4, ruudut.size());
     }
     
     @Test
     public void karttaAntaaViereisetRuudutOikeinJosKaikissaSuunnissaEiOleRuutua(){
-        List<Ruutu> ruudut = kartta.getViereisetRuudut(new Vektori(0,0));
+        List<Ruutu> ruudut = kartta.getViereisetRuudut(new Koordinaatti(0,0));
         
         assertEquals(2, ruudut.size());
         
-        ruudut = kartta.getViereisetRuudut(new Vektori(2,1));
+        ruudut = kartta.getViereisetRuudut(new Koordinaatti(2,1));
         
         assertEquals(3, ruudut.size());
     }
     
     @Test
     public void karttaAntaaOikeatRuudut1(){
-        List<Ruutu> ruudut = kartta.getViereisetRuudut(new Vektori(0,0));
+        List<Ruutu> ruudut = kartta.getViereisetRuudut(new Koordinaatti(0,0));
         
-        boolean onko10 = ruudut.contains(kartta.getRuutu(new Vektori(1,0)));
-        boolean onko01 = ruudut.contains(kartta.getRuutu(new Vektori(0,1)));
+        boolean onko10 = ruudut.contains(kartta.getRuutu(new Koordinaatti(1,0)));
+        boolean onko01 = ruudut.contains(kartta.getRuutu(new Koordinaatti(0,1)));
         
         assertEquals(true, onko10);
         assertEquals(true, onko01);
@@ -86,10 +112,10 @@ public class KarttaTest {
     
     @Test
     public void karttaAntaaOikeatRuudut2(){
-        List<Ruutu> ruudut = kartta.getViereisetRuudut(new Vektori (0,2));
+        List<Ruutu> ruudut = kartta.getViereisetRuudut(new Koordinaatti (0,2));
         
-        boolean onko13 = ruudut.contains(kartta.getRuutu(new Vektori(1,2)));
-        boolean onko02 = ruudut.contains(kartta.getRuutu(new Vektori(0,1)));
+        boolean onko13 = ruudut.contains(kartta.getRuutu(new Koordinaatti(1,2)));
+        boolean onko02 = ruudut.contains(kartta.getRuutu(new Koordinaatti(0,1)));
         
         assertEquals(true, onko13);
         assertEquals(true, onko02);

@@ -7,13 +7,13 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuva;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
-import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
+import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 
 public class Reitinhakija {
     
-    private Map<Vektori, Integer> liikuttavat;
+    private Map<Koordinaatti, Integer> liikuttavat;
     
     private final Kartta kartta;
     private Liikkuva liikkuva;
@@ -25,7 +25,7 @@ public class Reitinhakija {
         this.kartta=kartta;
     }
     
-    public Map<Vektori, Integer> ruudutJoihinVoiLiikkua(Liikkuva liikkuva){
+    public Map<Koordinaatti, Integer> ruudutJoihinVoiLiikkua(Liikkuva liikkuva){
         nollaa();
         
         this.liikkuva=liikkuva;
@@ -92,7 +92,7 @@ public class Reitinhakija {
         return (int) kuluvaLiikuntamaara;
     }
     
-    private boolean yhdistaLiikkuminenLiikuttaviin(Vektori sijainti, int kulunutLiikuntamaara){
+    private boolean yhdistaLiikkuminenLiikuttaviin(Koordinaatti sijainti, int kulunutLiikuntamaara){
         if(onkoNopeinReittiTallaHetkella(sijainti, kulunutLiikuntamaara)){
             liikuttavat.put(sijainti, kulunutLiikuntamaara);
             
@@ -102,7 +102,7 @@ public class Reitinhakija {
         return false;
     }
     
-    public boolean onkoNopeinReittiTallaHetkella(Vektori sijainti, int kulunutLiikkuvuus){
+    public boolean onkoNopeinReittiTallaHetkella(Koordinaatti sijainti, int kulunutLiikkuvuus){
         try{
             int aikaisempiNopein=liikuttavat.get(sijainti);
             return kulunutLiikkuvuus<=aikaisempiNopein;
@@ -115,7 +115,7 @@ public class Reitinhakija {
         liikuttavat.clear();
     }
     
-    public Map<Vektori, Integer> getLiikuttavatRuudut(){
+    public Map<Koordinaatti, Integer> getLiikuttavatRuudut(){
         return liikuttavat;
     }
     

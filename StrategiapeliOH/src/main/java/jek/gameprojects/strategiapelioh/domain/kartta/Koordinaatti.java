@@ -1,26 +1,26 @@
 package jek.gameprojects.strategiapelioh.domain.kartta;
 
-public class Vektori {
+public class Koordinaatti {
     
     private int X;
     private int Y;
 
-    public Vektori(int X, int Y) {
+    public Koordinaatti(int X, int Y) {
         this.X = X;
         this.Y = Y;
     }
 
-    public Vektori(){
+    public Koordinaatti(){
         this(0,0);
     }
     
-    public void summaa(Vektori vektori){
+    public void summaa(Koordinaatti vektori){
         this.X+=vektori.X;
         this.Y+=vektori.Y;
     }
     
-    public Vektori summaVektori(Vektori vektori){
-        return new Vektori(this.X+vektori.X, this.Y+vektori.Y);
+    public Koordinaatti summaVektori(Koordinaatti vektori){
+        return new Koordinaatti(this.X+vektori.X, this.Y+vektori.Y);
     }
     
     public int getX() {
@@ -49,7 +49,7 @@ public class Vektori {
             return false;
         }
         
-        Vektori toinen=(Vektori) o;
+        Koordinaatti toinen=(Koordinaatti) o;
         
         return toinen.X==this.X && toinen.Y==this.Y;
     }

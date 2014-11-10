@@ -6,26 +6,29 @@ import java.util.Set;
 import java.util.HashSet;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuva;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
-import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
+import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 
 public class Liikuttaja {
     
-    private Map<Liikkuva,Map<Vektori,Integer>> yksikoidenMahdollisetLiikkeet;
-    private Map<Joukko,Set<Vektori>> joukkojenMahdollisetLiikkeet;
+    private Map<Liikkuva,Map<Koordinaatti,Integer>> yksikoidenMahdollisetLiikkeet;
+    private Map<Joukko,Set<Koordinaatti>> joukkojenMahdollisetLiikkeet;
     
-    private Reitinhakija liikkuvuusTarkastelija;
+    private Reitinhakija reitinhakija;
+    private JoukkojenHallinnoija joukkojenHallinnoija;
     
     public Liikuttaja(Kartta kartta){
         yksikoidenMahdollisetLiikkeet=new HashMap<>();
         joukkojenMahdollisetLiikkeet=new HashMap<>();
         
-        liikkuvuusTarkastelija=new Reitinhakija(kartta);
+        reitinhakija=new Reitinhakija(kartta);
+        joukkojenHallinnoija=new JoukkojenHallinnoija();
+        
     }
     
-    public Map<Vektori, Integer> alustaLiikkuvanMahdollisetLiikkeet(Liikkuva liikkuva){
-        Map<Vektori,Integer> mahdollisetLiikkeet=liikkuvuusTarkastelija.ruudutJoihinVoiLiikkua(liikkuva);
+    public Map<Koordinaatti, Integer> alustaLiikkuvanMahdollisetLiikkeet(Liikkuva liikkuva){
+        Map<Koordinaatti,Integer> mahdollisetLiikkeet=reitinhakija.ruudutJoihinVoiLiikkua(liikkuva);
         
         yksikoidenMahdollisetLiikkeet.put(liikkuva, mahdollisetLiikkeet);
         
@@ -33,12 +36,12 @@ public class Liikuttaja {
     }
     
     public void alustaJoukonMahdollisetLiikkeet(Joukko joukko){
-        Map<Vektori, Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun=new HashMap<>();
+        Map<Koordinaatti, Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun=new HashMap<>();
         
         for(Yksikko yksikko:joukko.getYksikot()){
-            Map<Vektori,Integer> yksikonMahdollisetLiikkeet=alustaLiikkuvanMahdollisetLiikkeet(yksikko);
+            Map<Koordinaatti,Integer> yksikonMahdollisetLiikkeet=alustaLiikkuvanMahdollisetLiikkeet(yksikko);
             
-            for(Vektori sijainti:yksikonMahdollisetLiikkeet.keySet()){
+            for(Koordinaatti sijainti:yksikonMahdollisetLiikkeet.keySet()){
                 try{
                     int maara=kuinkaMontaYksikkoaVoiLiikkuaRuutuun.get(sijainti);
                     kuinkaMontaYksikkoaVoiLiikkuaRuutuun.put(sijainti, maara+1);
@@ -51,12 +54,12 @@ public class Liikuttaja {
         lisaaJoukonLiikkeet(joukko, kuinkaMontaYksikkoaVoiLiikkuaRuutuun);
     }
     
-    private void lisaaJoukonLiikkeet(Joukko joukko, Map<Vektori,Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun){
-        Set<Vektori> joukonLiikkeet=new HashSet<>();
+    private void lisaaJoukonLiikkeet(Joukko joukko, Map<Koordinaatti,Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun){
+        Set<Koordinaatti> joukonLiikkeet=new HashSet<>();
         
         int joukonKoko=joukko.getYksikot().size();
         
-        for(Vektori sijainti:kuinkaMontaYksikkoaVoiLiikkuaRuutuun.keySet()){
+        for(Koordinaatti sijainti:kuinkaMontaYksikkoaVoiLiikkuaRuutuun.keySet()){
             if(kuinkaMontaYksikkoaVoiLiikkuaRuutuun.get(sijainti)==joukonKoko){
                 joukonLiikkeet.add(sijainti);
             }
@@ -65,28 +68,34 @@ public class Liikuttaja {
         joukkojenMahdollisetLiikkeet.put(joukko, joukonLiikkeet);
     }
     
-    public void liikutaLiikkuva(Liikkuva liikkuva, Vektori sijainti){
+    private void liikutaLiikkuva(Liikkuva liikkuva, Koordinaatti sijainti){
         liikkuva.liiku( yksikoidenMahdollisetLiikkeet.get(liikkuva).get(sijainti),sijainti);
     }
     
-    public void liikutaJoukko(Joukko joukko, Vektori sijainti){
+    public void joukkohallinnointi(Joukko joukko){
+        joukkojenHallinnoija.paivitaJoukonSijaintiVastaamaanYksikoita(joukko);
+    }
+    
+    public void liikutaJoukko(Joukko joukko, Koordinaatti sijainti){
         for(Yksikko yksikko:joukko.getYksikot()){
             liikutaLiikkuva(yksikko, sijainti);
         }
+        
+        joukkohallinnointi(joukko);
     }
     
     public void nollaa(){
         yksikoidenMahdollisetLiikkeet.clear();
         joukkojenMahdollisetLiikkeet.clear();
         
-        liikkuvuusTarkastelija.nollaa();
+        reitinhakija.nollaa();
     }
     
-    public Set<Vektori> annaYksikonMahdollisetLiikkeet(Liikkuva liikkuva){
+    public Set<Koordinaatti> annaYksikonMahdollisetLiikkeet(Liikkuva liikkuva){
         return yksikoidenMahdollisetLiikkeet.get(liikkuva).keySet();
     }
     
-    public Set<Vektori> annaJoukonMahdollisetLiikkeet(Joukko joukko){
+    public Set<Koordinaatti> annaJoukonMahdollisetLiikkeet(Joukko joukko){
         return joukkojenMahdollisetLiikkeet.get(joukko);
     }
 }

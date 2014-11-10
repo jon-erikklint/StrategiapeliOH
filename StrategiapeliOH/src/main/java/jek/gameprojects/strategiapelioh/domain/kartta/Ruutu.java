@@ -3,19 +3,19 @@ package jek.gameprojects.strategiapelioh.domain.kartta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import jek.gameprojects.strategiapelioh.domain.kartta.Vektori;
+import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 
 public class Ruutu {
     
-    private Vektori sijainti;
+    private Koordinaatti sijainti;
     private Maasto maasto;
     
     private List<Joukko> joukot;
 
-    public Ruutu(Vektori sijainti, Maasto maasto) {
+    public Ruutu(Koordinaatti sijainti, Maasto maasto) {
         this.sijainti = sijainti;
         this.maasto = maasto;
         
@@ -62,11 +62,11 @@ public class Ruutu {
         this.maasto = maasto;
     }
 
-    public Vektori getSijainti() {
+    public Koordinaatti getSijainti() {
         return sijainti;
     }
 
-    public void setSijainti(Vektori sijainti) {
+    public void setSijainti(Koordinaatti sijainti) {
         this.sijainti = sijainti;
     }
 
