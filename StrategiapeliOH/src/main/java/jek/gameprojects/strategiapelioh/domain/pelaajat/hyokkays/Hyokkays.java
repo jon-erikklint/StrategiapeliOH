@@ -1,13 +1,27 @@
 package jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hyokkays {
+    
+    private boolean onkoHyokkaava;
     
     private int kantama;
     private boolean kaukotaistelu;
+    
+    private int maksimiElamat;
+    
+    private List<Ase> aseet;
+    private List<Panssari> panssarit;
 
-    public Hyokkays(int kantama, boolean kaukotaistelu) {
+    public Hyokkays(int elamat, int kantama, boolean kaukotaistelu, boolean onkoHyokkaava, List<Ase> aseet, List<Panssari> panssarit) {
         this.kantama = kantama;
         this.kaukotaistelu = kaukotaistelu;
+    }
+    
+    public Hyokkays(){
+        this(1,0,false,false, new ArrayList<Ase>(), new ArrayList<Panssari>());
     }
     
     public boolean isKaukotaistelu() {
@@ -28,6 +42,22 @@ public class Hyokkays {
 
     public void setKantama(int kantama) {
         this.kantama = kantama;
+    }
+
+    public boolean isOnkoHyokkaava() {
+        return onkoHyokkaava;
+    }
+
+    public void setOnkoHyokkaava(boolean onkoHyokkaava) {
+        this.onkoHyokkaava = onkoHyokkaava;
+    }
+
+    public int getMaksimiElamat() {
+        return maksimiElamat;
+    }
+
+    public void setMaksimiElamat(int maksimiElamat) {
+        this.maksimiElamat = maksimiElamat;
     }
     
 }

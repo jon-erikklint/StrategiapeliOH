@@ -5,37 +5,21 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 
 public class Yksikkotyyppi {
     
-    private int liikkuvuus;
-    private boolean onkoHyokkaava;
-    
     private Liikkuvuus liikuntakyky;
     private Hyokkays hyokkays;
     
-    public Yksikkotyyppi(int liikkuvuus, Liikkuvuus liikuntakyky, Hyokkays hyokkays) {
-        this.liikkuvuus = liikkuvuus;
+    public Yksikkotyyppi(Liikkuvuus liikuntakyky, Hyokkays hyokkays) {
         this.liikuntakyky = liikuntakyky;
         this.hyokkays = hyokkays;
         
-        onkoHyokkaava=true;
     }
     
-    public Yksikkotyyppi(int liikkuvuus, Liikkuvuus liikuntakyky){
-        this.liikkuvuus = liikkuvuus;
+    public Yksikkotyyppi(Liikkuvuus liikuntakyky){
         this.liikuntakyky = liikuntakyky;
         
-        hyokkays = new Hyokkays(0, false);
-        
-        onkoHyokkaava = false;
+        hyokkays = new Hyokkays();
     }
     
-    public int getLiikkuvuus() {
-        return liikkuvuus;
-    }
-
-    public void setLiikkuvuus(int liikkuvuus) {
-        this.liikkuvuus = liikkuvuus;
-    }
-
     public Liikkuvuus getLiikuntakyky() {
         return liikuntakyky;
     }
@@ -45,11 +29,11 @@ public class Yksikkotyyppi {
     }
 
     public boolean isOnkoHyokkaava() {
-        return onkoHyokkaava;
+        return hyokkays.isOnkoHyokkaava();
     }
 
     public void setOnkoHyokkaava(boolean onkoHyokkaava) {
-        this.onkoHyokkaava = onkoHyokkaava;
+        this.hyokkays.setOnkoHyokkaava(onkoHyokkaava);
     }
 
     public Hyokkays getHyokkays() {

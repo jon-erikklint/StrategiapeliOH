@@ -68,11 +68,11 @@ public class ReitinhakijaTest {
         maastotyyppikartta2.put(Maastotyyppi.AVOMAA, 0.0);
         
         
-        Liikkuvuus liikkuvuus1 = new Liikkuvuus(aluetyyppikartta1, maastotyyppikartta1);
-        Liikkuvuus liikkuvuus2 = new Liikkuvuus(aluetyyppikartta2, maastotyyppikartta2);
+        Liikkuvuus liikkuvuus1 = new Liikkuvuus(aluetyyppikartta1, maastotyyppikartta1, 2);
+        Liikkuvuus liikkuvuus2 = new Liikkuvuus(aluetyyppikartta2, maastotyyppikartta2, 7);
         
-        Yksikkotyyppi yksikkotyyppi1 = new Yksikkotyyppi(2, liikkuvuus1);
-        Yksikkotyyppi yksikkotyyppi2 = new Yksikkotyyppi(7, liikkuvuus2);
+        Yksikkotyyppi yksikkotyyppi1 = new Yksikkotyyppi(liikkuvuus1);
+        Yksikkotyyppi yksikkotyyppi2 = new Yksikkotyyppi(liikkuvuus2);
         
         
         Pelaaja pelaaja=new Pelaaja(0,"");

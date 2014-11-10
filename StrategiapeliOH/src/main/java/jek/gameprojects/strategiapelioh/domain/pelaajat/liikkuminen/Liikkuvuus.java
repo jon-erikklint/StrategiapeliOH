@@ -8,10 +8,22 @@ public class Liikkuvuus {
     
     private Map<Aluetyyppi, Boolean> mihinVoiLiikkua;
     private Map<Maastotyyppi, Double> hitauskertoimetMaastossa;
+    
+    private int liikuntamaara;
 
-    public Liikkuvuus(Map<Aluetyyppi, Boolean> mihinVoiLiikkua, Map<Maastotyyppi, Double> hitauskertoimetMaastossa) {
+    public Liikkuvuus(Map<Aluetyyppi, Boolean> mihinVoiLiikkua, Map<Maastotyyppi, Double> hitauskertoimetMaastossa, int liikuntamaara) {
         this.mihinVoiLiikkua = mihinVoiLiikkua;
         this.hitauskertoimetMaastossa = hitauskertoimetMaastossa;
+        
+        this.liikuntamaara=liikuntamaara;
+    }
+
+    public int getLiikuntamaara() {
+        return liikuntamaara;
+    }
+
+    public void setLiikuntamaara(int liikuntamaara) {
+        this.liikuntamaara = liikuntamaara;
     }
     
     public Map<Aluetyyppi, Boolean> getMihinVoiLiikkua() {
