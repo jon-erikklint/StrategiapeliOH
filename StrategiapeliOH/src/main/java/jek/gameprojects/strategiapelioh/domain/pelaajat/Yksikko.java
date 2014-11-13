@@ -19,12 +19,15 @@ public class Yksikko implements Liikkuva, Omistettava{
     
     public Yksikko(Yksikkotyyppi yksikkotyyppi, Koordinaatti sijainti, Pelaaja pelaaja, Joukko joukko, int id){
         this.yksikkotyyppi=yksikkotyyppi;
-        liikkuvuus=new RajoitettuLaskuri(yksikkotyyppi.getLiikuntakyky().getLiikuntamaara(), 0);
+        this.liikkuvuus=new RajoitettuLaskuri(yksikkotyyppi.getLiikuntakyky().getLiikuntamaara(), 0);
         this.sijainti=sijainti;
         
         this.omistaja=pelaaja;
         this.joukko=joukko;
+        
         this.id=id;
+        
+        this.joukko.lisaaYksikko(this);
     }
 
     @Override
@@ -96,6 +99,9 @@ public class Yksikko implements Liikkuva, Omistettava{
         return true;
     }
     
-    
+    @Override
+    public String toString(){
+        return id+"";
+    }
   
 }

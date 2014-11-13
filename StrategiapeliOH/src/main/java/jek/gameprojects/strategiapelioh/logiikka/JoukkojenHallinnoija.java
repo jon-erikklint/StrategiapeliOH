@@ -1,6 +1,7 @@
 package jek.gameprojects.strategiapelioh.logiikka;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
@@ -8,14 +9,32 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 public class JoukkojenHallinnoija {
     
     public void siirraYksikkoJoukkoon(Yksikko yksikko, Joukko joukko){
-        yksikko.getJoukko().poistaYksikko(yksikko);
-        yksikko.setJoukko(joukko);
+        if(joukko.lisaaYksikko(yksikko)){
+            
+            yksikko.getJoukko().poistaYksikko(yksikko);
+            
+            yksikko.setJoukko(joukko);
+        } 
     }
     
-    public Joukko siirraJoukkoJoukkoon(Joukko lahde, Joukko kohde){
+    private void lisaaYksikkoJoukkoon(Yksikko yksikko, Joukko joukko){
+        if(joukko.lisaaYksikko(yksikko)){
+            yksikko.setJoukko(joukko);
+        }
+    }
+    
+    private void poistaYksikkoJoukosta(Yksikko yksikko, Joukko joukko){
+        joukko.poistaYksikko(yksikko);
+    }
+    
+    public Joukko siirraJoukkoJoukkoon(Joukko kohde, Joukko lahde){
         
-        for(Yksikko yksikko: lahde.getYksikot()){
-            siirraYksikkoJoukkoon(yksikko, kohde);
+        for(Yksikko yksikko:lahde.getYksikot()){
+            lisaaYksikkoJoukkoon(yksikko, kohde);
+        }
+        
+        for(Yksikko yksikko:lahde.getYksikot()){
+            poistaYksikkoJoukosta(yksikko, lahde);
         }
         
         return kohde;
@@ -48,7 +67,7 @@ public class JoukkojenHallinnoija {
         Joukko uusiJoukko = joukot.get(0);
         
         for(int i=1; i<joukot.size();i++){
-            siirraJoukkoJoukkoon(joukot.get(0), uusiJoukko);
+            siirraJoukkoJoukkoon(uusiJoukko, joukot.get(i));
         }
         
         return uusiJoukko;

@@ -25,6 +25,8 @@ public class Joukko implements Omistettava{
             yksikot.add(yksikko);
             
             sijainti=yksikko.getSijainti();
+            
+            return true;
         }
         
         if(yksikko.getOmistaja().equals(getOmistaja())){

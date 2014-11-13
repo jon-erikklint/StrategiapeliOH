@@ -41,19 +41,27 @@ public class Liikuttaja {
         Map<Koordinaatti, Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun=new HashMap<>();
         
         for(Yksikko yksikko:joukko.getYksikot()){
-            Map<Koordinaatti,Integer> yksikonMahdollisetLiikkeet=alustaLiikkuvanMahdollisetLiikkeet(yksikko);
             
-            for(Koordinaatti sijainti:yksikonMahdollisetLiikkeet.keySet()){
-                try{
-                    int maara=kuinkaMontaYksikkoaVoiLiikkuaRuutuun.get(sijainti);
-                    kuinkaMontaYksikkoaVoiLiikkuaRuutuun.put(sijainti, maara+1);
-                }catch(Exception e){
-                    kuinkaMontaYksikkoaVoiLiikkuaRuutuun.put(sijainti, 1);
-                }
-            }
+            alustaYksikkoJoukosta(yksikko, kuinkaMontaYksikkoaVoiLiikkuaRuutuun);
+            
         }
         
         lisaaJoukonLiikkeet(joukko, kuinkaMontaYksikkoaVoiLiikkuaRuutuun);
+    }
+    
+    private void alustaYksikkoJoukosta(Yksikko yksikko, Map<Koordinaatti, Integer> mihinYksikotVoivatLiikkua){
+        Map<Koordinaatti,Integer> yksikonMahdollisetLiikkeet = alustaLiikkuvanMahdollisetLiikkeet(yksikko);
+            
+        for(Koordinaatti sijainti:yksikonMahdollisetLiikkeet.keySet()){
+
+            try{
+                int maara = mihinYksikotVoivatLiikkua.get(sijainti);
+                mihinYksikotVoivatLiikkua.put(sijainti, maara+1);
+            }catch(Exception e){
+                mihinYksikotVoivatLiikkua.put(sijainti, 1);
+            }
+
+        }
     }
     
     private void lisaaJoukonLiikkeet(Joukko joukko, Map<Koordinaatti,Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun){
@@ -61,8 +69,8 @@ public class Liikuttaja {
         
         int joukonKoko=joukko.getYksikot().size();
         
-        for(Koordinaatti sijainti:kuinkaMontaYksikkoaVoiLiikkuaRuutuun.keySet()){
-            if(kuinkaMontaYksikkoaVoiLiikkuaRuutuun.get(sijainti)==joukonKoko){
+        for(Koordinaatti sijainti : kuinkaMontaYksikkoaVoiLiikkuaRuutuun.keySet()){
+            if( kuinkaMontaYksikkoaVoiLiikkuaRuutuun.get(sijainti) == joukonKoko ){
                 joukonLiikkeet.add(sijainti);
             }
         }
@@ -92,6 +100,7 @@ public class Liikuttaja {
         
         reitinhakija.nollaa();
     }
+    
     
     public Set<Koordinaatti> annaYksikonMahdollisetLiikkeet(Liikkuva liikkuva){
         return yksikoidenMahdollisetLiikkeet.get(liikkuva).keySet();
