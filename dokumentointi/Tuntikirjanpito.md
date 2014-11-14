@@ -26,3 +26,6 @@
 **Määrä:** 2h
 **Mitä tein:** Lisäsin testejä joukkojenHallinnoijaan ja liikuttajaan. Lisäksi loin indeksoija-luokan ja tein sen testit.
 
+#14.11.2013
+**Määrä:** 1h
+**Mitä tein:** Luokkakaavion ja vähän testejä
