@@ -2,6 +2,7 @@ package jek.gameprojects.strategiapelioh.logiikka.liikkuminen;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
@@ -144,4 +145,59 @@ public class LiikuttajaTest {
         assertEquals(6, liikuttaja.annaJoukonMahdollisetLiikkeet(joukko2).size());
     }
     
+    @Test
+    public void yksittaisenLiikkuvanLiikuttaminenToimii(){
+        Map<Koordinaatti, Integer> liikuttavat = liikuttaja.alustaLiikkuvanMahdollisetLiikkeet(yksikko4);
+        
+        for(Koordinaatti koordinaatti:liikuttavat.keySet()){
+            int odotettuLiikkuvuus = yksikko4.liikkuvuus();
+            odotettuLiikkuvuus-=liikuttavat.get(koordinaatti);
+            
+            liikuttaja.liikutaLiikkuva(yksikko4, koordinaatti);
+            
+            assertEquals(odotettuLiikkuvuus, yksikko4.liikkuvuus());
+            
+            break; 
+        }   
+    }
+    
+    @Test
+    public void joukonLiikuttaminenToimii(){
+        Set<Koordinaatti> liikuttavat = liikuttaja.alustaJoukonMahdollisetLiikkeet(joukko1);
+        
+        for(Koordinaatti koordinaatti : liikuttavat){
+            liikuttaja.liikutaJoukko(joukko1, koordinaatti);
+            
+            for(Yksikko yksikko : joukko1.getYksikot()){
+                assertEquals(koordinaatti, yksikko.getSijainti());
+            }
+            
+            break;
+        }
+        
+    }
+    
+    @Test
+    public void joukkoSiirtyyYksikoidenMukana(){
+        Set<Koordinaatti> liikuttavat = liikuttaja.alustaJoukonMahdollisetLiikkeet(joukko1);
+        
+        for(Koordinaatti koordinaatti : liikuttavat){
+            liikuttaja.liikutaJoukko(joukko1, koordinaatti);
+            
+            assertEquals(koordinaatti, joukko1.getSijainti());
+            break;
+        }
+    }
+    
+    @Test
+    public void nollausTyhjentaaTiedot(){
+        liikuttaja.alustaJoukonMahdollisetLiikkeet(joukko1);
+        liikuttaja.alustaJoukonMahdollisetLiikkeet(joukko2);
+        
+        liikuttaja.nollaa();
+        
+        assertEquals(0, liikuttaja.getJoukkojenMahdollisetLiikkeet().keySet().size());
+        assertEquals(0, liikuttaja.getYksikoidenMahdollisetLiikkeet().keySet().size());
+    }
+        
 }

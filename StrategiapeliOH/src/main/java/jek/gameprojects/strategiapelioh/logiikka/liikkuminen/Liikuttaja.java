@@ -28,7 +28,8 @@ public class Liikuttaja {
         joukkojenHallinnoija=new JoukkojenHallinnoija();
         
     }
-    
+    //
+    //Alustukset/Reitinhakijan laskut
     public Map<Koordinaatti, Integer> alustaLiikkuvanMahdollisetLiikkeet(Liikkuva liikkuva){
         Map<Koordinaatti,Integer> mahdollisetLiikkeet=reitinhakija.ruudutJoihinVoiLiikkua(liikkuva);
         
@@ -37,7 +38,7 @@ public class Liikuttaja {
         return mahdollisetLiikkeet;
     }
     
-    public void alustaJoukonMahdollisetLiikkeet(Joukko joukko){
+    public Set<Koordinaatti> alustaJoukonMahdollisetLiikkeet(Joukko joukko){
         Map<Koordinaatti, Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun=new HashMap<>();
         
         for(Yksikko yksikko:joukko.getYksikot()){
@@ -46,7 +47,7 @@ public class Liikuttaja {
             
         }
         
-        lisaaJoukonLiikkeet(joukko, kuinkaMontaYksikkoaVoiLiikkuaRuutuun);
+        return lisaaJoukonLiikkeet(joukko, kuinkaMontaYksikkoaVoiLiikkuaRuutuun);
     }
     
     private void alustaYksikkoJoukosta(Yksikko yksikko, Map<Koordinaatti, Integer> mihinYksikotVoivatLiikkua){
@@ -64,7 +65,7 @@ public class Liikuttaja {
         }
     }
     
-    private void lisaaJoukonLiikkeet(Joukko joukko, Map<Koordinaatti,Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun){
+    private Set<Koordinaatti> lisaaJoukonLiikkeet(Joukko joukko, Map<Koordinaatti,Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun){
         Set<Koordinaatti> joukonLiikkeet=new HashSet<>();
         
         int joukonKoko=joukko.getYksikot().size();
@@ -76,9 +77,16 @@ public class Liikuttaja {
         }
         
         joukkojenMahdollisetLiikkeet.put(joukko, joukonLiikkeet);
+        
+        return joukonLiikkeet;
     }
+    //
+    //
     
-    private void liikutaLiikkuva(Liikkuva liikkuva, Koordinaatti sijainti){
+    
+    //
+    //Liikuttaminen
+    public void liikutaLiikkuva(Liikkuva liikkuva, Koordinaatti sijainti){
         liikkuva.liiku( yksikoidenMahdollisetLiikkeet.get(liikkuva).get(sijainti),sijainti);
     }
     
@@ -93,6 +101,8 @@ public class Liikuttaja {
         
         joukkohallinnointi(joukko);
     }
+    //
+    //
     
     public void nollaa(){
         yksikoidenMahdollisetLiikkeet.clear();
@@ -109,4 +119,14 @@ public class Liikuttaja {
     public Set<Koordinaatti> annaJoukonMahdollisetLiikkeet(Joukko joukko){
         return joukkojenMahdollisetLiikkeet.get(joukko);
     }
+
+    public Map<Liikkuva, Map<Koordinaatti, Integer>> getYksikoidenMahdollisetLiikkeet() {
+        return yksikoidenMahdollisetLiikkeet;
+    }
+
+    public Map<Joukko, Set<Koordinaatti>> getJoukkojenMahdollisetLiikkeet() {
+        return joukkojenMahdollisetLiikkeet;
+    }
+    
+    
 }

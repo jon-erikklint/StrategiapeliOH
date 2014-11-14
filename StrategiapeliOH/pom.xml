@@ -36,7 +36,7 @@
                 <configuration>
                     <instrumentation>
                         <includes>
-                            <include>strategiapelioh.logiikka/*.class</include>
+                            <include>jek.gameprojects.strategiapelioh.logiikka/*.class</include>
                         </includes>
                     </instrumentation>
                 </configuration>
