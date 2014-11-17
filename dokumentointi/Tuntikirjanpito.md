@@ -22,10 +22,14 @@
 **Määrä:** 3,5h
 **Mitä tein:** Tein taistelulaskurin ja useita domainluokkia taistelulogiikka varten. Tein myös joukkojen hallinnoijan, sillä kaikki yksiköt kuuluvat johonkin joukkoon. Lisäksi tein muutaman lisätestin.
 
-#13.11.2013
+#13.11.2014
 **Määrä:** 2h
 **Mitä tein:** Lisäsin testejä joukkojenHallinnoijaan ja liikuttajaan. Lisäksi loin indeksoija-luokan ja tein sen testit.
 
-#14.11.2013
+#14.11.2014
 **Määrä:** 1h
 **Mitä tein:** Luokkakaavion ja vähän testejä
+
+#17.11.2014
+**Määrä:** 1,5h
+**Mitä tein:* Aloitin pelin alustusten tekemisen
