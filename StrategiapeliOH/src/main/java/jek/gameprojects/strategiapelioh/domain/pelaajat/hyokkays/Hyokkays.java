@@ -15,13 +15,19 @@ public class Hyokkays {
     private List<Ase> aseet;
     private List<Panssari> panssarit;
 
-    public Hyokkays(int elamat, int kantama, boolean kaukotaistelu, boolean onkoHyokkaava, List<Ase> aseet, List<Panssari> panssarit) {
+    public Hyokkays(int elamat, int kantama, boolean kaukotaistelu, List<Ase> aseet, List<Panssari> panssarit) {
+        onkoHyokkaava = true;
+        
+        this.maksimiElamat=elamat;
         this.kantama = kantama;
         this.kaukotaistelu = kaukotaistelu;
+        
+        this.aseet=aseet;
+        this.panssarit=panssarit;
     }
     
     public Hyokkays(){
-        this(1,0,false,false, new ArrayList<Ase>(), new ArrayList<Panssari>());
+        onkoHyokkaava = false;
     }
     
     public boolean isKaukotaistelu() {

@@ -5,16 +5,22 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 
 public class Yksikkotyyppi {
     
+    private final String nimi;
+    
     private Liikkuvuus liikuntakyky;
     private Hyokkays hyokkays;
     
-    public Yksikkotyyppi(Liikkuvuus liikuntakyky, Hyokkays hyokkays) {
+    public Yksikkotyyppi(String nimi, Liikkuvuus liikuntakyky, Hyokkays hyokkays) {
+        this.nimi = nimi;
+        
         this.liikuntakyky = liikuntakyky;
         this.hyokkays = hyokkays;
         
     }
     
-    public Yksikkotyyppi(Liikkuvuus liikuntakyky){
+    public Yksikkotyyppi(String nimi, Liikkuvuus liikuntakyky){
+        this.nimi=nimi;
+        
         this.liikuntakyky = liikuntakyky;
         
         hyokkays = new Hyokkays();
@@ -42,6 +48,10 @@ public class Yksikkotyyppi {
 
     public void setHyokkays(Hyokkays hyokkays) {
         this.hyokkays = hyokkays;
+    }
+
+    public String getNimi() {
+        return nimi;
     }
     
 }

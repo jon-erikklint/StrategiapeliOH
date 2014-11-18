@@ -6,7 +6,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkaava;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
-import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
 
 public class KantamanLaskija {
     

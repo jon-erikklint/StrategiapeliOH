@@ -54,7 +54,7 @@ public class RajoitettuLaskuriTest {
     public void mahdollisenUudenArvonLaittaminenOnnistuu(){
         RajoitettuLaskuri laskuri=new RajoitettuLaskuri(10,0,10);
         
-        laskuri.asetaArvo(2);
+        laskuri.setArvo(2);
         
         assertEquals(2,laskuri.getArvo());
     }
@@ -63,7 +63,7 @@ public class RajoitettuLaskuriTest {
     public void mahdottomanUudenArvonLaittaminenToimii(){
         RajoitettuLaskuri laskuri=new RajoitettuLaskuri(10,0);
         
-        laskuri.asetaArvo(-2);
+        laskuri.setArvo(-2);
         
         assertEquals(10,laskuri.getArvo());
     }

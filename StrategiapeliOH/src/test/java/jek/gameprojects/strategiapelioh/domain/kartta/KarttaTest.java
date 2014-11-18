@@ -1,9 +1,9 @@
 package jek.gameprojects.strategiapelioh.domain.kartta;
 
 import java.util.List;
-import jek.gameprojects.strategiapelioh.domain.maasto.Aluetyyppi;
-import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
-import jek.gameprojects.strategiapelioh.domain.maasto.Maastotyyppi;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maastotyyppi;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

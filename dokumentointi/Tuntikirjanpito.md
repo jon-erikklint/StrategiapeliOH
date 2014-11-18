@@ -33,3 +33,7 @@
 #17.11.2014
 **Määrä:** 1,5h
 **Mitä tein:* Aloitin pelin alustusten tekemisen
+
+#18.11.2014
+**Määrä:** 3h
+**Mitä tein:* Tein ensimmäiset mahdolliset pelin alustustavat ja paransin aikaisempien tekeleitteni rakennetta. Lisäksi lisäsin muutamia hyödyllisiä domain- ja logiikkaluokkia ja vähän järjestelin projektin osasia.

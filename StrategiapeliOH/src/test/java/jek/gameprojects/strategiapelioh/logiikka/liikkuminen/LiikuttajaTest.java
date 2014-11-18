@@ -6,9 +6,9 @@ import java.util.Set;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
-import jek.gameprojects.strategiapelioh.domain.maasto.Aluetyyppi;
-import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
-import jek.gameprojects.strategiapelioh.domain.maasto.Maastotyyppi;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maastotyyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
@@ -87,8 +87,8 @@ public class LiikuttajaTest {
         Liikkuvuus liikkuvuus1 = new Liikkuvuus(aluetyypit1, maastotyypit1, 2);
         Liikkuvuus liikkuvuus2 = new Liikkuvuus(aluetyypit2, maastotyypit2, 3);
         
-        Yksikkotyyppi yksikkotyyppi1 = new Yksikkotyyppi(liikkuvuus1);
-        Yksikkotyyppi yksikkotyyppi2 = new Yksikkotyyppi(liikkuvuus2);
+        Yksikkotyyppi yksikkotyyppi1 = new Yksikkotyyppi("", liikkuvuus1);
+        Yksikkotyyppi yksikkotyyppi2 = new Yksikkotyyppi("", liikkuvuus2);
         
         joukko1 = new Joukko();
         joukko2 = new Joukko();

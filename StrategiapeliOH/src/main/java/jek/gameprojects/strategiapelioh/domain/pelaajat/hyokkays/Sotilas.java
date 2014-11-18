@@ -43,7 +43,7 @@ public class Sotilas extends Yksikko implements Hyokkaava{
     
     @Override
     public void setElamat(int maara){
-        elamat.asetaArvo(maara);
+        elamat.setArvo(maara);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen;
 
 import java.util.Map;
-import jek.gameprojects.strategiapelioh.domain.maasto.Aluetyyppi;
-import jek.gameprojects.strategiapelioh.domain.maasto.Maastotyyppi;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maastotyyppi;
 
 public class Liikkuvuus {
     

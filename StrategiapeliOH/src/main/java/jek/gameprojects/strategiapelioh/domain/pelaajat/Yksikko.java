@@ -6,7 +6,7 @@ import java.util.Objects;
 import jek.gameprojects.strategiapelioh.domain.RajoitettuLaskuri;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 
-public class Yksikko implements Liikkuva, Omistettava{
+public class Yksikko implements Liikkuva{
     
     private final int id;
     private Pelaaja omistaja;

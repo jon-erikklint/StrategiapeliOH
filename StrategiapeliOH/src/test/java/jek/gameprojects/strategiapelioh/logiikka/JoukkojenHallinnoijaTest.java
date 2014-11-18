@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
-import jek.gameprojects.strategiapelioh.domain.maasto.Aluetyyppi;
-import jek.gameprojects.strategiapelioh.domain.maasto.Maastotyyppi;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maastotyyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
@@ -47,7 +47,7 @@ public class JoukkojenHallinnoijaTest {
         joukkojenHallinnoija = new JoukkojenHallinnoija();
         
         Liikkuvuus liikkuvuus = new Liikkuvuus(new EnumMap<Aluetyyppi, Boolean>(Aluetyyppi.class), new EnumMap<Maastotyyppi, Double>(Maastotyyppi.class), 0);
-        Yksikkotyyppi yksikkotyyppi = new Yksikkotyyppi(liikkuvuus);
+        Yksikkotyyppi yksikkotyyppi = new Yksikkotyyppi("",liikkuvuus);
         
         Pelaaja pelaaja = new Pelaaja(0, "");
         joukko1 = new Joukko();

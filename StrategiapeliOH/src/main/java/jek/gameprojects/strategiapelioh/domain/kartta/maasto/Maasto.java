@@ -1,4 +1,6 @@
-package jek.gameprojects.strategiapelioh.domain.maasto;
+package jek.gameprojects.strategiapelioh.domain.kartta.maasto;
+
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
 
 public class Maasto {
     

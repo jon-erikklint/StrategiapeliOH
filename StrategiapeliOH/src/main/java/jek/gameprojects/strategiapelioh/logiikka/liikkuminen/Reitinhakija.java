@@ -8,7 +8,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
-import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 
 public class Reitinhakija {

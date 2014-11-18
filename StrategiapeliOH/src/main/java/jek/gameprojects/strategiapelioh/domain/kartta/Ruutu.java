@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
-import jek.gameprojects.strategiapelioh.domain.maasto.Maasto;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 

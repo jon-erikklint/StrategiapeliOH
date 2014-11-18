@@ -1,6 +1,6 @@
 package jek.gameprojects.strategiapelioh.domain;
 
-public class RajoitettuLaskuri {
+public class RajoitettuLaskuri extends Laskuri{
     
     private int alaraja;
     private int ylaraja;
@@ -22,6 +22,7 @@ public class RajoitettuLaskuri {
         this(ylaraja, alaraja, ylaraja);
     }
     
+    @Override
     public void lisaaArvoa(int maara){
         if(arvo+maara>ylaraja){
             arvo=ylaraja;
@@ -37,12 +38,14 @@ public class RajoitettuLaskuri {
      
     }
     
-    public void asetaArvo(int uusiArvo){
+    @Override
+    public void setArvo(int uusiArvo){
         if(uusiArvo>=alaraja && uusiArvo<=ylaraja){
             arvo=uusiArvo;
         }
     }
     
+    @Override
     public int getArvo(){
         return arvo;
     }
