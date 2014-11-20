@@ -1,5 +1,6 @@
 package jek.gameprojects.strategiapelioh.domain.pelaajat;
 
+import java.util.Objects;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkays;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 
@@ -52,6 +53,29 @@ public class Yksikkotyyppi {
 
     public String getNimi() {
         return nimi;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if(o == null){
+            return false;
+        }
+        
+        if(o.getClass()!=o.getClass()){
+            return false;
+        }
+        
+        Yksikkotyyppi yksikkotyyppi = (Yksikkotyyppi) o;
+        
+        return yksikkotyyppi.nimi.equals(this.nimi);
+            
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.nimi);
+        return hash;
     }
     
 }

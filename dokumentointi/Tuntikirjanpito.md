@@ -37,3 +37,7 @@
 #18.11.2014
 **Määrä:** 3h
 **Mitä tein:* Tein ensimmäiset mahdolliset pelin alustustavat ja paransin aikaisempien tekeleitteni rakennetta. Lisäksi lisäsin muutamia hyödyllisiä domain- ja logiikkaluokkia ja vähän järjestelin projektin osasia.
+
+#20.11.2014
+**Määrä:** 1,5h
+**Mitä tein:* Paransin alustusluokkia ja lisäsin ensimmäisen yksiköidenalustajaluokan
