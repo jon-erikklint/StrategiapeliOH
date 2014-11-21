@@ -14,17 +14,17 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssari;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 
-public class PelitietojenTiedostoAlustaja extends TiedostoAlustaja implements PelitietojenAlustaja {
+public class YksikkotyyppienTiedostoAlustaja extends TiedostoAlustaja implements YksikkotyyppienAlustaja {
 
-    public PelitietojenTiedostoAlustaja(String tiedostonNimi)throws Exception{
+    public YksikkotyyppienTiedostoAlustaja(String tiedostonNimi)throws Exception{
         
         super(tiedostonNimi);
         
     }
     
     @Override
-    public List<Yksikkotyyppi> alustaYksikkotyypit() throws Exception{
-        List<Yksikkotyyppi> yksikkotyypit = new ArrayList<>();
+    public Map<String, Yksikkotyyppi> alustaYksikkotyypit() throws Exception{
+        Map<String, Yksikkotyyppi> yksikkotyypit = new HashMap<>();
         
         while(true){
             
@@ -34,7 +34,9 @@ public class PelitietojenTiedostoAlustaja extends TiedostoAlustaja implements Pe
             
             tarkistaLukukohta();
             
-            yksikkotyypit.add(alustaYksikkotyyppi());
+            Yksikkotyyppi yksikkotyyppi = alustaYksikkotyyppi();
+            
+            yksikkotyypit.put(yksikkotyyppi.getNimi(), yksikkotyyppi);
             
         }
         

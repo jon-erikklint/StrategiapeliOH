@@ -4,6 +4,12 @@ import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maastotyyppi;
 
+/**
+ * 
+ * Pakkaus liikkumiseen tarvittavia tietoja
+ * 
+ */
+
 public class Liikkuvuus {
     
     private Map<Aluetyyppi, Boolean> mihinVoiLiikkua;

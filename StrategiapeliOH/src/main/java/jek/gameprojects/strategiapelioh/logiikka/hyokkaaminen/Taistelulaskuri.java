@@ -8,7 +8,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Asetyyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssari;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Sotilas;
-import jek.gameprojects.strategiapelioh.logiikka.JoukkojenHallinnoija;
+import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 
 public class Taistelulaskuri {
     
@@ -28,6 +28,8 @@ public class Taistelulaskuri {
         this.asetyyppienVahvuudet = asetyyppienVahvuudet;
     }
     
+    //
+    /// Taistelu
     public void taistele(){
         for(Sotilas hyokkaaja:hyokkaajat){
             sotilasTaistelee(hyokkaaja);
@@ -97,39 +99,49 @@ public class Taistelulaskuri {
     }
     
     public Sotilas haePahinPuolustaja(Sotilas hyokkaava){
-        Sotilas puolustaja=null;
-        double hyokkayskerroin=1000000;
+        Sotilas puolustaja = puolustajat.get(0);
+        double hyokkayskerroin = haeVahvinPanssari(hyokkaava.getAktiivinenAse().getAsetyyppi(), puolustaja.hyokkays().getPanssarit());
         
-        for(Sotilas sotilas:puolustajat){
-            double vastaavaHyokkayskerroin = haeVahvinPanssari( hyokkaava.getAktiivinenAse().getAsetyyppi(), sotilas.hyokkays().getPanssarit());
+        for(int i=1; i<puolustajat.size(); i++){
+            double vastaavaHyokkayskerroin = haeVahvinPanssari( hyokkaava.getAktiivinenAse().getAsetyyppi(), puolustajat.get(i).hyokkays().getPanssarit());
             
             if(vastaavaHyokkayskerroin<hyokkayskerroin){
                 hyokkayskerroin=vastaavaHyokkayskerroin;
-                puolustaja=sotilas;
+                puolustaja=puolustajat.get(i);
             }
         }
         
         return puolustaja;
     }
     
-    public void nollaa(){
-        hyokkaajat.clear();
-        puolustajat.clear();
-    }
-    
     public double haeVahvinPanssari(Asetyyppi asetyyppi, List<Panssari> panssarit){
+        
+        if(panssarit.isEmpty()){
+            return 1;
+        }
+        
         Map<Panssarityyppi, Double> asetyypinVahvuudet = asetyyppienVahvuudet.get(asetyyppi);
-        
-        double vahvin=asetyypinVahvuudet.get(panssarit.get(0).getPanssarityyppi());
-        
+
+        double vahvin = asetyypinVahvuudet.get(panssarit.get(0).getPanssarityyppi())*panssarit.get(0).getPanssarinVahvuus();
+
+
         for(int i=1;i<panssarit.size();i++){
-            double panssarinVahvuus=asetyypinVahvuudet.get(panssarit.get(i).getPanssarityyppi());
+            double panssarinVahvuus = asetyypinVahvuudet.get(panssarit.get(i).getPanssarityyppi())*panssarit.get(i).getPanssarinVahvuus();
+            
             if(panssarinVahvuus<vahvin){
                 vahvin=panssarinVahvuus;
             }
         }
-        
+
         return vahvin;
+        
+    }
+    ///
+    //
+    
+    public void nollaa(){
+        hyokkaajat.clear();
+        puolustajat.clear();
     }
     
     public List<Sotilas> getHyokkaajat() {

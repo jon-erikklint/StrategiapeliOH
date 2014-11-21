@@ -1,6 +1,5 @@
 package jek.gameprojects.strategiapelioh.logiikka.generointi;
 
-import java.util.List;
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
@@ -9,7 +8,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
 import jek.gameprojects.strategiapelioh.logiikka.Indeksoija;
-import jek.gameprojects.strategiapelioh.logiikka.JoukkojenHallinnoija;
+import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 
 public class YksikoidenTiedostoAlustaja extends TiedostoAlustaja implements YksikoidenAlustaja{
 

@@ -1,7 +1,12 @@
 package jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays;
 
-import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * 
+ * Tietopaketti, joka sisältää taistelemiseen tarvittavat tiedot
+ * 
+ */
 
 public class Hyokkays {
     

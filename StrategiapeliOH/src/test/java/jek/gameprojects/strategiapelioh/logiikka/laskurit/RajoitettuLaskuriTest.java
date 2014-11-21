@@ -1,5 +1,6 @@
-package jek.gameprojects.strategiapelioh.domain;
+package jek.gameprojects.strategiapelioh.logiikka.laskurit;
 
+import jek.gameprojects.strategiapelioh.logiikka.laskurit.RajoitettuLaskuri;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

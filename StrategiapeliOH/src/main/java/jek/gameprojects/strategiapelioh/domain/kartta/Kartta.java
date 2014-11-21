@@ -1,10 +1,13 @@
 package jek.gameprojects.strategiapelioh.domain.kartta;
 
-import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
-import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+*
+* Luokka tallettaa kyseisen pelikerran ruututaulukon, eli kartan, ja mahdollistaa ruutujen hakemisen siitä
+* 
+*/
 public class Kartta {
     
     private Ruutu[][] ruudut;

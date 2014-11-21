@@ -1,33 +1,48 @@
 package jek.gameprojects.strategiapelioh.logiikka.generointi;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
-import jek.gameprojects.strategiapelioh.domain.peli.Peli;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Asetyyppi;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
+import jek.gameprojects.strategiapelioh.logiikka.Peli;
+import jek.gameprojects.strategiapelioh.logiikka.Indeksoija;
 
 public class PelinAlustaja {
     
     private PelaajienAlustaja pelaajienAlustaja;
-    private PelitietojenAlustaja yksikkotyyppienAlustaja;
+    private YksikkotyyppienAlustaja yksikkotyyppienAlustaja;
     private KartanAlustaja kartanAlustaja;
+    private YksikoidenAlustaja yksikoidenAlustaja;
+    private PanssarivahvuuksienAlustaja panssarivahvuuksienAlustaja;
     
     private List<String> pelaajienNimet;
 
-    public PelinAlustaja(PelaajienAlustaja pelaajienAlustaja, PelitietojenAlustaja yksikkotyyppienAlustaja, KartanAlustaja kartanAlustaja, List<String> pelaajienNimet) {
+    public PelinAlustaja(PelaajienAlustaja pelaajienAlustaja, YksikkotyyppienAlustaja yksikkotyyppienAlustaja, 
+            KartanAlustaja kartanAlustaja, List<String> pelaajienNimet, YksikoidenAlustaja yksikoidenAlustaja, 
+            PanssarivahvuuksienAlustaja panssarivahvuuksienAlustaja) {
+        
         this.pelaajienAlustaja = pelaajienAlustaja;
         this.yksikkotyyppienAlustaja = yksikkotyyppienAlustaja;
         this.kartanAlustaja = kartanAlustaja;
+        this.yksikoidenAlustaja = yksikoidenAlustaja;
+        this.panssarivahvuuksienAlustaja = panssarivahvuuksienAlustaja;
     }
     
     public Peli alustaPeli()throws Exception{
         
-        List<Pelaaja> pelaajat = pelaajienAlustaja.alustaPelaajat(pelaajienNimet);
-        List<Yksikkotyyppi> yksikkotyypit = yksikkotyyppienAlustaja.alustaYksikkotyypit();
+        Map<Asetyyppi, Map<Panssarityyppi, Double>> panssarityyppienVahvuudet = panssarivahvuuksienAlustaja.panssarityyppienVahvuudet();
+        
+        Map<Integer, Pelaaja> pelaajat = pelaajienAlustaja.alustaPelaajat(pelaajienNimet);
+        Map<String, Yksikkotyyppi> yksikkotyypit = yksikkotyyppienAlustaja.alustaYksikkotyypit();
         Kartta kartta = kartanAlustaja.alustaKartta();
         
-        return new Peli(pelaajat, kartta, yksikkotyypit);
+        Indeksoija yksikoidenIndeksoija = new Indeksoija(0);
+        yksikoidenAlustaja.alustaYksikot(kartta, pelaajat, yksikkotyypit, yksikoidenIndeksoija);
+        
+        return new Peli(pelaajat, kartta, yksikkotyypit, yksikoidenIndeksoija, panssarityyppienVahvuudet);
     }
     
 }

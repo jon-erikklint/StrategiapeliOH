@@ -1,6 +1,5 @@
 package jek.gameprojects.strategiapelioh.logiikka.generointi;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 

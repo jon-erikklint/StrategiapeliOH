@@ -1,6 +1,5 @@
 package jek.gameprojects.strategiapelioh.logiikka.generointi;
 
-import java.util.List;
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;

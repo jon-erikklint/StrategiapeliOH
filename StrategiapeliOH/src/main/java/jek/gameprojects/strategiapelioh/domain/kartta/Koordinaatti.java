@@ -1,5 +1,11 @@
 package jek.gameprojects.strategiapelioh.domain.kartta;
 
+/**
+ * 
+ * Kokonaislukuvektori
+ * 
+ */
+
 public class Koordinaatti {
     
     private int X;

@@ -4,6 +4,12 @@ import java.util.Objects;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkays;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 
+/**
+ * 
+ * Tietopakkaus siitä millaisia ominaisuuksia yksiköllä on
+ * 
+ */
+
 public class Yksikkotyyppi {
     
     private final String nimi;

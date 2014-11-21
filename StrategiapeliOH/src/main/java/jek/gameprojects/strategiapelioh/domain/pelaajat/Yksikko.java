@@ -3,8 +3,14 @@ package jek.gameprojects.strategiapelioh.domain.pelaajat;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuva;
 import java.util.Objects;
-import jek.gameprojects.strategiapelioh.domain.RajoitettuLaskuri;
+import jek.gameprojects.strategiapelioh.logiikka.laskurit.RajoitettuLaskuri;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
+
+/**
+ * 
+ * Pienin pelillinen toimiva yksikkö
+ * 
+ */
 
 public class Yksikko implements Liikkuva{
     

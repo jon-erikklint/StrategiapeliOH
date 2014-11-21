@@ -5,6 +5,12 @@ import java.util.List;
 import java.util.Objects;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 
+/**
+ * 
+ * Monien yksiköiden muodostama joukko, yksiköidenhallinnan peruspalikka
+ * 
+ */
+
 public class Joukko implements Omistettava{
 
     private List<Yksikko> yksikot;

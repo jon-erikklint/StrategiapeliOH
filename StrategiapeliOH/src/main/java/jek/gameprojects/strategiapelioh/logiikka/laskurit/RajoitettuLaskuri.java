@@ -1,4 +1,6 @@
-package jek.gameprojects.strategiapelioh.domain;
+package jek.gameprojects.strategiapelioh.logiikka.laskurit;
+
+import jek.gameprojects.strategiapelioh.logiikka.laskurit.Laskuri;
 
 public class RajoitettuLaskuri extends Laskuri{
     

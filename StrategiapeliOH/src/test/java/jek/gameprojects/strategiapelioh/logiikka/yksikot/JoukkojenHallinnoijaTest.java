@@ -1,5 +1,6 @@
-package jek.gameprojects.strategiapelioh.logiikka;
+package jek.gameprojects.strategiapelioh.logiikka.yksikot;
 
+import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;

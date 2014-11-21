@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.domain;
+package jek.gameprojects.strategiapelioh.logiikka.laskurit;
 
 public abstract class Laskuri {
     

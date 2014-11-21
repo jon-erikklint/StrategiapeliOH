@@ -1,5 +1,11 @@
 package jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays;
 
+/**
+ * 
+ * Sisältää tiedon aseen ominaisuuksista
+ * 
+ */
+
 public class Ase {
     
     private int isku;

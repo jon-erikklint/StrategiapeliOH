@@ -1,5 +1,11 @@
 package jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays;
 
+/**
+ * 
+ * Sisältää tiedon panssarin tiedoista
+ * 
+ */
+
 public class Panssari {
     
     private double panssarinVahvuus;

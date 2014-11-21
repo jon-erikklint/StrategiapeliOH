@@ -1,6 +1,10 @@
 package jek.gameprojects.strategiapelioh.domain.kartta.maasto;
 
-import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
+/**
+ * 
+ * Sisaltaa tiedon yhden ruudun maasto-ominaisuuksista
+ * 
+ */
 
 public class Maasto {
     

@@ -1,7 +1,8 @@
 package jek.gameprojects.strategiapelioh.logiikka.hyokkaaminen;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkaava;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
@@ -10,29 +11,33 @@ import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
 
 public class KantamanLaskija {
     
-    private List<Koordinaatti> hyokattavat;
+    private Set<Koordinaatti> hyokattavat;
     
     private Hyokkaava hyokkaava;
     private Kartta kartta;
     
-    public KantamanLaskija(Hyokkaava hyokkaava, Kartta kartta){
+    public KantamanLaskija(Kartta kartta){
         this.kartta=kartta;
-        this.hyokkaava=hyokkaava;
         
-        hyokattavat=new ArrayList<>();
+        hyokattavat=new HashSet<>();
     }
     
-    public void katsoHyokattavat(){
-        katsoViereisetHyokattavat(hyokkaava.hyokkays().getKantama(), kartta.getRuutu(hyokkaava.getSijainti()));
+    public Set<Koordinaatti> laskeHyokattavatRuudut(Hyokkaava hyokkaava){
+        nollaa();
+        this.hyokkaava = hyokkaava;
+        
+        laskeViereisetHyokattavat(hyokkaava.hyokkays().getKantama(), kartta.getRuutu(hyokkaava.getSijainti()));
+        
+        return hyokattavat;
     }
     
-    private void katsoViereisetHyokattavat(double kantama, Ruutu nykyinenRuutu){
+    private void laskeViereisetHyokattavat(double kantama, Ruutu nykyinenRuutu){
         List<Ruutu> viereisetRuudut = kartta.getViereisetRuudut( nykyinenRuutu.getSijainti() );
         
         for(Ruutu ruutu:viereisetRuudut){
             if(voikoAmpua(ruutu)){
                 
-                if(!hyokattavat.contains(ruutu.getSijainti())){
+                if(onkoVihollisia(ruutu)){
                     hyokattavat.add(ruutu.getSijainti());
                 }
                 
@@ -40,7 +45,7 @@ public class KantamanLaskija {
                 
                 if(kantama-mennytKantama>0){
                     
-                    katsoViereisetHyokattavat(kantama-mennytKantama,ruutu);
+                    laskeViereisetHyokattavat(kantama-mennytKantama,ruutu);
                     
                 }
             }
@@ -53,10 +58,18 @@ public class KantamanLaskija {
     }
     
     private boolean onkoVihollisia(Ruutu kohderuutu){
-        return kohderuutu.kenenHallussa().equals(hyokkaava.getOmistaja());
+        if(kohderuutu.kenenHallussa() == null){
+            return false;
+        }
+        
+        return !kohderuutu.kenenHallussa().equals(hyokkaava.getOmistaja());
     }
     
     private double kuluvaKantama(Maasto kohdemaasto, Maasto nykyinenMaasto){
         return 1;
+    }
+    
+    public void nollaa(){
+        hyokattavat = new HashSet<>();
     }
 }

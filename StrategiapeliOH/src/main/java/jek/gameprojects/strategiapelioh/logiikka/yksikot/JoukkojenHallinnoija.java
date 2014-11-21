@@ -1,7 +1,6 @@
-package jek.gameprojects.strategiapelioh.logiikka;
+package jek.gameprojects.strategiapelioh.logiikka.yksikot;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;

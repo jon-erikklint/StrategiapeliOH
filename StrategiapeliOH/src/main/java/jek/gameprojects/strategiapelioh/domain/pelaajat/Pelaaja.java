@@ -2,6 +2,13 @@ package jek.gameprojects.strategiapelioh.domain.pelaajat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+/**
+ * 
+ * Yhden pelaajan tiedot pakattuna yhteen paikkaan. Toimii myös eri peliobjektien omistajuustunnisteena
+ * 
+ */
 
 public class Pelaaja {
     
@@ -35,6 +42,29 @@ public class Pelaaja {
 
     public int getId() {
         return id;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if(o == null){
+            return false;
+        }
+        
+        if(o.getClass() != this.getClass()){
+            return false;
+        }
+        
+        Pelaaja pelaaja = (Pelaaja) o;
+        
+        return pelaaja.id == this.id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + Objects.hashCode(this.nimi);
+        return hash;
     }
     
 }

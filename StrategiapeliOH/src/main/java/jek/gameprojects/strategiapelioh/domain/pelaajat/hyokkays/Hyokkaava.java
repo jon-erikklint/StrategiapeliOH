@@ -4,6 +4,12 @@ import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Omistettava;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 
+/**
+ * 
+ * Rajapinnan toteuttavat oliot kykenevät taistelemaan toisia rajapinnan toteuttavuia olioita vastaan
+ * 
+ */
+
 public interface Hyokkaava extends Omistettava{
     
     public Hyokkays hyokkays();

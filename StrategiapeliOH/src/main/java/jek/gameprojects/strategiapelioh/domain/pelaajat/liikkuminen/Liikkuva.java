@@ -4,6 +4,12 @@ import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Omistettava;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 
+/**
+ * 
+ * Rajapinta, jonka toteuttavat oliot pystyvät liikkumaan sijainnista toiseen itsenäisesti
+ * 
+ */
+
 public interface Liikkuva extends Omistettava{
     
     public int liikkuvuus();

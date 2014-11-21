@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.domain;
+package jek.gameprojects.strategiapelioh.logiikka.laskurit;
 
 public class KiertavaLaskuri extends Laskuri{
 
@@ -11,7 +11,7 @@ public class KiertavaLaskuri extends Laskuri{
         this.ylaraja=ylaraja;
         this.alaraja=alaraja;
         
-        if(alkuarvo>ylaraja || alkuarvo<alaraja){
+        if(alkuarvo>=ylaraja || alkuarvo<alaraja){
             arvo = alaraja;
         }else{
             arvo = alkuarvo;
@@ -21,12 +21,16 @@ public class KiertavaLaskuri extends Laskuri{
     @Override
     public void lisaaArvoa(int maara) {
         arvo = ((arvo+maara)%(ylaraja-alaraja))+alaraja;
+        
+        if(arvo<0){
+            arvo+=10;
+        }
     }
 
     @Override
     public void setArvo(int arvo) {
         
-        if(!(arvo>ylaraja || arvo<alaraja)){
+        if(!(arvo>=ylaraja || arvo<alaraja)){
             this.arvo = arvo;
         }
         

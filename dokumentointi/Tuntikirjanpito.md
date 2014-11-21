@@ -41,3 +41,7 @@
 #20.11.2014
 **Määrä:** 1,5h
 **Mitä tein:* Paransin alustusluokkia ja lisäsin ensimmäisen yksiköidenalustajaluokan
+
+#21.11.2014
+**Määrä:** 4,5h
+**Mitä tein:* Jatkoin alustusluokkia, tein kokoavia luokkia tulevalle logiikalle, tein lisää testejä ja tein javadocit domain-luokille

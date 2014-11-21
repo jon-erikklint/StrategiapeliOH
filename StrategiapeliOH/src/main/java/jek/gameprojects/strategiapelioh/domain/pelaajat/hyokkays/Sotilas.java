@@ -1,11 +1,17 @@
 package jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays;
 
-import jek.gameprojects.strategiapelioh.domain.RajoitettuLaskuri;
+import jek.gameprojects.strategiapelioh.logiikka.laskurit.RajoitettuLaskuri;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
+
+/**
+ * 
+ * Yksikkö joka on kykenevä hyökkäämään
+ * 
+ */
 
 public class Sotilas extends Yksikko implements Hyokkaava{
 
@@ -14,6 +20,9 @@ public class Sotilas extends Yksikko implements Hyokkaava{
     
     public Sotilas(Yksikkotyyppi yksikkotyyppi, Koordinaatti sijainti, Pelaaja pelaaja, Joukko joukko, int id){
         super(yksikkotyyppi, sijainti, pelaaja, joukko, id);
+        
+        elamat = new RajoitettuLaskuri(yksikkotyyppi.getHyokkays().getMaksimiElamat(), 0, yksikkotyyppi.getHyokkays().getMaksimiElamat());
+        aktiivinenAse = yksikkotyyppi.getHyokkays().getAseet().get(0);
     }
     
     @Override
