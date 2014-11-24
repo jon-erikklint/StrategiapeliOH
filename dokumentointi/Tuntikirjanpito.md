@@ -45,3 +45,7 @@
 #21.11.2014
 **Määrä:** 4,5h
 **Mitä tein:* Jatkoin alustusluokkia, tein kokoavia luokkia tulevalle logiikalle, tein lisää testejä ja tein javadocit domain-luokille
+
+#24.11.2014
+**Määrä:** 3h
+**Mitä tein:** Tein lisää testejä, tein hyökkäämisen kokoavan luokan loppuun ja korjailin tiedostonlukijaa

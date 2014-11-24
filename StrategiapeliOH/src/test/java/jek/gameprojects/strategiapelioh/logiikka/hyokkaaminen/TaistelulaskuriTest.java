@@ -11,13 +11,13 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Ase;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Asetyyppi;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkaava;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkays;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssari;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Sotilas;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 import jek.gameprojects.strategiapelioh.logiikka.generointi.PanssarivahvuuksienVakioAlustaja;
-import jek.gameprojects.strategiapelioh.logiikka.hyokkaaminen.Taistelulaskuri;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -53,7 +53,7 @@ public class TaistelulaskuriTest {
         aseet.add(new Ase(1, Asetyyppi.LASER, 0));
         List<Panssari> panssarit = new ArrayList<>();
         
-        Hyokkays hyokkays1 = new Hyokkays(5, 1, true, aseet, panssarit);
+        Hyokkays hyokkays1 = new Hyokkays(5, 1, false, aseet, panssarit);
         
         aseet = new ArrayList<>();
         aseet.add(new Ase(10, Asetyyppi.LASER, 0));
@@ -112,7 +112,7 @@ public class TaistelulaskuriTest {
     
     @Test
     public void loytaakoParhaanPuolustajan(){
-        List<Sotilas> puolustajat = new ArrayList<>();
+        List<Hyokkaava> puolustajat = new ArrayList<>();
         
         puolustajat.add(sotilas2);
         puolustajat.add(sotilas3);
@@ -139,5 +139,119 @@ public class TaistelulaskuriTest {
         taistelulaskuri.setPuolustajat(puolustajat);
         
         assertEquals(sotilas4, taistelulaskuri.haePahinPuolustaja(sotilas2));
+    }
+    
+    @Test
+    public void antaakoPuolustusmahdollisuudenOikein(){
+        assertEquals(true, taistelulaskuri.puolustajaVoiTehdaVastaiskun(sotilas1, sotilas1));
+        
+        assertEquals(false, taistelulaskuri.puolustajaVoiTehdaVastaiskun(sotilas2, sotilas2));
+    }
+    
+    @Test
+    public void onkoSatunnaisluvutOikein(){
+        for(int i=0;i<10;i++){
+            assertEquals(true, taistelulaskuri.annaSatunnaisuuskerroin(-0.500001)==0);
+        }
+        
+        for(int i=0;i<10;i++){
+            assertEquals(true,taistelulaskuri.annaSatunnaisuuskerroin(0.5)>0);
+        }
+        
+        for (int i = 0; i < 10; i++) {
+            assertEquals(true,taistelulaskuri.annaSatunnaisuuskerroin(1)==1);
+        }
+    }
+    
+    @Test
+    public void nollausToimii(){
+        List<Hyokkaava> hyokkaavat = new ArrayList<>();
+        hyokkaavat.add(sotilas1);
+        
+        List<Hyokkaava> puolustavat = new ArrayList<>();
+        puolustavat.add(sotilas2);
+        
+        taistelulaskuri.setHyokkaajat(hyokkaavat);
+        taistelulaskuri.setPuolustajat(puolustavat);
+        
+        taistelulaskuri.nollaa();
+        
+        assertEquals(true, taistelulaskuri.getHyokkaajat().isEmpty());
+        assertEquals(true, taistelulaskuri.getPuolustajat().isEmpty());
+    }
+    
+    @Test
+    public void tarkistaTehtyVahinko(){
+        Ase apuase = new Ase(10, Asetyyppi.LASER, 1);
+        
+        int vastaus = taistelulaskuri.vahinko(1, apuase);
+        assertEquals(10, vastaus);
+        
+        vastaus = taistelulaskuri.vahinko(0.5, apuase);
+        
+        assertEquals(5, vastaus);
+        
+        taistelulaskuri.setRandomSeed(1);
+        
+        vastaus = taistelulaskuri.vahinko(1, new Ase(10, Asetyyppi.LASER, 0));
+        
+        assertEquals(7, vastaus);
+    }
+    
+    @Test
+    public void toimiikoKuolemanHallinnointi(){
+        sotilas1.menetaElamaa(5);
+        
+        List<Hyokkaava> sotilaat = new ArrayList<>();
+        sotilaat.add(sotilas1);
+        
+        taistelulaskuri.setHyokkaajat(sotilaat);
+        
+        taistelulaskuri.hallinnoiMahdollinenKuolema(sotilas1, true);
+        
+        assertEquals(true, taistelulaskuri.getHyokkaajat().isEmpty());
+        assertEquals(true, sotilas1.onkoKuollut()==true);
+        assertEquals(false, sotilas1.getJoukko().getYksikot().contains(sotilas1));
+    }
+    
+    @Test
+    public void taistelutestiYksittaisilleYksikoille(){
+        List<Hyokkaava> puolustajat = new ArrayList<>();
+        
+        puolustajat.add(sotilas3);
+        puolustajat.add(sotilas4);
+        
+        taistelulaskuri.setPuolustajat(puolustajat);
+        taistelulaskuri.setRandomSeed(0);
+        
+        taistelulaskuri.sotilasTaistelee(sotilas2);
+        
+        assertEquals(10,sotilas2.getElamat());
+        assertEquals(12,sotilas4.getElamat());
+    }
+    
+    @Test
+    public void taistelutestiKokoRyhmille(){
+        List<Hyokkaava> hyokkaajat = new ArrayList<>();
+        List<Hyokkaava> puolustajat = new ArrayList<>();
+        
+        hyokkaajat.add(sotilas1);
+        hyokkaajat.add(sotilas2);
+        
+        puolustajat.add(sotilas3);
+        puolustajat.add(sotilas4);
+        
+        taistelulaskuri.setHyokkaajat(hyokkaajat);
+        taistelulaskuri.setPuolustajat(puolustajat);
+        
+        taistelulaskuri.setRandomSeed(0);
+        
+        taistelulaskuri.taistele();
+        
+        assertEquals(5, sotilas1.getElamat());
+        assertEquals(10, sotilas2.getElamat());
+        assertEquals(10, sotilas3.getElamat());
+        assertEquals(12, sotilas4.getElamat());
+        
     }
 }

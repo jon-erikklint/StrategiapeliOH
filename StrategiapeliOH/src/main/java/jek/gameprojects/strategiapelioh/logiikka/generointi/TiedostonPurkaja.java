@@ -1,22 +1,36 @@
 package jek.gameprojects.strategiapelioh.logiikka.generointi;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class TiedostonPurkaja {
     
-    public List<String> lueTiedosto(String tiedostonNimi) throws FileNotFoundException{
+    public List<String> lueTiedosto(String tiedostonNimi) throws Exception{
         
         List<String> sisalto = new ArrayList<>();
         
-        File tiedosto = new File(tiedostonNimi);
-        Scanner lukija = new Scanner(tiedosto);
-
-        while(lukija.hasNext()){
-            sisalto.add(lukija.next());
+        try{InputStream is = getClass().getResourceAsStream(tiedostonNimi);
+        
+            String rivi="";
+            int Byte;
+            
+            while ((Byte = is.read()) != -1 ) {
+                char kirjain = (char) Byte;
+                
+                if(kirjain=='\n'){
+                    sisalto.add(rivi);
+                    rivi="";
+                }else{
+                    rivi=rivi+kirjain;
+                }
+                
+            }
+            
+            sisalto.add(rivi);
+        }
+        catch(Exception e){
+            throw new Exception("Virhe tiedostoa luettaessa");
         }
             
 

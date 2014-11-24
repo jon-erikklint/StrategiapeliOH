@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
@@ -32,6 +33,13 @@ import jek.gameprojects.strategiapelioh.logiikka.liikkuminen.Reitinhakija;
 public class Kokeiluliittyma { //debuggerointia yms. varten väliaikainen!
     
     public static void main(String[] args) {
+        Random random = new Random();
+        random.setSeed(0);
+        
+        System.out.println(random.nextDouble());
+        System.out.println(random.nextDouble());
+        System.out.println(random.nextDouble());
+        System.out.println(random.nextDouble());
         
     }
 }

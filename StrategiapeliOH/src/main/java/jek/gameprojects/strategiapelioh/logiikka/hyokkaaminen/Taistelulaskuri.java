@@ -5,25 +5,26 @@ import java.util.Map;
 import java.util.Random;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Ase;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Asetyyppi;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkaava;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssari;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Sotilas;
-import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
+import jek.gameprojects.strategiapelioh.logiikka.yksikot.YksikoidenPoistaja;
 
 public class Taistelulaskuri {
     
-    private JoukkojenHallinnoija joukkojenHallinnoija;
+    private YksikoidenPoistaja yksikoidenPoistaja;
     
     private Map<Asetyyppi,Map<Panssarityyppi, Double>> asetyyppienVahvuudet; 
     
     private Random random;
     
-    private List<Sotilas> hyokkaajat;
-    private List<Sotilas> puolustajat;
+    private List<Hyokkaava> hyokkaajat;
+    private List<Hyokkaava> puolustajat;
     
     public Taistelulaskuri(Map<Asetyyppi,Map<Panssarityyppi,Double>> asetyyppienVahvuudet){
         random = new Random();
-        joukkojenHallinnoija = new JoukkojenHallinnoija();
+        yksikoidenPoistaja = new YksikoidenPoistaja();
         
         this.asetyyppienVahvuudet = asetyyppienVahvuudet;
     }
@@ -31,41 +32,48 @@ public class Taistelulaskuri {
     //
     /// Taistelu
     public void taistele(){
-        for(Sotilas hyokkaaja:hyokkaajat){
+        for(Hyokkaava hyokkaaja:hyokkaajat){
             sotilasTaistelee(hyokkaaja);
         }
         
-        for(Sotilas hyokkaaja:hyokkaajat){
+        for(Hyokkaava hyokkaaja:hyokkaajat){
             hallinnoiMahdollinenKuolema(hyokkaaja, true);
         }
     }
     
-    public void sotilasTaistelee(Sotilas hyokkaaja){
+    public void sotilasTaistelee(Hyokkaava hyokkaaja){
         
-        Sotilas puolustaja = haePahinPuolustaja(hyokkaaja);
-        boolean voikoPuolustautua = voikoPuolustajaTehdaVastaiskun(hyokkaaja, puolustaja);
-        double hyokkayskerroin = haeVahvinPanssari(hyokkaaja.getAktiivinenAse().getAsetyyppi(), puolustaja.hyokkays().getPanssarit());
+        Hyokkaava puolustaja = haePahinPuolustaja(hyokkaaja);
+        
+        taisteluta(hyokkaaja, puolustaja);
 
-        puolustaja.menetaElamaa(vahinko(hyokkayskerroin, hyokkaaja.getAktiivinenAse()));
-
-        if(voikoPuolustautua){
-            double puolustajanHyokkayskerroin = haeVahvinPanssari(puolustaja.getAktiivinenAse().getAsetyyppi(), hyokkaaja.hyokkays().getPanssarit());
-            hyokkaaja.menetaElamaa(vahinko(puolustajanHyokkayskerroin, puolustaja.getAktiivinenAse()));
+        if(puolustajaVoiTehdaVastaiskun(hyokkaaja, puolustaja)){
+            taisteluta(puolustaja, hyokkaaja);
         }
         
         hallinnoiMahdollinenKuolema(puolustaja, false);
     }
     
-    public void hallinnoiMahdollinenKuolema(Sotilas sotilas, boolean onkoHyokkaaja){
-        if(sotilas.onkoKuollut()){
+    public void taisteluta(Hyokkaava iskija, Hyokkaava vastaanottaja){
+        double hyokkayskerroin = haeVahvinPanssari(iskija.getAktiivinenAse().getAsetyyppi(), vastaanottaja.hyokkays().getPanssarit());
+        
+        int isku = vahinko(hyokkayskerroin, iskija.getAktiivinenAse());
+        
+        vastaanottaja.menetaElamaa(isku);
+    }
+    
+    public void hallinnoiMahdollinenKuolema(Hyokkaava hyokkaava, boolean onkoHyokkaaja){
+        if(hyokkaava.onkoKuollut()){
             
             if(onkoHyokkaaja){
-                hyokkaajat.remove(sotilas);
+                hyokkaajat.remove(hyokkaava);
             }else{
-                puolustajat.remove(sotilas);
+                puolustajat.remove(hyokkaava);
             }
             
-            joukkojenHallinnoija.poistayksikkoJoukostaan(sotilas);
+            if(hyokkaava.getClass() == Sotilas.class){
+                yksikoidenPoistaja.poistaYksikko((Sotilas) hyokkaava);
+            }
         }
     }
     
@@ -94,12 +102,12 @@ public class Taistelulaskuri {
         return randomkerroin;
     }
     
-    public boolean voikoPuolustajaTehdaVastaiskun(Sotilas hyokkaaja, Sotilas puolustaja){
+    public boolean puolustajaVoiTehdaVastaiskun(Hyokkaava hyokkaaja, Hyokkaava puolustaja){
         return !hyokkaaja.hyokkays().isKaukotaistelu();
     }
     
-    public Sotilas haePahinPuolustaja(Sotilas hyokkaava){
-        Sotilas puolustaja = puolustajat.get(0);
+    public Hyokkaava haePahinPuolustaja(Hyokkaava hyokkaava){
+        Hyokkaava puolustaja = puolustajat.get(0);
         double hyokkayskerroin = haeVahvinPanssari(hyokkaava.getAktiivinenAse().getAsetyyppi(), puolustaja.hyokkays().getPanssarit());
         
         for(int i=1; i<puolustajat.size(); i++){
@@ -144,19 +152,23 @@ public class Taistelulaskuri {
         puolustajat.clear();
     }
     
-    public List<Sotilas> getHyokkaajat() {
+    public List<Hyokkaava> getHyokkaajat() {
         return hyokkaajat;
     }
 
-    public void setHyokkaajat(List<Sotilas> hyokkaajat) {
+    public void setHyokkaajat(List<Hyokkaava> hyokkaajat) {
         this.hyokkaajat = hyokkaajat;
     }
 
-    public List<Sotilas> getPuolustajat() {
+    public List<Hyokkaava> getPuolustajat() {
         return puolustajat;
     }
 
-    public void setPuolustajat(List<Sotilas> puolustajat) {
+    public void setPuolustajat(List<Hyokkaava> puolustajat) {
         this.puolustajat = puolustajat;
+    }
+    
+    protected void setRandomSeed(long seed){
+        random.setSeed(seed);
     }
 }
