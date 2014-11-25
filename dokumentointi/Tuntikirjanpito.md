@@ -49,3 +49,7 @@
 #24.11.2014
 **Määrä:** 3h
 **Mitä tein:** Tein lisää testejä, tein hyökkäämisen kokoavan luokan loppuun ja korjailin tiedostonlukijaa
+
+#25.11.2014
+**Määrä:** 1,5h
+**Mitä tein:** Aloitin käyttöliittymäluokkien tekemisen 
