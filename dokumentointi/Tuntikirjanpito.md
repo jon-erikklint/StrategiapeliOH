@@ -53,3 +53,7 @@
 #25.11.2014
 **Määrä:** 1,5h
 **Mitä tein:** Aloitin käyttöliittymäluokkien tekemisen 
+
+#26.11.2014
+**Määrä:** 3h
+**Mitä tein:** käyttöliittymäluokkia, Käyttöliittymäluokkia, KÄYTTÖLIITTYMÄLUOKKIA!!!!!

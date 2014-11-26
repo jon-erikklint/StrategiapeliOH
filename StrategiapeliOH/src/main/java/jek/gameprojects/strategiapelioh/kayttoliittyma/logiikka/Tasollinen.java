@@ -1,6 +1,7 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka;
 
-public class Matriisilaskuri {
+public interface Tasollinen {
     
+    public int getTaso();
     
 }

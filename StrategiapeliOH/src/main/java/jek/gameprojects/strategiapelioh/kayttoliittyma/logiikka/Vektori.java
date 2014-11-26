@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.kayttoliittyma.domain;
+package jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka;
 
 public class Vektori {
     
@@ -8,6 +8,10 @@ public class Vektori {
     public Vektori(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+    
+    public Vektori(){
+        this(0,0);
     }
 
     public double getX() {

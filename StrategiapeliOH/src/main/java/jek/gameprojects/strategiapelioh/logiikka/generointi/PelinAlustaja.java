@@ -20,15 +20,15 @@ public class PelinAlustaja {
     
     private List<String> pelaajienNimet;
 
-    public PelinAlustaja(PelaajienAlustaja pelaajienAlustaja, YksikkotyyppienAlustaja yksikkotyyppienAlustaja, 
-            KartanAlustaja kartanAlustaja, List<String> pelaajienNimet, YksikoidenAlustaja yksikoidenAlustaja, 
-            PanssarivahvuuksienAlustaja panssarivahvuuksienAlustaja) {
+    public PelinAlustaja(AloitusMaarittely aloitusMaarittely) {
         
-        this.pelaajienAlustaja = pelaajienAlustaja;
-        this.yksikkotyyppienAlustaja = yksikkotyyppienAlustaja;
-        this.kartanAlustaja = kartanAlustaja;
-        this.yksikoidenAlustaja = yksikoidenAlustaja;
-        this.panssarivahvuuksienAlustaja = panssarivahvuuksienAlustaja;
+        this.pelaajienAlustaja = aloitusMaarittely.getPelaajienAlustaja();
+        this.yksikkotyyppienAlustaja = aloitusMaarittely.getYksikkotyyppienAlustaja();
+        this.kartanAlustaja = aloitusMaarittely.getKartanAlustaja();
+        this.yksikoidenAlustaja = aloitusMaarittely.getYksikoidenAlustaja();
+        this.panssarivahvuuksienAlustaja = aloitusMaarittely.getPanssarivahvuuksienAlustaja();
+        
+        pelaajienNimet = aloitusMaarittely.getPelaajienNimet();
     }
     
     public Peli alustaPeli()throws Exception{

@@ -1,15 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jek.gameprojects.strategiapelioh.kayttoliittyma;
 
-/**
- *
- * @author klint
- */
-public class Ikkuna {
+import javax.swing.JFrame;
+
+public class Ikkuna extends JFrame{
+    
+    public Ikkuna(){
+        super("StrategiapeliOH");
+        
+        super.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        super.getContentPane().add(new IkkunanSisalto());
+        
+        super.pack();
+        super.setVisible(true);
+    }
     
 }

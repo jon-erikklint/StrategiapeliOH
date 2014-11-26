@@ -1,8 +1,9 @@
-package jek.gameprojects.strategiapelioh.kayttoliittyma.domain;
+package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
 public class GrafiikkaSailio implements Grafiikkaobjekti{
 
@@ -43,6 +44,23 @@ public class GrafiikkaSailio implements Grafiikkaobjekti{
     @Override
     public Vektori koko() {
         return null;
+    }
+
+    @Override
+    public int getTaso() {
+        if(grafiikkaobjektit.isEmpty()){
+            return 0;
+        }
+        
+        int taso = grafiikkaobjektit.get(0).getTaso();
+        
+        for(Grafiikkaobjekti grafiikkaobjekti : grafiikkaobjektit){
+            if(grafiikkaobjekti.getTaso()< taso){
+                taso = grafiikkaobjekti.getTaso();
+            }
+        }
+        
+        return taso;
     }
     
 }
