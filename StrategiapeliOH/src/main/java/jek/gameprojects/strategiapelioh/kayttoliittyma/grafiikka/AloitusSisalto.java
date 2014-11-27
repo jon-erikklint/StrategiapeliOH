@@ -3,14 +3,19 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.HiirenToiminnot;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.PainikkeidenKuuntelija;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.NappaimistonToiminnot;
 
-public class AloitusRuutu implements Ruutu{
+public class AloitusSisalto implements Sisalto{
 
-    private HiirenToiminnot hiirenToiminnot;
+    private PainikkeidenKuuntelija hiirenToiminnot;
     private NappaimistonToiminnot nappaimistonToiminnot;
     
-    public AloitusRuutu(){
+    private Grafiikkapainike grafiikkapainike;
+    
+    public AloitusSisalto(Vektori ruudunKoko){
+        hiirenToiminnot = new PainikkeidenKuuntelija();
         
     }
     
@@ -19,7 +24,7 @@ public class AloitusRuutu implements Ruutu{
 
     @Override
     public void paint(Graphics2D g) {
-        
+        grafiikkapainike.paint(g);
     }
 
     @Override

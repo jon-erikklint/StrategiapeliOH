@@ -5,7 +5,7 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.HiirenToiminnot;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.NappaimistonToiminnot;
 
 
-public interface Ruutu {
+public interface Sisalto {
     
     public HiirenToiminnot hiirenToiminnot();
     

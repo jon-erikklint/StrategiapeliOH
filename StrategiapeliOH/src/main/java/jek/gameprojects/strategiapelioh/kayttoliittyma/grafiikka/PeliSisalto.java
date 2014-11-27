@@ -6,7 +6,7 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.HiirenToiminnot;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.NappaimistonToiminnot;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 
-public class PeliRuutu implements Ruutu{
+public class PeliSisalto implements Sisalto{
 
     private final Peli peli;
     
@@ -17,7 +17,7 @@ public class PeliRuutu implements Ruutu{
     private HiirenToiminnot hiirenToiminnot;
     private NappaimistonToiminnot nappaimistonToiminnot;
     
-    public PeliRuutu(Peli peli){
+    public PeliSisalto(Peli peli){
         this.peli = peli;
         
         kayttoliittyma = new GrafiikkaSailio();

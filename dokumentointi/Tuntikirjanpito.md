@@ -57,3 +57,8 @@
 #26.11.2014
 **Määrä:** 3h
 **Mitä tein:** käyttöliittymäluokkia, Käyttöliittymäluokkia, KÄYTTÖLIITTYMÄLUOKKIA!!!!!
+
+#27.11.2014
+**Määrä:** 1,5h
+**Mitä tein:** Jatkoin käyttöliittymää
+
