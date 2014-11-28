@@ -22,9 +22,9 @@ public class GrafiikkaSailio implements Grafiikkaobjekti{
     }
     
     @Override
-    public void paint(Graphics2D g) {
+    public void paint(Graphics2D g, Kamera kamera) {
         for(Grafiikkaobjekti grafiikkaobjekti : grafiikkaobjektit){
-            grafiikkaobjekti.paint(g);
+            grafiikkaobjekti.paint(g, kamera);
         }
     }
 

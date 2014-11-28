@@ -9,6 +9,6 @@ public interface Grafiikkaobjekti extends Tasollinen{
     public Vektori sijainti();
     public Vektori koko();
     
-    public void paint(Graphics2D g);
+    public void paint(Graphics2D g, Kamera kamera);
     
 }

@@ -1,7 +1,7 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet;
 
-import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.PeliSisalto;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.RuutujenHallinnoija;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.sivut.PeliSivu;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 import jek.gameprojects.strategiapelioh.logiikka.generointi.AloitusMaarittely;
@@ -11,12 +11,12 @@ public class AloitusPainike extends NelioPainike{
 
     private AloitusMaarittely aloitusMaarittely;
     
-    private RuutujenHallinnoija ruudunVaihtaja;
+    private SivujenHallinnoija sivujenHallinnoija;
 
-    public AloitusPainike(Vektori sijainti, Vektori koko, int taso, RuutujenHallinnoija ruudunVaihtaja, AloitusMaarittely aloitusMaarittely) {
-        super(sijainti, koko, taso);
+    public AloitusPainike(Vektori sijainti, Vektori koko, SivujenHallinnoija sivujenHallinnoija, AloitusMaarittely aloitusMaarittely) {
+        super(sijainti, koko, 0);
         
-        this.ruudunVaihtaja = ruudunVaihtaja;
+        this.sivujenHallinnoija = sivujenHallinnoija;
         
         this.aloitusMaarittely = aloitusMaarittely;
     }
@@ -33,9 +33,9 @@ public class AloitusPainike extends NelioPainike{
         
         try{Peli uusiPeli = pelinAlustaja.alustaPeli();
         
-            PeliSisalto peliruutu = new PeliSisalto(uusiPeli);
-            ruudunVaihtaja.lisaaRuutu(peliruutu);
-            ruudunVaihtaja.vaihdaRuutu(ruudunVaihtaja.ruutujenMaara());
+            PeliSivu peliruutu = new PeliSivu(uusiPeli);
+            sivujenHallinnoija.lisaaSivu(peliruutu);
+            sivujenHallinnoija.vaihdaSivu(sivujenHallinnoija.sivujenMaara());
             
         }
         catch(Exception e){

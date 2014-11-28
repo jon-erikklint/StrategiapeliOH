@@ -4,13 +4,13 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PerusNappaimistonKuuntelija implements NappaimistonToiminnot{
+public class PerusNappaimistonToiminnot implements NappaimistonToiminnot{
 
     private Map<Integer, NappaimenKuuntelija> typed;
     private Map<Integer, NappaimenKuuntelija> pressed;
     private Map<Integer, NappaimenKuuntelija> released;
     
-    public PerusNappaimistonKuuntelija(){
+    public PerusNappaimistonToiminnot(){
         typed = new HashMap<>();
         pressed = new HashMap<>();
         released = new HashMap<>();
@@ -44,19 +44,26 @@ public class PerusNappaimistonKuuntelija implements NappaimistonToiminnot{
         return null;
     }
     
+    private void haluttuKuuntelijaToimii(int tapahtumatyyppi, int keycode){
+        NappaimenKuuntelija haluttuKuuntelija = annaMappiTapahtumatyypilla(tapahtumatyyppi).get(keycode);
+        if(haluttuKuuntelija != null){
+            haluttuKuuntelija.toimi();
+        }
+    }
+    
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        haluttuKuuntelijaToimii(0, e.getKeyCode());
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        haluttuKuuntelijaToimii(1, e.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        haluttuKuuntelijaToimii(2, e.getKeyCode());
     }
     
 }

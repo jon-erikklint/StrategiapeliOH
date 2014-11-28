@@ -9,7 +9,7 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Grafiikkalaskuri
 
 public class Kuva implements Grafiikkaobjekti{
 
-    private BufferedImage image;
+    private Image image;
     
     private Vektori sijainti;
     private Vektori koko;
@@ -18,7 +18,7 @@ public class Kuva implements Grafiikkaobjekti{
     
     private int taso;
 
-    public Kuva(BufferedImage image, Vektori sijainti, Vektori koko, double kulma, int taso) {
+    public Kuva(Image image, Vektori sijainti, Vektori koko, double kulma, int taso) {
         this.image = image;
         this.sijainti = sijainti;
         this.koko = koko;
@@ -28,8 +28,14 @@ public class Kuva implements Grafiikkaobjekti{
     }
     
     @Override
-    public void paint(Graphics2D g) {
-        Vektori[] kulmat = Grafiikkalaskuri.kaannaNelio(sijainti, koko, kulma);
+    public void paint(Graphics2D g, Kamera kamera) {
+        Vektori[] muunnetutSijainnit = kamera.koordinaatinmuutos(sijainti, koko);
+        
+        if(muunnetutSijainnit == null){
+            return;
+        }
+        
+        Vektori[] kulmat = Grafiikkalaskuri.kaannaNelio(muunnetutSijainnit[0], muunnetutSijainnit[1], kulma);
         
         g.drawImage(image, (int) kulmat[0].getX(), (int) kulmat[0].getY(), (int) kulmat[1].getX(), (int) kulmat[1].getY(), 
                 (int) kulmat[2].getX(), (int) kulmat[2].getY(), (int) kulmat[3].getX(), (int) kulmat[3].getY(), null);
@@ -45,7 +51,7 @@ public class Kuva implements Grafiikkaobjekti{
         return koko;
     }
     
-    public void setImage(BufferedImage image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 
@@ -57,7 +63,7 @@ public class Kuva implements Grafiikkaobjekti{
         this.kulma = kulma;
     }
 
-    public BufferedImage getImage() {
+    public Image getImage() {
         return image;
     }
 

@@ -53,6 +53,38 @@ public class Peli {
         vuoro = vuorottaja.annaSeuraavaVuoro();
         
     }
+
+    public Kierros getKierros() {
+        return kierros;
+    }
+
+    public Vuoro getVuoro() {
+        return vuoro;
+    }
+
+    public Vuorottaja getVuorottaja() {
+        return vuorottaja;
+    }
+
+    public Kartta getKartta() {
+        return kartta;
+    }
+
+    public YksikoidenLuoja getYksikoidenLuoja() {
+        return yksikoidenLuoja;
+    }
+
+    public YksikoidenPoistaja getYksikoidenPoistaja() {
+        return yksikoidenPoistaja;
+    }
+
+    public Liikuttaja getLiikuttaja() {
+        return liikuttaja;
+    }
+
+    public Hyokkayshallinnoija getHyokkayshallinnoija() {
+        return hyokkayshallinnoija;
+    }
     
     
     

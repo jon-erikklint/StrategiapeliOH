@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
 
 import java.awt.Graphics2D;
@@ -36,8 +31,8 @@ public class Grafiikkapainike implements Painike, Grafiikkaobjekti{
     }
     
     @Override
-    public boolean onkoPaalla(Vektori vektori) {
-        return painike.onkoPaalla(vektori);
+    public boolean onkoPaalla(Vektori vektori, Kamera kamera) {
+        return painike.onkoPaalla(vektori, kamera);
     }
 
     @Override
@@ -61,7 +56,7 @@ public class Grafiikkapainike implements Painike, Grafiikkaobjekti{
     }
 
     @Override
-    public void paint(Graphics2D g) {
-        grafiikkaobjekti.paint(g);
+    public void paint(Graphics2D g, Kamera kamera) {
+        grafiikkaobjekti.paint(g, kamera);
     }
 }

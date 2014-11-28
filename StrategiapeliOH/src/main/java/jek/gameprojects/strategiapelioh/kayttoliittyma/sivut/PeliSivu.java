@@ -1,12 +1,15 @@
-package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
+package jek.gameprojects.strategiapelioh.kayttoliittyma.sivut;
 
-import java.awt.Graphics;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.sivut.Sivu;
 import java.awt.Graphics2D;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.HiirenToiminnot;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.NappaimistonToiminnot;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 
-public class PeliSisalto implements Sisalto{
+public class PeliSivu implements Sivu{
 
     private final Peli peli;
     
@@ -17,12 +20,16 @@ public class PeliSisalto implements Sisalto{
     private HiirenToiminnot hiirenToiminnot;
     private NappaimistonToiminnot nappaimistonToiminnot;
     
-    public PeliSisalto(Peli peli){
+    private Kamera karttakamera;
+    
+    public PeliSivu(Peli peli){
         this.peli = peli;
         
         kayttoliittyma = new GrafiikkaSailio();
         pelikartta = new GrafiikkaSailio();
         ikkunat = new GrafiikkaSailio();
+        
+        karttakamera = new Kamera(new Vektori(peli.getKartta().getLeveys()*100, peli.getKartta().getKorkeus()*100), new Vektori(0,0), new Vektori(100,100));
     }
     
     @Override
@@ -32,7 +39,7 @@ public class PeliSisalto implements Sisalto{
 
     @Override
     public void paint(Graphics2D g) {
-        pelikartta.paint(g);
+        pelikartta.paint(g, karttakamera);
         
     }
 
@@ -69,7 +76,5 @@ public class PeliSisalto implements Sisalto{
     public NappaimistonToiminnot nappaimistonToiminnot() {
         return nappaimistonToiminnot;
     }
-    
-    
     
 }

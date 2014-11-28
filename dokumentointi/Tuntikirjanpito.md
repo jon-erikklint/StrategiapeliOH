@@ -62,3 +62,6 @@
 **Määrä:** 1,5h
 **Mitä tein:** Jatkoin käyttöliittymää
 
+#28.11.2014
+**Määrä:** 3h
+**Mitä tein:** Käyttöliittymän jatkamista

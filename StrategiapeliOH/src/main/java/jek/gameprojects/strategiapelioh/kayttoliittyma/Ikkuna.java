@@ -8,10 +8,13 @@ public class Ikkuna extends JFrame{
         super("StrategiapeliOH");
         
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        super.getContentPane().add(new Paneeli());
+        Paneeli paneeli = new Paneeli();
+        super.getContentPane().add(paneeli);
         
         super.pack();
         super.setVisible(true);
+        
+        paneeli.run();
     }
     
 }

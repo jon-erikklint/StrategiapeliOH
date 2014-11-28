@@ -13,6 +13,11 @@ public class Vektori {
     public Vektori(){
         this(0,0);
     }
+    
+    public void summaa(Vektori vektori){
+        this.x+=vektori.x;
+        this.y+=vektori.y;
+    }
 
     public double getX() {
         return x;

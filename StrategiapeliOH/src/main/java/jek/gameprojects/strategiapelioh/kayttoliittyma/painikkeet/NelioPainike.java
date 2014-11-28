@@ -1,5 +1,6 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet;
 
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
 public abstract class NelioPainike implements Painike{
@@ -36,13 +37,15 @@ public abstract class NelioPainike implements Painike{
     }
     
     @Override
-    public boolean onkoPaalla(Vektori vektori) {
+    public boolean onkoPaalla(Vektori vektori, Kamera kamera) {
+        Vektori[] muunnettuSijainti = kamera.koordinaatinmuutos(sijainti, koko);
+        
         double vx = vektori.getX();
         double vy = vektori.getY();
-        double x = getSijainti().getX();
-        double y = getSijainti().getY();
-        double lev = getKoko().getX();
-        double kor = getKoko().getY();
+        double x = muunnettuSijainti[0].getX();
+        double y = muunnettuSijainti[0].getY();
+        double lev = muunnettuSijainti[1].getX();
+        double kor = muunnettuSijainti[1].getY();
         
         return (vx>=x && vx<x+lev) && (vy>=y && vy<y+kor);
     }

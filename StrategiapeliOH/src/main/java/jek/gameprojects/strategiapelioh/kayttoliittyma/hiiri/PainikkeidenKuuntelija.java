@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.TasoComparator;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.Painike;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
@@ -14,9 +15,13 @@ public class PainikkeidenKuuntelija implements HiirenToiminnot{
     private List<Painike> painikkeet;
     private TasoComparator comparator;
     
-    public PainikkeidenKuuntelija(){
+    private Kamera kamera;
+    
+    public PainikkeidenKuuntelija(Kamera kamera){
         comparator = new TasoComparator();
         painikkeet = new ArrayList<>();
+        
+        this.kamera=kamera;
     }
     
     public void lisaaPainike(Painike painike){
@@ -44,7 +49,7 @@ public class PainikkeidenKuuntelija implements HiirenToiminnot{
             Point point = e.getPoint();
             Vektori sijainti = new Vektori(point.x, point.y);
             
-            if(painike.onkoPaalla(sijainti)){
+            if(painike.onkoPaalla(sijainti, kamera)){
                 painike.toimi();
                 return;
             }

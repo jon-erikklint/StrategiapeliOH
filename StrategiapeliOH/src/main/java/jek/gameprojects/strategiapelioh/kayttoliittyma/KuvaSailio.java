@@ -7,24 +7,20 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.KuvanLataaja;
 
 public class KuvaSailio {
     
-    public Map<String, Image> kuvat;
+    private static final Map<String, Image> kuvat = new HashMap<>();
     
-    public KuvaSailio(){
-        kuvat = new HashMap<>();
-    }
-    
-    public void lataaKuvat(){
+    public static void lataaKuvat(){
         lataaKuva("Painikkeet/aloituspainike.png", "aloituspainike");
     }
     
-    public void lataaKuva(String osoite, String nimi){
+    public static void lataaKuva(String osoite, String nimi){
         KuvanLataaja lataaja = new KuvanLataaja();
         
         Image kuva = lataaja.lataaKuva(osoite);
         kuvat.put(nimi, kuva);
     }
     
-    public Image getKuva(String nimi){
+    public static Image getKuva(String nimi){
         return kuvat.get(nimi);
     }
 }
