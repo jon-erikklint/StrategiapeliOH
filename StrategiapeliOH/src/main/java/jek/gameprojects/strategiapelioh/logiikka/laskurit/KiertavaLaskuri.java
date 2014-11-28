@@ -1,5 +1,11 @@
 package jek.gameprojects.strategiapelioh.logiikka.laskurit;
 
+/**
+ * 
+ * Laskuri, jonka arvo vaihtelee sovitulla välillä jakojäännöksen tavoin
+ * 
+ */
+
 public class KiertavaLaskuri extends Laskuri{
 
     private int arvo;

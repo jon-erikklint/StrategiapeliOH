@@ -17,6 +17,12 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Sotilas;
 import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 
+/**
+ * 
+ * Kokoonpaneva luokka, joka käyttää hyäksi taistelulaskuria ja kantaman laskijaa ja niiden avulal hoitaa hyökkäykseen liittyvät toimet
+ * 
+ */
+
 public class Hyokkayshallinnoija {
     
     private Kartta kartta;

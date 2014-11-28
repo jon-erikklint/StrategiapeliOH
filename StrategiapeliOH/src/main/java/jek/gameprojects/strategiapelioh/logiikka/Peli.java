@@ -14,6 +14,11 @@ import jek.gameprojects.strategiapelioh.logiikka.liikkuminen.Liikuttaja;
 import jek.gameprojects.strategiapelioh.logiikka.yksikot.YksikoidenLuoja;
 import jek.gameprojects.strategiapelioh.logiikka.yksikot.YksikoidenPoistaja;
 
+/**
+ * 
+ * Pelin peruslogiikkapakkaus, joka sisältää kaikki muut logiikan komponentit ja tiedot vuorosta
+ * 
+ */
 public class Peli {
     
     private Kierros kierros;

@@ -63,5 +63,5 @@
 **Mitä tein:** Jatkoin käyttöliittymää
 
 #28.11.2014
-**Määrä:** 3h
-**Mitä tein:** Käyttöliittymän jatkamista
+**Määrä:** 4h
+**Mitä tein:** Käyttöliittymän jatkamista ja hiukan javadocia

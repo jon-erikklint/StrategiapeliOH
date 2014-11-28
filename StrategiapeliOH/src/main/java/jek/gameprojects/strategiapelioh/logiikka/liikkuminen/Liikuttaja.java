@@ -11,6 +11,12 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 
+/**
+ * 
+ * Logiikkaluokka jonka tehtävänä on hoitaa yksiköiden ja joukkojen liikkuminen
+ * 
+ */
+
 public class Liikuttaja {
     
     private Map<Liikkuva,Map<Koordinaatti,Integer>> yksikoidenMahdollisetLiikkeet;

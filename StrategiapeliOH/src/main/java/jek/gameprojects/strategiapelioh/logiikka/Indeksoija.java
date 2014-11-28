@@ -1,5 +1,10 @@
 package jek.gameprojects.strategiapelioh.logiikka;
 
+/**
+ * 
+ * Luokka joka antaa indeksejä uusille yksiköille/muille indeksoitaville
+ * 
+ */
 public class Indeksoija{
     
     private int arvo;

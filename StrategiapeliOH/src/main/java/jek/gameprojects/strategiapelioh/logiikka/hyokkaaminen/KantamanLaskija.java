@@ -9,6 +9,12 @@ import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
 
+/**
+ * 
+ * Laskee hyökkäävän kantaman avulla sen mihin se voi hyökätä
+ * 
+ */
+
 public class KantamanLaskija {
     
     private Set<Koordinaatti> hyokattavat;

@@ -1,5 +1,10 @@
 package jek.gameprojects.strategiapelioh.domain.kartta;
 
+/**
+ * 
+ * Ilmansuunnan mukaisen vektorin sisältävä enum
+ * 
+ */
 public enum Ilmansuunta{
     POHJOINEN(new Koordinaatti(0,-1)),
     ETELA(new Koordinaatti(0,1)),

@@ -6,6 +6,12 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
 import jek.gameprojects.strategiapelioh.logiikka.Indeksoija;
 
+/**
+ * 
+ * Luokka jonka tehtävä on luoda uusia yksiköitä annettujen tietojen perusteella
+ * 
+ */
+
 public class YksikoidenLuoja {
     
     private Kartta kartta;

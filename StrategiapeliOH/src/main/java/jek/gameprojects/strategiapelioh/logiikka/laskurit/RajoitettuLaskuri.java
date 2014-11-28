@@ -1,6 +1,10 @@
 package jek.gameprojects.strategiapelioh.logiikka.laskurit;
 
-import jek.gameprojects.strategiapelioh.logiikka.laskurit.Laskuri;
+/**
+ * 
+ * Int-lukua tallettava laskuri, joka rajoittaa arvoa ylä- ja alarajalla
+ * 
+ */
 
 public class RajoitettuLaskuri extends Laskuri{
     

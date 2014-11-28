@@ -11,6 +11,12 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Sotilas;
 import jek.gameprojects.strategiapelioh.logiikka.yksikot.YksikoidenPoistaja;
 
+/**
+ * 
+ * Laskee taistelussa eri osapuolille koituvat vahingot ja sen kuka puolustaa hyökkääjiä vastaan
+ * 
+ */
+
 public class Taistelulaskuri {
     
     private YksikoidenPoistaja yksikoidenPoistaja;

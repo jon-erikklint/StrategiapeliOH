@@ -5,6 +5,12 @@ import java.util.List;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 
+/**
+ * 
+ * JoukkojenHallinnoijan tehtävänä on hoitaa joukkojen rakenteisiin liittyvät tehtävät kuten joukkojen yhdistäminen
+ * 
+ */
+
 public class JoukkojenHallinnoija {
     
     public void siirraYksikkoJoukkoon(Yksikko yksikko, Joukko joukko){

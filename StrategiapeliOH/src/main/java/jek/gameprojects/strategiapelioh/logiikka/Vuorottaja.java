@@ -5,6 +5,12 @@ import jek.gameprojects.strategiapelioh.logiikka.laskurit.KiertavaLaskuri;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.peli.Vuoro;
 
+/**
+ * 
+ *Logiikkaluokak jonka vastuulla on kertoa kenen vuoro on seuraavaksi
+ * 
+ */
+
 public class Vuorottaja {
     
     private List<Pelaaja> pelaajat;

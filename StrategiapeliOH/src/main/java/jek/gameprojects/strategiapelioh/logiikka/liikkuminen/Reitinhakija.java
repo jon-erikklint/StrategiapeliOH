@@ -11,6 +11,12 @@ import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 
+/**
+ * 
+ * Reitinhakija hakee yksikön tietojen perusteella ne ruudut joihin se voi liikkua ja kertoo myös näihin liikkeisiin kuluvan liikemaaran
+ * 
+ */
+
 public class Reitinhakija {
     
     private Map<Koordinaatti, Integer> liikuttavat;

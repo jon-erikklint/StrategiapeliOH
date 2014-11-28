@@ -1,15 +1,23 @@
-**Aihe:** Vähintäänkin vuoropohjaisen strategiapelin pohja. En ole vielä lyönyt lukkoon aikakautta/tapahtumaympäristöä, mutta päätän sen projektin edetessä. Pelissä olisi monta ihmispelaaja, jotka tekisivät vuoronsa yksitellen. Vuorolla voit siirtää yksiköitäsi, tehdä uusia rakennuksia, valmistaa uusia yksiköitä ja muuten tarkkailla muiden pelaajien toimia. Tarkoituksena pelissä on todennäköisesti tuhota kaikki vastustajan rakennukset, mutta se ei ole vielä lopullinen päätös. Pelissä on todennäköisesti myös jonkunlaisia resursseja, mutta niiden luonnetta en ole vielä päättänyt, mutta niitä tarvitaan kuitenkin yksiköiden ja rakennusten rakentamiseen.
+**Aihe:** Vuoropohjaisen strategiapelin pohja. Tavoitteena on että taistelu- ja liikuntalogiikka on kunnossa yksiköille ja joukoille. Peli on ruutu pohjainen, ja sitä pelataan moninpelinä vuorotellen. 
 
-**Käyttäjät:** Muutama pelaaja, jotka ovat samaan aikaan paikalla
+**Käyttäjät:** Pelaaja
 
-**Käyttäjien toiminnot:**
-*Peliasetusten valinta
-*Vuoron pelaaminen
-*Yksiköiden siirtäminen ja niillä hyökkääminen
-*Uusien yksiköiden valmistus
-*Uusien rakennusten tekeminen
-*Mahdollisten erikoisiskujen/kykyjen käyttäminen
-*Pelin lopussa tilastotietojen tarkastelu
+**Pelaajan toiminnot:**
+*Pelin aloittaminen
+*Yksiköiden siirtäminen
+*Yksiköillä hyökkääminen
+*Yksiköiden järjestäminen joukoiksi
+*Vuoron vaihtaminen
+*Pelin voittaminen vastustajan yksiköiden ollessa kuolleita
 
-**Mahdolliset käyttäjät ajan salliessa:** Modaaja, pystyy luomaan uusia yksiköitä tai/ja karttoja tekstitiedostojen muodossa
+**Tulevat käyttäjät:** Modaaja
 
+**Modaajan toiminnot:**
+*Uusien yksikkötyyppien määrittäminen
+*Uusien karttojen tekeminen
+
+**Pelaajan tulevia toimintoja:**
+*Rakennusten rakentaminen
+*Uusien yksiköiden luominen
+*Pelityypin valitseminen
+*(Resurssien kerääminen)
