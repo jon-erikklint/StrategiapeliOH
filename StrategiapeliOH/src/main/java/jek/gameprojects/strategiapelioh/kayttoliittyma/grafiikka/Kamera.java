@@ -25,23 +25,39 @@ public class Kamera{
     }
     
     public Vektori[] koordinaatinmuutos(Vektori[] sijaintitiedot){
-        double sx = sijaintitiedot[0].getX();
-        double sy = sijaintitiedot[0].getY();
-        double kx = sijaintitiedot[1].getX();
-        double ky = sijaintitiedot[1].getY();
-        
-        if(sx > sijainti.getX()+koko.getX() || sx+kx<sijainti.getX() || sy > sijainti.getY()+koko.getY() || sy+ky < sijainti.getY()){
-            return null;
-        }
-        
         Vektori[] palautettava = new Vektori[2];
         
-        palautettava[0] = new Vektori(sx-sijainti.getX(), sy-sijainti.getX());
-        palautettava[1] = new Vektori(kx * (kartanKoko.getX()/koko.getX()), ky * (kartanKoko.getY()/koko.getY()));
+        palautettava[0] = muutaSijainti(sijaintitiedot[0]);
+        palautettava[1] = muutaKoko(sijaintitiedot[1]);
         
         return palautettava;
     }
-
+    
+    public Vektori muutaSijainti(Vektori sijainti){
+        double sx = sijainti.getX();
+        double sy = sijainti.getY();
+        
+        sx -= this.sijainti.getX();
+        sy -= this.sijainti.getY();
+        
+        return new Vektori(sx * kokosuhdeX(), sy * kokosuhdeY());
+    }
+    
+    public Vektori muutaKoko(Vektori koko){
+        double kx = koko.getX();
+        double ky = koko.getY();
+        
+        return new Vektori(kx * (kokosuhdeX()), ky * (kokosuhdeY()));
+    }
+    
+    public double kokosuhdeX(){
+        return kartanKoko.getX()/koko.getX();
+    }
+    
+    public double kokosuhdeY(){
+        return kartanKoko.getY()/koko.getY();
+    }
+    
     public Vektori getKartanKoko() {
         return kartanKoko;
     }
