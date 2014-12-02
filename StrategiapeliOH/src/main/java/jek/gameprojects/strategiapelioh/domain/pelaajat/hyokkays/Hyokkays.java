@@ -12,20 +12,15 @@ public class Hyokkays {
     
     private boolean onkoHyokkaava;
     
-    private int kantama;
-    private boolean kaukotaistelu;
-    
     private int maksimiElamat;
     
     private List<Ase> aseet;
     private List<Panssari> panssarit;
 
-    public Hyokkays(int elamat, int kantama, boolean kaukotaistelu, List<Ase> aseet, List<Panssari> panssarit) {
+    public Hyokkays(int elamat, List<Ase> aseet, List<Panssari> panssarit) {
         onkoHyokkaava = true;
         
         this.maksimiElamat=elamat;
-        this.kantama = kantama;
-        this.kaukotaistelu = kaukotaistelu;
         
         this.aseet=aseet;
         this.panssarit=panssarit;
@@ -35,26 +30,6 @@ public class Hyokkays {
         onkoHyokkaava = false;
     }
     
-    public boolean isKaukotaistelu() {
-        return kaukotaistelu;
-    }
-
-    public void setKaukotaistelu(boolean kaukotaistelu) {
-        this.kaukotaistelu = kaukotaistelu;
-    }
-    
-    public Hyokkays(int kantama){
-        this.kantama=kantama;
-    }
-
-    public int getKantama() {
-        return kantama;
-    }
-
-    public void setKantama(int kantama) {
-        this.kantama = kantama;
-    }
-
     public boolean isOnkoHyokkaava() {
         return onkoHyokkaava;
     }

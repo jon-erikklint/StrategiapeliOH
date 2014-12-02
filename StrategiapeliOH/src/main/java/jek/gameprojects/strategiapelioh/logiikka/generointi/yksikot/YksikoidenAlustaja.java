@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.logiikka.generointi;
+package jek.gameprojects.strategiapelioh.logiikka.generointi.yksikot;
 
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;

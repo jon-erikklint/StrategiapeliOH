@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.logiikka.generointi;
+package jek.gameprojects.strategiapelioh.logiikka.generointi.aseet;
 
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Asetyyppi;

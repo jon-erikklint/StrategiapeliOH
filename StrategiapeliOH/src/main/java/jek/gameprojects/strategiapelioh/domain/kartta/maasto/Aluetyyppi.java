@@ -8,6 +8,17 @@ package jek.gameprojects.strategiapelioh.domain.kartta.maasto;
 
 public enum Aluetyyppi {
     
-    MAA, VESI
+    MAA("maa"), VESI("vesi");
+    
+    private String nimi;
+    
+    Aluetyyppi(String nimi){
+        this.nimi=nimi;
+    }
+    
+    @Override
+    public String toString(){
+        return nimi;
+    }
     
 }

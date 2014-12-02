@@ -109,7 +109,7 @@ public class Taistelulaskuri {
     }
     
     public boolean puolustajaVoiTehdaVastaiskun(Hyokkaava hyokkaaja, Hyokkaava puolustaja){
-        return !hyokkaaja.hyokkays().isKaukotaistelu();
+        return !hyokkaaja.getAktiivinenAse().isKaukotaistelu();
     }
     
     public Hyokkaava haePahinPuolustaja(Hyokkaava hyokkaava){

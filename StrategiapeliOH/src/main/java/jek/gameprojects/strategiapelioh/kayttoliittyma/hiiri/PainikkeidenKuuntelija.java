@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.TasoComparator;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.PainikeTasoComparator;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.Painike;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
 public class PainikkeidenKuuntelija implements HiirenToiminnot{
 
     private List<Painike> painikkeet;
-    private TasoComparator comparator;
+    private PainikeTasoComparator comparator;
     
     private Kamera kamera;
     
     public PainikkeidenKuuntelija(Kamera kamera){
-        comparator = new TasoComparator();
+        comparator = new PainikeTasoComparator();
         painikkeet = new ArrayList<>();
         
         this.kamera=kamera;

@@ -1,11 +1,8 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
 
-import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Grafiikkaobjekti;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Grafiikkalaskuri;
 
 public class Kuva implements Grafiikkaobjekti{
 
@@ -14,16 +11,15 @@ public class Kuva implements Grafiikkaobjekti{
     private Vektori sijainti;
     private Vektori koko;
     
-    private double kulma;
-    
     private int taso;
+    private boolean nakyva;
 
-    public Kuva(Image image, Vektori sijainti, Vektori koko, double kulma, int taso) {
+    public Kuva(Image image, Vektori sijainti, Vektori koko, int taso, boolean nakyva) {
         this.image = image;
         this.sijainti = sijainti;
         this.koko = koko;
-        this.kulma = kulma;
         
+        this.nakyva=nakyva;
         this.taso = taso;
     }
     
@@ -31,14 +27,9 @@ public class Kuva implements Grafiikkaobjekti{
     public void paint(Graphics2D g, Kamera kamera) {
         Vektori[] muunnetutSijainnit = kamera.koordinaatinmuutos(sijainti, koko);
         
-        if(muunnetutSijainnit == null){
-            return;
-        }
+        g.drawImage(image, (int) muunnetutSijainnit[0].getX(), (int)muunnetutSijainnit[0].getY(), 
+                (int) muunnetutSijainnit[1].getX(), (int) muunnetutSijainnit[1].getY(), null);
         
-        Vektori[] kulmat = Grafiikkalaskuri.kaannaNelio(muunnetutSijainnit[0], muunnetutSijainnit[1], kulma);
-        
-        g.drawImage(image, (int) kulmat[0].getX(), (int) kulmat[0].getY(), (int) kulmat[1].getX(), (int) kulmat[1].getY(), 
-                (int) kulmat[2].getX(), (int) kulmat[2].getY(), (int) kulmat[3].getX(), (int) kulmat[3].getY(), null);
     }
 
     @Override
@@ -53,14 +44,6 @@ public class Kuva implements Grafiikkaobjekti{
     
     public void setImage(Image image) {
         this.image = image;
-    }
-
-    public double getKulma() {
-        return kulma;
-    }
-
-    public void setKulma(double kulma) {
-        this.kulma = kulma;
     }
 
     public Image getImage() {
@@ -86,6 +69,19 @@ public class Kuva implements Grafiikkaobjekti{
     @Override
     public int getTaso() {
         return taso;
+    }
+
+    @Override
+    public void paivita() {}
+
+    @Override
+    public void setNakyvyys(boolean nakyvyys) {
+        nakyva = nakyvyys;
+    }
+
+    @Override
+    public boolean getNakyvyys() {
+        return nakyva;
     }
     
 }

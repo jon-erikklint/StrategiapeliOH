@@ -130,4 +130,8 @@ public abstract class TiedostoAlustaja {
         return tiedostonTiedot.get(lukukohta);
     }
     
+    public int lukukohta(){
+        return this.lukukohta;
+    }
+    
 }

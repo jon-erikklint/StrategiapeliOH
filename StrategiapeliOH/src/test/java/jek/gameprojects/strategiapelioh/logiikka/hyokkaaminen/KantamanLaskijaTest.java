@@ -3,7 +3,6 @@ package jek.gameprojects.strategiapelioh.logiikka.hyokkaaminen;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
@@ -12,7 +11,6 @@ import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maastotyyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
-import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Ase;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Asetyyppi;
@@ -20,8 +18,6 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkays;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssari;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Sotilas;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
-import jek.gameprojects.strategiapelioh.logiikka.hyokkaaminen.KantamanLaskija;
-import jek.gameprojects.strategiapelioh.logiikka.liikkuminen.Reitinhakija;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -68,10 +64,13 @@ public class KantamanLaskijaTest {
         Liikkuvuus liikkuvuus = new Liikkuvuus(new HashMap<Aluetyyppi, Boolean>(), new HashMap<Maastotyyppi, Double>(), 0);
         
         List<Ase> aseet = new ArrayList<>();
-        aseet.add(new Ase(0, Asetyyppi.LASER, 0));
+        aseet.add(new Ase(0, Asetyyppi.LASER, 0, 2, true));
         
-        Hyokkays hyokkays1 = new Hyokkays(1, 2, true, aseet, new ArrayList<Panssari>());
-        Hyokkays hyokkays2 = new Hyokkays(1, 6, true, aseet, new ArrayList<Panssari>());
+        List<Ase> aseet2 = new ArrayList<>();
+        aseet2.add(new Ase(0, Asetyyppi.LASER, 0, 6, true));
+        
+        Hyokkays hyokkays1 = new Hyokkays(1, aseet, new ArrayList<Panssari>());
+        Hyokkays hyokkays2 = new Hyokkays(1, aseet2, new ArrayList<Panssari>());
         
         Yksikkotyyppi yksikkotyyppi1 = new Yksikkotyyppi("", liikkuvuus, hyokkays1);
         Yksikkotyyppi yksikkotyyppi2 = new Yksikkotyyppi("", liikkuvuus, hyokkays2);

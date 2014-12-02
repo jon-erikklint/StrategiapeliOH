@@ -17,7 +17,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssari;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Sotilas;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
-import jek.gameprojects.strategiapelioh.logiikka.generointi.PanssarivahvuuksienVakioAlustaja;
+import jek.gameprojects.strategiapelioh.logiikka.generointi.aseet.PanssarivahvuuksienVakioAlustaja;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -50,25 +50,25 @@ public class TaistelulaskuriTest {
         Liikkuvuus liikkuvuus = new Liikkuvuus(new HashMap<Aluetyyppi, Boolean>(), new HashMap<Maastotyyppi, Double>(), 0);
         
         List<Ase> aseet = new ArrayList<>();
-        aseet.add(new Ase(1, Asetyyppi.LASER, 0));
+        aseet.add(new Ase(1, Asetyyppi.LASER, 0, 1, false));
         List<Panssari> panssarit = new ArrayList<>();
         
-        Hyokkays hyokkays1 = new Hyokkays(5, 1, false, aseet, panssarit);
+        Hyokkays hyokkays1 = new Hyokkays(5, aseet, panssarit);
         
         aseet = new ArrayList<>();
-        aseet.add(new Ase(10, Asetyyppi.LASER, 0));
+        aseet.add(new Ase(10, Asetyyppi.LASER, 0, 1, true));
         panssarit = new ArrayList<>();
         panssarit.add(new Panssari(0.9, Panssarityyppi.TERAS));
         
-        Hyokkays hyokkays2 = new Hyokkays(10, 1, true, aseet, panssarit);
+        Hyokkays hyokkays2 = new Hyokkays(10, aseet, panssarit);
         
         aseet = new ArrayList<>();
-        aseet.add(new Ase(10, Asetyyppi.LASER, 0));
+        aseet.add(new Ase(10, Asetyyppi.LASER, 0, 1, true));
         panssarit = new ArrayList<>();
         panssarit.add(new Panssari(0.9, Panssarityyppi.TERAS));
         panssarit.add(new Panssari(0.5, Panssarityyppi.TERAS));
         
-        Hyokkays hyokkays3 = new Hyokkays(15, 1, true, aseet, panssarit);
+        Hyokkays hyokkays3 = new Hyokkays(15, aseet, panssarit);
         
         Yksikkotyyppi yksikkotyyppi1 = new Yksikkotyyppi("", liikkuvuus, hyokkays1);
         Yksikkotyyppi yksikkotyyppi2 = new Yksikkotyyppi("", liikkuvuus, hyokkays2);
@@ -182,7 +182,7 @@ public class TaistelulaskuriTest {
     
     @Test
     public void tarkistaTehtyVahinko(){
-        Ase apuase = new Ase(10, Asetyyppi.LASER, 1);
+        Ase apuase = new Ase(10, Asetyyppi.LASER, 1, 1, true);
         
         int vastaus = taistelulaskuri.vahinko(1, apuase);
         assertEquals(10, vastaus);
@@ -193,7 +193,7 @@ public class TaistelulaskuriTest {
         
         taistelulaskuri.setRandomSeed(1);
         
-        vastaus = taistelulaskuri.vahinko(1, new Ase(10, Asetyyppi.LASER, 0));
+        vastaus = taistelulaskuri.vahinko(1, new Ase(10, Asetyyppi.LASER, 0, 1, true));
         
         assertEquals(7, vastaus);
     }

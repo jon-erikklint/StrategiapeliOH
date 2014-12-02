@@ -102,4 +102,9 @@ public class Ruutu {
         return hash;
     }
     
+    @Override
+    public String toString(){
+        return "["+maasto.getAluetyyppi()+","+maasto.getMaastotyyppi()+"]";
+    }
+    
 }

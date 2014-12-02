@@ -2,7 +2,6 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
@@ -15,9 +14,10 @@ public class Teksti implements Grafiikkaobjekti{
     private Color color;
     private Font font;
     
+    private boolean nakyva;
     private int taso;
 
-    public Teksti(Vektori sijainti, Vektori koko, int taso, String teksti, Color color, Font font) {
+    public Teksti(Vektori sijainti, Vektori koko, int taso, String teksti, Color color, Font font, boolean nakyva) {
         this.sijainti = sijainti;
         this.koko = koko;
         this.taso = taso; 
@@ -25,6 +25,11 @@ public class Teksti implements Grafiikkaobjekti{
         this.teksti = teksti;
         this.color = color;
         this.font = font;
+        this.nakyva = nakyva;
+    }
+    
+    public Teksti(Vektori sijainti, Vektori koko, int taso, String teksti, Color color, boolean nakyva) {
+        this(sijainti, koko, taso, teksti, color, null, nakyva);
     }
     
     @Override
@@ -40,7 +45,9 @@ public class Teksti implements Grafiikkaobjekti{
     @Override
     public void paint(Graphics2D g, Kamera kamera) {
         g.setPaint(color);
-        g.setFont(font);
+        if(font!=null){
+            g.setFont(font);
+        }
         
         g.drawString(teksti, (int) sijainti.getX(), (int) sijainti.getY());
     }
@@ -84,6 +91,21 @@ public class Teksti implements Grafiikkaobjekti{
 
     public void setTaso(int taso) {
         this.taso = taso;
+    }
+
+    @Override
+    public void paivita() {
+        
+    }
+
+    @Override
+    public void setNakyvyys(boolean nakyvyys) {
+        this.nakyva = nakyvyys;
+    }
+
+    @Override
+    public boolean getNakyvyys() {
+        return nakyva;
     }
     
 }

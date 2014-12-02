@@ -59,4 +59,19 @@ public class Grafiikkapainike implements Painike, Grafiikkaobjekti{
     public void paint(Graphics2D g, Kamera kamera) {
         grafiikkaobjekti.paint(g, kamera);
     }
+
+    @Override
+    public void paivita() {
+        grafiikkaobjekti.paivita();
+    }
+
+    @Override
+    public void setNakyvyys(boolean nakyvyys) {
+        grafiikkaobjekti.setNakyvyys(nakyvyys);
+    }
+
+    @Override
+    public boolean getNakyvyys() {
+        return grafiikkaobjekti.getNakyvyys();
+    }
 }

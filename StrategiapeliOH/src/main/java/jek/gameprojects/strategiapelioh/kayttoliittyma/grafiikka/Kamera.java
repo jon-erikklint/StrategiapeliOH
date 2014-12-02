@@ -9,7 +9,7 @@ public class Kamera{
     private Vektori sijainti;
     private Vektori koko;
     
-    public Kamera(Vektori sijainti, Vektori koko, Vektori kartanKoko){
+    public Kamera(Vektori kartanKoko, Vektori sijainti, Vektori koko){
         this.kartanKoko = kartanKoko;
         
         this.sijainti = sijainti;
@@ -37,17 +37,14 @@ public class Kamera{
         double sx = sijainti.getX();
         double sy = sijainti.getY();
         
-        sx -= this.sijainti.getX();
-        sy -= this.sijainti.getY();
-        
-        return new Vektori(sx * kokosuhdeX(), sy * kokosuhdeY());
+        return new Vektori(sx - this.sijainti.getX() * kokosuhdeX(), sy - this.sijainti.getY() * kokosuhdeY());
     }
     
     public Vektori muutaKoko(Vektori koko){
         double kx = koko.getX();
         double ky = koko.getY();
         
-        return new Vektori(kx * (kokosuhdeX()), ky * (kokosuhdeY()));
+        return new Vektori(kx * kokosuhdeX(), ky * kokosuhdeY());
     }
     
     public double kokosuhdeX(){

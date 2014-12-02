@@ -1,5 +1,10 @@
 package jek.gameprojects.strategiapelioh.logiikka.generointi;
 
+import jek.gameprojects.strategiapelioh.logiikka.generointi.yksikkotyypit.YksikkotyyppienAlustaja;
+import jek.gameprojects.strategiapelioh.logiikka.generointi.yksikot.YksikoidenAlustaja;
+import jek.gameprojects.strategiapelioh.logiikka.generointi.aseet.PanssarivahvuuksienAlustaja;
+import jek.gameprojects.strategiapelioh.logiikka.generointi.pelaajat.PelaajienAlustaja;
+import jek.gameprojects.strategiapelioh.logiikka.generointi.kartta.KartanAlustaja;
 import java.util.List;
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;

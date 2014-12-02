@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.logiikka.generointi;
+package jek.gameprojects.strategiapelioh.logiikka.generointi.pelaajat;
 
 import java.util.List;
 import java.util.Map;

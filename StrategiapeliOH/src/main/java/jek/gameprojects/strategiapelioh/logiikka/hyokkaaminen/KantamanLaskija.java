@@ -32,7 +32,7 @@ public class KantamanLaskija {
         nollaa();
         this.hyokkaava = hyokkaava;
         
-        laskeViereisetHyokattavat(hyokkaava.hyokkays().getKantama(), kartta.getRuutu(hyokkaava.getSijainti()));
+        laskeViereisetHyokattavat(hyokkaava.getAktiivinenAse().getKantama(), kartta.getRuutu(hyokkaava.getSijainti()));
         
         return hyokattavat;
     }

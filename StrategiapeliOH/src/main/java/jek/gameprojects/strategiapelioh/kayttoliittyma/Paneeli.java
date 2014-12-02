@@ -1,5 +1,6 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,7 +19,10 @@ public class Paneeli extends JPanel implements Runnable{
     
     public Paneeli(){
         super.setPreferredSize(new Dimension(1000,1000));
+        super.setBackground(Color.BLACK);
         
+        KuvaSailio.lataaKuvat();
+                
         HiirenKuuntelija hiirenKuuntelija = new HiirenKuuntelija();
         NappaimistonKuuntelija nappaimistonKuuntelija = new NappaimistonKuuntelija();
         
@@ -30,23 +34,21 @@ public class Paneeli extends JPanel implements Runnable{
         
         sivujenHallinnoija = new SivujenHallinnoija(sivut, 0, hiirenKuuntelija, nappaimistonKuuntelija);
         
-        KuvaSailio.lataaKuvat();
     }
     
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
-        
         Graphics2D grafiikat = (Graphics2D) g;
         
         sivujenHallinnoija.nykyinenSivu().paint(grafiikat);
-        g.dispose();
+
     }
 
     @Override
     public void run() {
-        
+
         while(true){
             sivujenHallinnoija.nykyinenSivu().paivita();
             

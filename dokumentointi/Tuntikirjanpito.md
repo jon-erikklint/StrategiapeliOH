@@ -65,3 +65,11 @@
 #28.11.2014
 **Määrä:** 4h
 **Mitä tein:** Käyttöliittymän jatkamista ja hiukan javadocia
+
+#1.12.2014
+**Määrä:** 3,5h
+**Mitä tein:** Käyttöliittymää
+
+#2.12.2014
+**Määrä:** 2,5h
+**Mitä tein:** Tein uusia generointiluokkia demoamista varten ja jatkoin käyttöliittymää

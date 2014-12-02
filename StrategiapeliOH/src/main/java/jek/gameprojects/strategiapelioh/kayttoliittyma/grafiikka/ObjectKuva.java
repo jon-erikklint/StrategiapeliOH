@@ -8,19 +8,24 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 public class ObjectKuva<T> extends Kuva implements Paivittyva{
 
     private T t;
-    private KuvaSailio kuvaSailio;
     
-    public ObjectKuva(Image image, Vektori sijainti, Vektori koko, double kulma, int taso, T t, KuvaSailio kuvaSailio) {
-        super(image, sijainti, koko, kulma, taso);
+    public ObjectKuva(Image image, Vektori sijainti, Vektori koko, int taso, boolean nakyva, T t) {
+        super(image, sijainti, koko, taso, nakyva);
     }
 
     @Override
     public void paivita() {
-        if(!kuvaSailio.getKuva(t.toString()).equals(getImage())){
-            setImage(kuvaSailio.getKuva(t.toString()));
+        if(!KuvaSailio.getKuva(t.toString()).equals(getImage())){
+            setImage(KuvaSailio.getKuva(t.toString()));
         }
     }
-    
-    
+
+    public T getT() {
+        return t;
+    }
+
+    public void setT(T t) {
+        this.t = t;
+    }
     
 }

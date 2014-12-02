@@ -1,4 +1,4 @@
-package jek.gameprojects.strategiapelioh.logiikka.generointi;
+package jek.gameprojects.strategiapelioh.logiikka.generointi.yksikkotyypit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +13,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkays;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssari;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
+import jek.gameprojects.strategiapelioh.logiikka.generointi.TiedostoAlustaja;
 
 public class YksikkotyyppienTiedostoAlustaja extends TiedostoAlustaja implements YksikkotyyppienAlustaja {
 
@@ -101,14 +102,12 @@ public class YksikkotyyppienTiedostoAlustaja extends TiedostoAlustaja implements
             return new Hyokkays();
         }
         
-        int kantama = super.tulkitseKokonaisluku();
-        boolean onkoKaukotaistelu = super.tulkitseTotuusarvo();
         int elamat = super.tulkitseKokonaisluku();
         
         List<Ase> aseet = alustaAseet();
         List<Panssari> panssarit = alustaPanssarit();
         
-        return new Hyokkays(elamat, kantama, onkoKaukotaistelu, aseet, panssarit);
+        return new Hyokkays(elamat, aseet, panssarit);
         
     }
     
@@ -128,7 +127,10 @@ public class YksikkotyyppienTiedostoAlustaja extends TiedostoAlustaja implements
             Asetyyppi asetyyppi = Asetyyppi.valueOf(nykyinen());
             kasvata(1);
             
-            Ase ase = new Ase(aseenIsku, asetyyppi, tarkkuus);
+            int kantama = super.tulkitseKokonaisluku();
+            boolean onkoKaukotaistelu = super.tulkitseTotuusarvo();
+            
+            Ase ase = new Ase(aseenIsku, asetyyppi, tarkkuus, kantama, onkoKaukotaistelu);
             aseet.add(ase);
              
         }

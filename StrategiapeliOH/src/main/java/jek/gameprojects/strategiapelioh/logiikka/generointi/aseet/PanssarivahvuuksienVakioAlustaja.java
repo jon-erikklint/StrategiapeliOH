@@ -1,5 +1,6 @@
-package jek.gameprojects.strategiapelioh.logiikka.generointi;
+package jek.gameprojects.strategiapelioh.logiikka.generointi.aseet;
 
+import jek.gameprojects.strategiapelioh.logiikka.generointi.aseet.PanssarivahvuuksienAlustaja;
 import java.util.HashMap;
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Asetyyppi;

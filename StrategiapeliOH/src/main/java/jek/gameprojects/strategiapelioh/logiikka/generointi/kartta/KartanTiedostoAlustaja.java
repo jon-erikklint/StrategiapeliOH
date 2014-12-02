@@ -1,11 +1,13 @@
-package jek.gameprojects.strategiapelioh.logiikka.generointi;
+package jek.gameprojects.strategiapelioh.logiikka.generointi.kartta;
 
+import jek.gameprojects.strategiapelioh.logiikka.generointi.kartta.KartanAlustaja;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maastotyyppi;
+import jek.gameprojects.strategiapelioh.logiikka.generointi.TiedostoAlustaja;
 
 public class KartanTiedostoAlustaja extends TiedostoAlustaja implements KartanAlustaja{
     

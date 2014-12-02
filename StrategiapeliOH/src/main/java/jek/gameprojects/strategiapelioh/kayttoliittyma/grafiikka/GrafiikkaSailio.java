@@ -7,6 +7,7 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
 public class GrafiikkaSailio implements Grafiikkaobjekti{
 
+    private boolean nakyva;
     private List<Grafiikkaobjekti> grafiikkaobjektit;
     
     public GrafiikkaSailio(){
@@ -23,8 +24,12 @@ public class GrafiikkaSailio implements Grafiikkaobjekti{
     
     @Override
     public void paint(Graphics2D g, Kamera kamera) {
-        for(Grafiikkaobjekti grafiikkaobjekti : grafiikkaobjektit){
-            grafiikkaobjekti.paint(g, kamera);
+        if(nakyva){
+            
+            for(Grafiikkaobjekti grafiikkaobjekti : grafiikkaobjektit){
+                grafiikkaobjekti.paint(g, kamera);
+            }
+            
         }
     }
 
@@ -62,5 +67,22 @@ public class GrafiikkaSailio implements Grafiikkaobjekti{
         
         return taso;
     }
-    
+
+    @Override
+    public void paivita() {
+        for(Grafiikkaobjekti grafiikkaobjekti:grafiikkaobjektit){
+            grafiikkaobjekti.paivita();
+        }
+    }
+
+    @Override
+    public void setNakyvyys(boolean nakyvyys) {
+        nakyva = nakyvyys;
+    }
+
+    @Override
+    public boolean getNakyvyys() {
+        return nakyva;
+    }
+
 }

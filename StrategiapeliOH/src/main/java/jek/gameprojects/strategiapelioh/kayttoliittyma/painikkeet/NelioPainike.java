@@ -9,10 +9,14 @@ public abstract class NelioPainike implements Painike{
     private Vektori koko;
     
     private int taso;
+    
+    private boolean onkoAktiivinen;
 
     public NelioPainike(Vektori sijainti, Vektori koko, int taso) {
         this.sijainti = sijainti;
         this.koko = koko;
+        
+        onkoAktiivinen = true;
     }
     
     public Vektori getSijainti() {
@@ -48,6 +52,16 @@ public abstract class NelioPainike implements Painike{
         double kor = muunnettuSijainti[1].getY();
         
         return (vx>=x && vx<x+lev) && (vy>=y && vy<y+kor);
+    }
+    
+    @Override
+    public boolean getNakyvyys(){
+        return onkoAktiivinen;
+    }
+    
+    @Override
+    public void setNakyvyys(boolean nakyva){
+        onkoAktiivinen = nakyva;
     }
     
 }

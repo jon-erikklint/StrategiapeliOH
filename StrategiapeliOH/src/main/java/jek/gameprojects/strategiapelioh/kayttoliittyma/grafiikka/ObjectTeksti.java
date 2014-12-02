@@ -9,8 +9,10 @@ public class ObjectTeksti<T> extends Teksti implements Paivittyva{
 
     private T t;
     
-    public ObjectTeksti(Vektori sijainti, Vektori koko, int taso, String teksti, Color color, Font font, T t) {
-        super(sijainti, koko, taso, teksti, color, font);
+    public ObjectTeksti(Vektori sijainti, Vektori koko, int taso, String teksti, Color color, Font font, boolean nakyva,T t) {
+        super(sijainti, koko, taso, teksti, color, font, nakyva);
+        
+        this.t = t;
     }
 
     @Override
