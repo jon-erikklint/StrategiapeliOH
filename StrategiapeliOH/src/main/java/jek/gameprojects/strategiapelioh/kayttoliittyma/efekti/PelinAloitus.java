@@ -1,41 +1,31 @@
-package jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet;
+package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
 import java.awt.Color;
-import java.awt.Font;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.AjastettuGrafiikkaobjekti;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Teksti;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.sivut.PeliSivu;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.sivut.PeliSivu;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 import jek.gameprojects.strategiapelioh.logiikka.generointi.AloitusMaarittely;
 import jek.gameprojects.strategiapelioh.logiikka.generointi.PelinAlustaja;
 
-public class AloitusPainike extends NelioPainike{
+public class PelinAloitus implements Efekti{
 
     private AloitusMaarittely aloitusMaarittely;
     
     private SivujenHallinnoija sivujenHallinnoija;
     
     private GrafiikkaSailio virheilmoitukset;
-
-    public AloitusPainike(Vektori sijainti, Vektori koko, SivujenHallinnoija sivujenHallinnoija, AloitusMaarittely aloitusMaarittely, GrafiikkaSailio grafiikkaSailio) {
-        super(sijainti, koko, 0);
-        
-        this.sivujenHallinnoija = sivujenHallinnoija;
-        
+    
+    public PelinAloitus(SivujenHallinnoija sivujenHallinnoija, AloitusMaarittely aloitusMaarittely, GrafiikkaSailio grafiikkaSailio){
         this.aloitusMaarittely = aloitusMaarittely;
-        
+        this.sivujenHallinnoija = sivujenHallinnoija;
         this.virheilmoitukset = grafiikkaSailio;
+        
     }
     
-    @Override
-    public Vektori getSijainti() {return null;}
-
-    @Override
-    public Vektori getKoko() {return null;}
-
     @Override
     public void toimi() {
         PelinAlustaja pelinAlustaja = new PelinAlustaja(aloitusMaarittely);
@@ -58,8 +48,5 @@ public class AloitusPainike extends NelioPainike{
         
         virheilmoitukset.lisaaGrafiikkaobjekti(ajastettu);
     }
-
-    @Override
-    public void paivita() {}
     
 }

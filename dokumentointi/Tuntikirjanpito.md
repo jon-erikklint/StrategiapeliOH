@@ -71,5 +71,9 @@
 **Mitä tein:** Käyttöliittymää
 
 #2.12.2014
-**Määrä:** 2,5h
+**Määrä:** 2h
 **Mitä tein:** Tein uusia generointiluokkia demoamista varten ja jatkoin käyttöliittymää
+
+#3.12.2014
+**Määrä:** 4h
+**Mitä tein:** Yritin saada epätoivoisesti käyttöliittymää kasaan

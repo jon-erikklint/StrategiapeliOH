@@ -14,18 +14,12 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 public class JoukkojenHallinnoija {
     
     public void siirraYksikkoJoukkoon(Yksikko yksikko, Joukko joukko){
+        Joukko vanhaJoukko = yksikko.getJoukko();
+        
         if(joukko.lisaaYksikko(yksikko)){
             
-            yksikko.getJoukko().poistaYksikko(yksikko);
-            
-            yksikko.setJoukko(joukko);
+            vanhaJoukko.poistaYksikko(yksikko);
         } 
-    }
-    
-    private void lisaaYksikkoJoukkoon(Yksikko yksikko, Joukko joukko){
-        if(joukko.lisaaYksikko(yksikko)){
-            yksikko.setJoukko(joukko);
-        }
     }
     
     private void poistaYksikkoJoukosta(Yksikko yksikko, Joukko joukko){
@@ -35,7 +29,7 @@ public class JoukkojenHallinnoija {
     public Joukko siirraJoukkoJoukkoon(Joukko kohde, Joukko lahde){
         
         for(Yksikko yksikko:lahde.getYksikot()){
-            lisaaYksikkoJoukkoon(yksikko, kohde);
+            kohde.lisaaYksikko(yksikko);
         }
         
         for(Yksikko yksikko:lahde.getYksikot()){

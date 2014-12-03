@@ -2,6 +2,7 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.sivut;
 
 import java.awt.Graphics2D;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.KuvaSailio;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.PelinAloitus;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Grafiikkapainike;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
@@ -12,7 +13,7 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoi
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.NappaimistonToiminnot;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.TyhjaNappaimistonToiminnot;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.AloitusPainike;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.NelioPainike;
 import jek.gameprojects.strategiapelioh.logiikka.generointi.AloitusMaarittely;
 
 public class AloitusSivu implements Sivu{
@@ -42,7 +43,8 @@ public class AloitusSivu implements Sivu{
         Vektori alkusijainti = new Vektori(450,500);
         Vektori koko = new Vektori(100,20);
         
-        AloitusPainike aloitusPainike = new AloitusPainike(alkusijainti, koko, sivujenHallinnoija, aloitusMaarittely, valitukset);
+        PelinAloitus aloitusEfekti = new PelinAloitus(sivujenHallinnoija, aloitusMaarittely, valitukset);
+        NelioPainike aloitusPainike = new NelioPainike(aloitusEfekti, alkusijainti, koko, 0);
         Kuva kuva = new Kuva(KuvaSailio.getKuva("aloituspainike"), alkusijainti, koko, 0, true);
         
         grafiikkapainike = new Grafiikkapainike(aloitusPainike, kuva);

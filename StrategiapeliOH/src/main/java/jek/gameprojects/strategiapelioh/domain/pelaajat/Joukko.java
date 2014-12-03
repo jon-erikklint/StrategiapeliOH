@@ -28,7 +28,7 @@ public class Joukko implements Omistettava{
     
     public boolean lisaaYksikko(Yksikko yksikko){
         if(yksikot.isEmpty()){
-            yksikot.add(yksikko);
+            lisaaUusiYksikko(yksikko);
             
             sijainti=yksikko.getSijainti();
             
@@ -36,12 +36,17 @@ public class Joukko implements Omistettava{
         }
         
         if(yksikko.getOmistaja().equals(getOmistaja())){
-            yksikot.add(yksikko);
+            lisaaUusiYksikko(yksikko);
             
             return true;
         }
         
         return false;
+    }
+    
+    private void lisaaUusiYksikko(Yksikko yksikko){
+        yksikot.add(yksikko);
+        yksikko.setJoukko(this);
     }
     
     public void poistaYksikko(Yksikko yksikko){

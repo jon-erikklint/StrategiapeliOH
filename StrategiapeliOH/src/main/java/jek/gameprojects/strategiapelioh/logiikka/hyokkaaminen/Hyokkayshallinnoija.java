@@ -59,7 +59,7 @@ public class Hyokkayshallinnoija {
     
     public Set<Koordinaatti> alustaJoukonHyokattavatRuudut(Joukko joukko){
         if(!onkoJoukkoHyokkaava(joukko)){
-            return null;
+            return new HashSet<>();
         }
         
         Set<Koordinaatti> yhteiset = alustaHyokkaavanHyokattavatRuudut(yksikkoHyokkaavaksi(joukko.getYksikot().get(0)));
@@ -170,6 +170,10 @@ public class Hyokkayshallinnoija {
         }
         
         return true;
+    }
+    
+    public Set<Koordinaatti> getJoukonHyokattavatRuudut(Joukko joukko){
+        return joukonHyokattavatRuudut.get(joukko);
     }
     
     public void nollaa(){

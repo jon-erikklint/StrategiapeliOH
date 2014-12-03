@@ -1,5 +1,6 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka;
 
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Nakyva;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,9 +1,10 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet;
 
+import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.Efekti;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
-public abstract class NelioPainike implements Painike{
+public class NelioPainike extends EfektiPainike{
 
     private Vektori sijainti;
     private Vektori koko;
@@ -12,7 +13,8 @@ public abstract class NelioPainike implements Painike{
     
     private boolean onkoAktiivinen;
 
-    public NelioPainike(Vektori sijainti, Vektori koko, int taso) {
+    public NelioPainike(Efekti efekti, Vektori sijainti, Vektori koko, int taso) {
+        super(efekti);
         this.sijainti = sijainti;
         this.koko = koko;
         
@@ -63,5 +65,8 @@ public abstract class NelioPainike implements Painike{
     public void setNakyvyys(boolean nakyva){
         onkoAktiivinen = nakyva;
     }
+
+    @Override
+    public void paivita() {}
     
 }

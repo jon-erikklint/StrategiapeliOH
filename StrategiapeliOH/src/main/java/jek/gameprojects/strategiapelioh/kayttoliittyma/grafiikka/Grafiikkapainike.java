@@ -63,6 +63,7 @@ public class Grafiikkapainike implements Painike, Grafiikkaobjekti{
     @Override
     public void paivita() {
         grafiikkaobjekti.paivita();
+        painike.paivita();
     }
 
     @Override

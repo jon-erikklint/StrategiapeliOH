@@ -27,6 +27,14 @@ public class Ruutu {
         joukot=new ArrayList<>();
     }
     
+    public Joukko annaEnsimmainenJoukko(){
+        if(joukot.isEmpty()){
+            return null;
+        }
+        
+        return joukot.get(0);
+    }
+    
     public boolean lisaaJoukko(Joukko joukko){
         if(joukot.isEmpty()){
             joukot.add(joukko);

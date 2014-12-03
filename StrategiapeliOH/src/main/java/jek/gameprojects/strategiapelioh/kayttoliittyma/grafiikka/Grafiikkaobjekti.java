@@ -1,7 +1,6 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
 
 import java.awt.Graphics2D;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Nakyva;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
 public interface Grafiikkaobjekti extends Nakyva{
