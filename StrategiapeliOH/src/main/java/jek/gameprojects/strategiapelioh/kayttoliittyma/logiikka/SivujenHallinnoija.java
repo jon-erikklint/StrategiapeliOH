@@ -1,5 +1,6 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka;
 
+import java.util.ArrayList;
 import java.util.List;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.HiirenKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.NappaimistonKuuntelija;
@@ -13,14 +14,16 @@ public class SivujenHallinnoija {
     private HiirenKuuntelija hiirenKuuntelija;
     private NappaimistonKuuntelija nappaimistonKuuntelija;
 
-    public SivujenHallinnoija(List<Sivu> sivut, int aloitusSivu, HiirenKuuntelija hiirenKuuntelija, NappaimistonKuuntelija nappaimistonKuuntelija) {
-        this.sivut = sivut;
-        this.nykyinenSivu = sivut.get(aloitusSivu);
+    public SivujenHallinnoija(HiirenKuuntelija hiirenKuuntelija, NappaimistonKuuntelija nappaimistonKuuntelija) {
         this.hiirenKuuntelija = hiirenKuuntelija;
         this.nappaimistonKuuntelija = nappaimistonKuuntelija;
         
-        hiirenKuuntelija.setHiirenToiminnot(nykyinenSivu.hiirenToiminnot());
-        nappaimistonKuuntelija.setNappaimistonToiminnot(nykyinenSivu.nappaimistonToiminnot());
+        sivut = new ArrayList<>();
+    }
+    
+    public void alusta(Sivu ensimmainenSivu){
+        lisaaSivu(ensimmainenSivu);
+        vaihdaSivu(0);
     }
     
     public boolean vaihdaSivu(int sivunNumero){

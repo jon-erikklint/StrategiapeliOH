@@ -11,6 +11,8 @@ public class ObjectKuva<T> extends Kuva implements Paivittyva{
     
     public ObjectKuva(Image image, Vektori sijainti, Vektori koko, int taso, boolean nakyva, T t) {
         super(image, sijainti, koko, taso, nakyva);
+        
+        this.t = t;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package jek.gameprojects.strategiapelioh.logiikka.generointi.pelaajat;
 
-import jek.gameprojects.strategiapelioh.logiikka.generointi.pelaajat.PelaajienAlustaja;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

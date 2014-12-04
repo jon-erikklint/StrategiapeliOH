@@ -19,6 +19,13 @@ public class EhdollinenNelioPainike extends NelioPainike{
     }
     
     @Override
+    public void toimi(){
+        if(super.getNakyvyys()){
+            super.toimi();
+        }
+    }
+    
+    @Override
     public void paivita(){
         Ruutu valittuRuutu = pelitila.getTilat().getValittuRuutu();
         

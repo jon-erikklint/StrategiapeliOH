@@ -12,12 +12,16 @@ public class MonitasoinenPainikkeidenKuuntelija implements HiirenToiminnot{
         kuuntelijat = new ArrayList<>();
     }
     
-    public void lisaaPainikkeienKuuntelija(PainikkeidenKuuntelija painikkeidenKuuntelija, int taso){
+    public void lisaaPainikkeienKuuntelija(PainikkeidenKuuntelija painikkeidenKuuntelija){
         kuuntelijat.add(painikkeidenKuuntelija);
     }
     
     public void poistaPainikkeidenKuuntelija(PainikkeidenKuuntelija kuuntelija){
         kuuntelijat.remove(kuuntelija);
+    }
+    
+    public PainikkeidenKuuntelija getPainikkeidenKuuntelija(int indeksi){
+        return kuuntelijat.get(indeksi);
     }
 
     @Override

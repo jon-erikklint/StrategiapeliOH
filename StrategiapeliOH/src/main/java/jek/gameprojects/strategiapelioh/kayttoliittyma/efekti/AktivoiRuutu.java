@@ -20,15 +20,24 @@ public class AktivoiRuutu extends PelitilaEfekti{
     public void toimi() {
         Tilat tilat = pelitila.getTilat();
         
-        if(tilat.getValittuRuutu().equals(ruutuKuva.getT())){
+        if(tilat.getValittuRuutu()==null){
             
-            tilat.nollaaTilanne();
-            
-        }else{
             tilat.setValittuRuutu(ruutuKuva.getT());
             tilat.setValitutYksikot(ruutuKuva.getT().annaEnsimmainenJoukko());
             
             ruutuKuva.setImage(KuvaSailio.getKuva( ruutuKuva.getT().toString()+":AKTIIVINEN") );
+            
+        }else if(!tilat.getValittuRuutu().equals(ruutuKuva.getT())){
+            
+            tilat.setValittuRuutu(ruutuKuva.getT());
+            tilat.setValitutYksikot(ruutuKuva.getT().annaEnsimmainenJoukko());
+            
+            ruutuKuva.setImage(KuvaSailio.getKuva( ruutuKuva.getT().toString()+":AKTIIVINEN") );
+            
+        }else{
+            
+            tilat.nollaaTilanne();
+            
         }
     }
     

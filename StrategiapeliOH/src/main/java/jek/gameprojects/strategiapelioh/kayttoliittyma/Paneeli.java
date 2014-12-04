@@ -29,11 +29,10 @@ public class Paneeli extends JPanel implements Runnable{
         super.addMouseListener(hiirenKuuntelija);
         super.addKeyListener(nappaimistonKuuntelija);
         
-        List<Sivu> sivut = new ArrayList<>();
-        sivut.add(new AloitusSivu(sivujenHallinnoija));
-        
-        sivujenHallinnoija = new SivujenHallinnoija(sivut, 0, hiirenKuuntelija, nappaimistonKuuntelija);
-        
+        sivujenHallinnoija = new SivujenHallinnoija(hiirenKuuntelija, nappaimistonKuuntelija);
+        AloitusSivu aloitus = new AloitusSivu();
+        sivujenHallinnoija.alusta(aloitus);
+        aloitus.alusta(sivujenHallinnoija);
     }
     
     @Override

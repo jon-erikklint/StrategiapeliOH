@@ -1,11 +1,7 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
-import java.awt.Color;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.AjastettuGrafiikkaobjekti;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Teksti;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoija;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.sivut.PeliSivu;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 import jek.gameprojects.strategiapelioh.logiikka.generointi.AloitusMaarittely;
@@ -32,9 +28,10 @@ public class PelinAloitus implements Efekti{
         
         try{Peli uusiPeli = pelinAlustaja.alustaPeli();
         
-            PeliSivu peliruutu = new PeliSivu(uusiPeli);
+            PeliSivu peliruutu = new PeliSivu(uusiPeli, sivujenHallinnoija);
             sivujenHallinnoija.lisaaSivu(peliruutu);
-            sivujenHallinnoija.vaihdaSivu(sivujenHallinnoija.sivujenMaara());
+            sivujenHallinnoija.vaihdaSivu(sivujenHallinnoija.sivujenMaara()-1);
+            
             
         }
         catch(Exception e){
@@ -43,10 +40,12 @@ public class PelinAloitus implements Efekti{
     }
     
     private void ilmoitaVirhe(Exception e){
-        Teksti teksti = new Teksti(new Vektori(450, 600), new Vektori(100,20), 0, "Virhe: "+e.getLocalizedMessage(), Color.WHITE, true);
-        AjastettuGrafiikkaobjekti ajastettu = new AjastettuGrafiikkaobjekti(teksti, 3000); 
+        System.out.println("Virhe:"+e.getLocalizedMessage());
         
-        virheilmoitukset.lisaaGrafiikkaobjekti(ajastettu);
+//        Teksti teksti = new Teksti(new Vektori(450, 600), new Vektori(100,20), 0, "Virhe: "+e.getLocalizedMessage(), Color.WHITE, true);
+//        AjastettuGrafiikkaobjekti ajastettu = new AjastettuGrafiikkaobjekti(teksti, 30000); 
+//        
+//        virheilmoitukset.lisaaGrafiikkaobjekti(ajastettu);
     }
     
 }

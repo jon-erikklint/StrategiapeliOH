@@ -18,9 +18,9 @@ public class YksikkotyyppienVakioAlustaja implements YksikkotyyppienAlustaja{
 
     Ase lahitykki = new Ase(15, Asetyyppi.RAJAHDE, 0.2, 1, false);
     Ase kaukotykki = new Ase(8, Asetyyppi.RAJAHDE, 0, 4, true);
-    Ase machineGun = new Ase(8, Asetyyppi.LUOTI, 0.3, 2, true);
+    Ase machineGun = new Ase(6, Asetyyppi.LUOTI, 0.1, 2, true);
     Ase tarkkuuskivaari = new Ase(5, Asetyyppi.LASER, 0.2, 6, true);
-    Ase kivaari = new Ase(5, Asetyyppi.LUOTI, 0.1, 2, true);
+    Ase kivaari = new Ase(4, Asetyyppi.LUOTI, 0.1, 2, true);
 
     Panssari kevytPanssari = new Panssari(0.9, Panssarityyppi.TERAS);
     Panssari raskasPanssari = new Panssari(0.5, Panssarityyppi.TERAS);

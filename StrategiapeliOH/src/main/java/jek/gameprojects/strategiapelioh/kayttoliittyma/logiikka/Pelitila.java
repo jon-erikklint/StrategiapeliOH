@@ -3,11 +3,13 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaKartta;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.PainikkeidenKuuntelija;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.MonitasoinenPainikkeidenKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.PerusNappaimistonToiminnot;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 
 public class Pelitila {
+    
+    private SivujenHallinnoija sivujenHallinnoija;
     
     private Peli peli;
     
@@ -22,10 +24,11 @@ public class Pelitila {
     private GrafiikkaSailio kayttoliittyma;
     private GrafiikkaKartta kartta;
     
-    private PainikkeidenKuuntelija painikkeidenKuuntelija;
+    private MonitasoinenPainikkeidenKuuntelija painikkeidenKuuntelija;
     private PerusNappaimistonToiminnot nappaimistonToiminnot;
 
-    public Pelitila(Peli peli, Tilat tilat, Kamera vakiokamera, Kamera pelikamera, GrafiikkaSailio ikkunat, GrafiikkaSailio kayttoliittyma, GrafiikkaKartta kartta, PainikkeidenKuuntelija painikkeidenKuuntelija, PerusNappaimistonToiminnot nappaimistonToiminnot) {
+    public Pelitila(SivujenHallinnoija sivujenHallinnoija, Peli peli, Tilat tilat, Kamera vakiokamera, Kamera pelikamera, GrafiikkaSailio ikkunat, GrafiikkaSailio kayttoliittyma, GrafiikkaKartta kartta, MonitasoinenPainikkeidenKuuntelija painikkeidenKuuntelija, PerusNappaimistonToiminnot nappaimistonToiminnot) {
+        this.sivujenHallinnoija = sivujenHallinnoija;
         this.peli = peli;
         this.tilat = tilat;
         this.vakiokamera = vakiokamera;
@@ -95,11 +98,11 @@ public class Pelitila {
         this.kayttoliittyma = kayttoliittyma;
     }
 
-    public PainikkeidenKuuntelija getPainikkeidenKuuntelija() {
+    public MonitasoinenPainikkeidenKuuntelija getPainikkeidenKuuntelija() {
         return painikkeidenKuuntelija;
     }
 
-    public void setPainikkeidenKuuntelija(PainikkeidenKuuntelija painikkeidenKuuntelija) {
+    public void setPainikkeidenKuuntelija(MonitasoinenPainikkeidenKuuntelija painikkeidenKuuntelija) {
         this.painikkeidenKuuntelija = painikkeidenKuuntelija;
     }
 
@@ -126,6 +129,12 @@ public class Pelitila {
     public void setRuudunKoko(Vektori ruudunKoko) {
         this.ruudunKoko = ruudunKoko;
     }
-    
-    
+
+    public SivujenHallinnoija getSivujenHallinnoija() {
+        return sivujenHallinnoija;
+    }
+
+    public void setSivujenHallinnoija(SivujenHallinnoija sivujenHallinnoija) {
+        this.sivujenHallinnoija = sivujenHallinnoija;
+    }
 }
