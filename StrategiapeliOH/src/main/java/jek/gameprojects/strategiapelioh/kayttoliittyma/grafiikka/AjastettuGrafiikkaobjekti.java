@@ -71,6 +71,9 @@ public class AjastettuGrafiikkaobjekti implements Grafiikkaobjekti{
         this.ajastin = ajastin;
     }
 
-    
-    
+    @Override
+    public void setTaso(int taso) {
+        grafiikkaobjekti.setTaso(taso);
+    }
+
 }

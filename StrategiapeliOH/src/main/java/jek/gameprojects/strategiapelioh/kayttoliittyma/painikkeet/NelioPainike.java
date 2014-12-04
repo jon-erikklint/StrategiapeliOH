@@ -68,5 +68,10 @@ public class NelioPainike extends EfektiPainike{
 
     @Override
     public void paivita() {}
+
+    @Override
+    public void setTaso(int taso) {
+        this.taso = taso;
+    }
     
 }

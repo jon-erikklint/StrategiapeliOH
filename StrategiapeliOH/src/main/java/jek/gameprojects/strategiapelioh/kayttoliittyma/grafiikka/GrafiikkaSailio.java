@@ -96,4 +96,7 @@ public class GrafiikkaSailio implements Grafiikkaobjekti{
         return nakyva;
     }
 
+    @Override
+    public void setTaso(int taso) {}
+
 }

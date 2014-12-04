@@ -94,7 +94,8 @@ public class GrafiikkaKartta implements Grafiikkaobjekti{
     public void setOnkoNakyva(boolean onkoNakyva) {
         this.onkoNakyva = onkoNakyva;
     }
-    
-    
+
+    @Override
+    public void setTaso(int taso) {}
     
 }

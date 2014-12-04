@@ -75,4 +75,10 @@ public class Grafiikkapainike implements Painike, Grafiikkaobjekti{
     public boolean getNakyvyys() {
         return grafiikkaobjekti.getNakyvyys();
     }
+
+    @Override
+    public void setTaso(int taso) {
+        grafiikkaobjekti.setTaso(taso);
+        painike.setTaso(taso);
+    }
 }

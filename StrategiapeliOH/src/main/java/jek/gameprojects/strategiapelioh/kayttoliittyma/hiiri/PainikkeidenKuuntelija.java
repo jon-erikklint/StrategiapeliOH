@@ -7,21 +7,37 @@ import java.util.Collections;
 import java.util.List;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.PainikeTasoComparator;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.Painike;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Tasollinen;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.Painike;
 
-public class PainikkeidenKuuntelija implements HiirenToiminnot{
+public class PainikkeidenKuuntelija implements HiirenToiminnot, Tasollinen{
 
     private List<Painike> painikkeet;
     private PainikeTasoComparator comparator;
     
     private Kamera kamera;
     
-    public PainikkeidenKuuntelija(Kamera kamera){
+    private int taso;
+    
+    private boolean toimiko;
+    
+    public PainikkeidenKuuntelija(Kamera kamera, int taso){
         comparator = new PainikeTasoComparator();
         painikkeet = new ArrayList<>();
         
         this.kamera=kamera;
+        
+        toimiko = false;
+        this.taso = taso;
+    }
+    
+    public PainikkeidenKuuntelija(Kamera kamera){
+        this(kamera, 0);
+    }
+    
+    public void nollaa(){
+        toimiko = false;
     }
     
     public void lisaaPainike(Painike painike){
@@ -51,6 +67,8 @@ public class PainikkeidenKuuntelija implements HiirenToiminnot{
             
             if(painike.onkoPaalla(sijainti, kamera)){
                 painike.toimi();
+                toimiko = true;
+                
                 return;
             }
         }
@@ -67,5 +85,30 @@ public class PainikkeidenKuuntelija implements HiirenToiminnot{
 
     @Override
     public void mouseExited(MouseEvent e) {}
+
+    @Override
+    public int getTaso() {
+        return taso;
+    }
+
+    @Override
+    public void setTaso(int taso) {
+        this.taso = taso;
+    }
+
+    public boolean isToimiko() {
+        return toimiko;
+    }
+
+    public void setToimiko(boolean toimiko) {
+        this.toimiko = toimiko;
+    }
+
+    @Override
+    public void paivita() {
+        for(Painike painike: painikkeet){
+            painike.paivita();
+        }
+    }
     
 }

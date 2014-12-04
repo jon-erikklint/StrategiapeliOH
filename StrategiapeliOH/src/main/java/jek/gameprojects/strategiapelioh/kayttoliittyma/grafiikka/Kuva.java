@@ -83,5 +83,10 @@ public class Kuva implements Grafiikkaobjekti{
     public boolean getNakyvyys() {
         return nakyva;
     }
+
+    @Override
+    public void setTaso(int taso) {
+        this.taso = taso;
+    }
     
 }

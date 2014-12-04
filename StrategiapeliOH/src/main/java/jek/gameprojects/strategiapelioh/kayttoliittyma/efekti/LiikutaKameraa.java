@@ -1,17 +1,18 @@
-package jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto;
+package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
-public class KameranLiikuttajaNappaimenKuuntelija extends NappaimenKuuntelija{
+public class LiikutaKameraa extends PelitilaEfekti{
 
-    private Vektori kartanKoko;
-    
     private Kamera kamera;
     private Vektori suunta;
     
-    public KameranLiikuttajaNappaimenKuuntelija(int merkkikoodi) {
-        super(merkkikoodi);
+    public LiikutaKameraa(Pelitila pelitila, Kamera kamera, Vektori suunta) {
+        super(pelitila);
+        
+        this.kamera = kamera;
     }
 
     @Override
@@ -20,7 +21,8 @@ public class KameranLiikuttajaNappaimenKuuntelija extends NappaimenKuuntelija{
         Vektori kameraK = kamera.getKoko();
         
         if(kameraS.getX()+suunta.getX()<0 || kameraS.getY()+suunta.getY()<0 || 
-                kameraS.getX()+kameraK.getX()>kartanKoko.getX() || kameraS.getY()+kameraK.getY()>kartanKoko.getY()){
+            kameraS.getX()+kameraK.getX()>pelitila.getRuudunKoko().getX() || 
+                kameraS.getY()+kameraK.getY()>pelitila.getRuudunKoko().getY()){
             return;
         }
         

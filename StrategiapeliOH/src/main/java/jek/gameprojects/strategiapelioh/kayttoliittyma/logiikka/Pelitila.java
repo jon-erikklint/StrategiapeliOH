@@ -11,6 +11,8 @@ public class Pelitila {
     
     private Peli peli;
     
+    private Vektori ruudunKoko;
+    
     private Tilat tilat;
     
     private Kamera vakiokamera;
@@ -114,6 +116,14 @@ public class Pelitila {
 
     public void setKartta(GrafiikkaKartta kartta) {
         this.kartta = kartta;
+    }
+
+    public Vektori getRuudunKoko() {
+        return ruudunKoko;
+    }
+
+    public void setRuudunKoko(Vektori ruudunKoko) {
+        this.ruudunKoko = ruudunKoko;
     }
     
     
