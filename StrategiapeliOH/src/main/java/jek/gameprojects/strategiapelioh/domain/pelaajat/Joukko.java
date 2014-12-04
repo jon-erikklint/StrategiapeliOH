@@ -21,6 +21,12 @@ public class Joukko implements Omistettava{
         yksikot=new ArrayList<>();
     }
     
+    public void palautaYksikoidenToiminnot(){
+        for(Yksikko yksikko : yksikot){
+            yksikko.palaututaToiminnot();
+        }
+    }
+    
     @Override
     public Pelaaja getOmistaja(){
         return yksikot.get(0).getOmistaja();

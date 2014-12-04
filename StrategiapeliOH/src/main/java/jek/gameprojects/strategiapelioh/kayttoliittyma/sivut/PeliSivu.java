@@ -108,6 +108,7 @@ public class PeliSivu implements Sivu{
     public void luoPainikkeet(){
         Kuva hyokkaysKuva = new Kuva(KuvaSailio.getKuva("hyokkayspainike"), new Vektori(100, 800), new Vektori(100,100), 0, false);
         Kuva liikutusKuva = new Kuva(KuvaSailio.getKuva("liikutuspainike"), new Vektori(800,800), new Vektori(100,100), 0, false);
+        Kuva vuoronVaihtoKuva = new Kuva(KuvaSailio.getKuva("vuoronvaihtopainike"), new Vektori(450,0), new Vektori(100,30), 0, true);
         
         AlustaHyokattavatRuudut alustaHyokattavatRuudut = new AlustaHyokattavatRuudut(pelitila);
         EhdollinenNelioPainike hyokkayspainike = new EhdollinenNelioPainike(alustaHyokattavatRuudut, new Vektori(100, 800), new Vektori(100,100), 0, hyokkaysKuva, pelitila);

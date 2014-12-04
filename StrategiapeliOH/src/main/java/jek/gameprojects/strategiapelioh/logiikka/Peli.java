@@ -1,8 +1,10 @@
 package jek.gameprojects.strategiapelioh.logiikka;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Asetyyppi;
@@ -26,6 +28,7 @@ public class Peli {
     private Vuoro vuoro;
     private Vuorottaja vuorottaja;
     
+    private List<Pelaaja> pelaajat;
     private Kartta kartta;
     
     private YksikoidenLuoja yksikoidenLuoja;
@@ -42,6 +45,7 @@ public class Peli {
         this.vuoro = vuorottaja.annaSeuraavaVuoro();
         
         this.kartta = kartta;
+        this.pelaajat = new ArrayList<>(pelaajat.values());
         
         this.yksikoidenLuoja = new YksikoidenLuoja(kartta, pelaajat, yksikkotyypit, yksikoidenIndeksoija);
         this.yksikoidenPoistaja = new YksikoidenPoistaja();
@@ -61,6 +65,22 @@ public class Peli {
         
         vuoro = vuorottaja.annaSeuraavaVuoro();
         
+        taytaPelaajanToiminnot(vuoro.getPelaaja());
+        nollaaLogiikka();
+        
+    }
+    
+    public void taytaPelaajanToiminnot(Pelaaja pelaaja){
+        List<Joukko> pelaajanJoukot = pelaaja.getJoukot();
+        
+        for(Joukko joukko : pelaajanJoukot){
+            joukko.palautaYksikoidenToiminnot();
+        }
+    }
+    
+    public void nollaaLogiikka(){
+        liikuttaja.nollaa();
+        hyokkayshallinnoija.nollaa();
     }
 
     public Kierros getKierros() {

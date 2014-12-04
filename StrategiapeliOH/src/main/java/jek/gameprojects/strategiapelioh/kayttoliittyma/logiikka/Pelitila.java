@@ -39,6 +39,7 @@ public class Pelitila {
     public Pelitila(){}
     
     public void paivita(){
+        peli.nollaaLogiikka();
         tilat.nollaaTilanne();
         
         kartta.paivita();

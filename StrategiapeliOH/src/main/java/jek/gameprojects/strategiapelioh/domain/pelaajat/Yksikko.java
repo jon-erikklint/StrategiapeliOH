@@ -35,6 +35,10 @@ public class Yksikko implements Liikkuva{
         
         this.joukko.lisaaYksikko(this);
     }
+    
+    public void palaututaToiminnot(){
+        liikkuvuus.setArvo(liikkuvuus.getYlaraja());
+    }
 
     @Override
     public int liikkuvuus() {

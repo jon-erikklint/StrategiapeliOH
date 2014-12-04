@@ -11,6 +11,9 @@ public class KuvaSailio {
     
     public static void lataaKuvat(){
         lataaKuva("Painikkeet/aloituspainike.png", "aloituspainike");
+        lataaKuva("Painikkeet/hyokkayspainike.png", "hyokkayspainike");
+        lataaKuva("Painikkeet/liikutuspainike.png", "liikutuspainike");
+        lataaKuva("Painikkeet/vuoronvaihtopainike.png", "vuoronvaihtopainike");
     }
     
     public static void lataaKuva(String osoite, String nimi){
