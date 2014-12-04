@@ -3,29 +3,30 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.KuvaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectKuva;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.avustajat.TilaAvustaja;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Tilat;
 
-public class AktivoiRuutu implements Efekti{
+public class AktivoiRuutu extends PelitilaEfekti{
     
     private ObjectKuva<Ruutu> ruutuKuva;
     
-    private TilaAvustaja tilaAvustaja;
-    
-    public AktivoiRuutu(ObjectKuva<Ruutu> ruutuKuva, TilaAvustaja tilaAvustaja) {
-        this.ruutuKuva=ruutuKuva;
+    public AktivoiRuutu(Pelitila pelitila, ObjectKuva<Ruutu> ruutuKuva) {
+        super(pelitila);
         
-        this.tilaAvustaja = tilaAvustaja;
+        this.ruutuKuva = ruutuKuva;
     }
 
     @Override
     public void toimi() {
-        if(tilaAvustaja.getValittuRuutu().getMuuttuja().equals(ruutuKuva.getT())){
+        Tilat tilat = pelitila.getTilat();
+        
+        if(tilat.getValittuRuutu().equals(ruutuKuva.getT())){
             
-            tilaAvustaja.nollaaTilanne();
+            tilat.nollaaTilanne();
             
         }else{
-            tilaAvustaja.getValittuRuutu().setMuuttuja(ruutuKuva.getT());
-            tilaAvustaja.getValitutYksikot().setMuuttuja(ruutuKuva.getT().annaEnsimmainenJoukko());
+            tilat.setValittuRuutu(ruutuKuva.getT());
+            tilat.setValitutYksikot(ruutuKuva.getT().annaEnsimmainenJoukko());
             
             ruutuKuva.setImage(KuvaSailio.getKuva( ruutuKuva.getT().toString()+":AKTIIVINEN") );
         }

@@ -1,14 +1,16 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
-public class RuudunValintaEfekti extends ValintaEfekti<Integer>{
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
 
-    public RuudunValintaEfekti(Tila<Integer> tila, AktivoiRuutu aktivoiRuutu, HyokkaaRuutuun hyokkaaRuutuun, LiikuRuutuun liikuRuutuun) {
-        super(tila, aktivoiRuutu, hyokkaaRuutuun);
+public class RuudunValintaEfekti extends ValintaEfekti{
+
+    public RuudunValintaEfekti(Pelitila pelitila, AktivoiRuutu aktivoiRuutu, HyokkaaRuutuun hyokkaaRuutuun, LiikuRuutuun liikuRuutuun) {
+        super(pelitila, aktivoiRuutu, hyokkaaRuutuun);
     }
 
     @Override
     public Efekti valitseEfekti() {
-        return super.getEfektit().get((int) super.getTila().getMuuttuja());
+        return super.getEfektit().get(pelitila.getTilat().getPelitila());
     }
     
 }

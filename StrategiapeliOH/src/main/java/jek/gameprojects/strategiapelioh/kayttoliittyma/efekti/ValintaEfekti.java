@@ -2,15 +2,16 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
 import java.util.Arrays;
 import java.util.List;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
 
-public abstract class ValintaEfekti<T> implements Efekti{
+public abstract class ValintaEfekti extends PelitilaEfekti{
     
     private List<Efekti> efektit;
-    private Tila tila;
     
-    public ValintaEfekti(Tila tila, Efekti... efektit){
+    public ValintaEfekti(Pelitila pelitila, Efekti... efektit){
+        super(pelitila);
+        
         this.efektit = Arrays.asList(efektit);
-        this.tila = tila;
     }
 
     @Override
@@ -23,9 +24,5 @@ public abstract class ValintaEfekti<T> implements Efekti{
 
     public List<Efekti> getEfektit() {
         return efektit;
-    }
-
-    public Tila getTila() {
-        return tila;
     }
 }

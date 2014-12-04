@@ -2,30 +2,30 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
-import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
 
-public class ValitseYksikko implements Efekti{
+public class ValitseYksikko extends PelitilaEfekti{
     
-    private Tila<Joukko> valitutYksikot;
     private Yksikko yksikko;
     
-    private JoukkojenHallinnoija joukkojenHallinnoija;
-    
-    public ValitseYksikko(Tila<Joukko> valitutYksikot, Yksikko yksikko){
-        this.valitutYksikot = valitutYksikot;
-        this.yksikko = yksikko;
+    public ValitseYksikko(Pelitila pelitila, Yksikko yksikko){
+        super(pelitila);
         
-        joukkojenHallinnoija = new JoukkojenHallinnoija();
+        this.yksikko = yksikko;
     }
 
     @Override
     public void toimi() {
-        Joukko valittuJoukko = valitutYksikot.getMuuttuja();
+        Joukko valittuJoukko = pelitila.getTilat().getValitutYksikot();
         
         if(valittuJoukko.getYksikot().contains(yksikko)){
-            joukkojenHallinnoija.luoYksikolleOmaJoukko(yksikko);
+            
+            pelitila.getPeli().getJoukkojenHallinnoija().luoYksikolleOmaJoukko(yksikko);
+            
         }else{
+            
             valittuJoukko.lisaaYksikko(yksikko);
+            
         }
     }
 }

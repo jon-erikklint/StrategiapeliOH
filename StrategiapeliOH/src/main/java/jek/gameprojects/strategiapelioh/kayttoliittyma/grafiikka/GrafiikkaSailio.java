@@ -2,6 +2,7 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
@@ -24,6 +25,16 @@ public class GrafiikkaSailio implements Grafiikkaobjekti{
     
     @Override
     public void paint(Graphics2D g, Kamera kamera) {
+        if(nakyva){
+            
+            for(Grafiikkaobjekti grafiikkaobjekti : grafiikkaobjektit){
+                grafiikkaobjekti.paint(g, kamera);
+            }
+            
+        }
+    }
+    
+    public void paint(Collection<Grafiikkaobjekti> grafiikkaobjektit, Graphics2D g, Kamera kamera){
         if(nakyva){
             
             for(Grafiikkaobjekti grafiikkaobjekti : grafiikkaobjektit){

@@ -1,31 +1,31 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.avustajat.Liikkumisavustaja;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.avustajat.TilaAvustaja;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
+import jek.gameprojects.strategiapelioh.logiikka.liikkuminen.Liikuttaja;
 
-public class LiikuRuutuun implements Efekti{
+public class LiikuRuutuun extends PelitilaEfekti{
 
-    private Liikkumisavustaja liikkumisavustaja;
-    private TilaAvustaja tilaAvustaja;
-    
     private Ruutu ruutu;
 
-    public LiikuRuutuun(Liikkumisavustaja liikkumisavustaja, TilaAvustaja tilaAvustaja, Ruutu ruutu) {
-        this.liikkumisavustaja = liikkumisavustaja;
-        this.tilaAvustaja = tilaAvustaja;
+    public LiikuRuutuun(Pelitila pelitila, Ruutu ruutu) {
+        super(pelitila);
         this.ruutu = ruutu;
     }
     
     @Override
     public void toimi() {
-        if(liikkumisavustaja.onkoLiikuttavaRuutu(ruutu)){
+        Liikuttaja liikuttaja = pelitila.getPeli().getLiikuttaja();
+        Joukko liikutettava = pelitila.getTilat().getValitutYksikot();
+        
+        if(liikuttaja.annaJoukonMahdollisetLiikkeet(liikutettava).contains(ruutu.getSijainti())){
             
-            liikkumisavustaja.liikutaJoukkoRuutuun(ruutu);
+            liikuttaja.liikutaJoukko(liikutettava, ruutu.getSijainti());
             
         }
         
-        tilaAvustaja.nollaaTilanne();
+        pelitila.paivita();
         
     }
     

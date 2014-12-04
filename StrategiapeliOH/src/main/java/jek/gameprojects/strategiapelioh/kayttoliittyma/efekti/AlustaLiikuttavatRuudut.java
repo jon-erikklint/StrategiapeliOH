@@ -1,42 +1,30 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.KuvaSailio;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Grafiikkaobjekti;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectKuva;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.avustajat.Liikkumisavustaja;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
 
-public class AlustaLiikuttavatRuudut implements Efekti{
+public class AlustaLiikuttavatRuudut extends PelitilaEfekti{
 
-    private Liikkumisavustaja liikkumisavustaja;
-    
-    private List<ObjectKuva<Ruutu>> ruudut;
-    
-    public AlustaLiikuttavatRuudut(Liikkumisavustaja liikkumisavustaja, List<Grafiikkaobjekti> kartanRuudut){
-        this.liikkumisavustaja = liikkumisavustaja;
-        
-        this.ruudut = new ArrayList<>();
-        for(Grafiikkaobjekti grafiikkaobjekti : kartanRuudut){
-            
-            if(grafiikkaobjekti.getClass().equals(ObjectKuva.class)){
-                ruudut.add((ObjectKuva<Ruutu>) grafiikkaobjekti);
-            }
-            
-        }
+    public AlustaLiikuttavatRuudut(Pelitila pelitila){
+        super(pelitila);
     }
     
     @Override
     public void toimi() {
-        Set<Koordinaatti> liikuttavatRuudut = liikkumisavustaja.alustaLiikuttavatRuudut();
+        Set<Koordinaatti> liikuttavatRuudut = pelitila.getPeli().getLiikuttaja().alustaJoukonMahdollisetLiikkeet(pelitila.getTilat().getValitutYksikot());
+        Map<Koordinaatti, ObjectKuva<Ruutu>> ruudut = pelitila.getKartta().getRuutuKartta();
         
-        for(ObjectKuva<Ruutu> ruudunKuva : ruudut){
-            if(liikuttavatRuudut.contains(ruudunKuva.getT().getSijainti())){
-                ruudunKuva.setImage(KuvaSailio.getKuva(ruudunKuva.getT().toString()+"LIIKUTTAVA"));
-            }
+        
+        for(Koordinaatti sijainti : liikuttavatRuudut){
+            ObjectKuva<Ruutu> ruutu = ruudut.get(sijainti);
+            
+            ruutu.setImage(KuvaSailio.getKuva(ruutu.getT().toString()+"LIIKUTTAVA"));
+            
         }
     }
     
