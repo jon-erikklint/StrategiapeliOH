@@ -81,3 +81,7 @@
 #4.12.2014
 **Määrä:** 4,5h
 **Mitä tein:** Sain käyttöliittymää kasaan ja nyt pelisivu tulee jopa näkyviin (jos mustaa ruutua voi siksi laskea)
+
+#5.12.2014
+**Määrä:** 1h
+**Mitä tein:** Tein kuvia peliin ja korjasin bugeja

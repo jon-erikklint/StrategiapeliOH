@@ -23,7 +23,7 @@ public class AlustaLiikuttavatRuudut extends PelitilaEfekti{
         for(Koordinaatti sijainti : liikuttavatRuudut){
             ObjectKuva<Ruutu> ruutu = ruudut.get(sijainti);
             
-            ruutu.setImage(KuvaSailio.getKuva(ruutu.getT().toString()+"LIIKUTTAVA"));
+            ruutu.setImage(KuvaSailio.getKuva(ruutu.getT().toString()+":LIIKUTTAVA"));
             
         }
     }

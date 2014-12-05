@@ -13,6 +13,7 @@ public class GrafiikkaSailio implements Grafiikkaobjekti{
     
     public GrafiikkaSailio(){
         grafiikkaobjektit = new ArrayList<>();
+        nakyva = true;
     }
     
     public void lisaaGrafiikkaobjekti(Grafiikkaobjekti grafiikkaobjekti){

@@ -4,18 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JPanel;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.sivut.AloitusSivu;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.sivut.Sivu;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoija;
 
 public class Paneeli extends JPanel implements Runnable{
     
     private SivujenHallinnoija sivujenHallinnoija;
-    
-    private Thread thread;
     
     public Paneeli(){
         super.setPreferredSize(new Dimension(1000,1000));

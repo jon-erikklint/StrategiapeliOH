@@ -14,6 +14,19 @@ public class KuvaSailio {
         lataaKuva("Painikkeet/hyokkayspainike.png", "hyokkayspainike");
         lataaKuva("Painikkeet/liikutuspainike.png", "liikutuspainike");
         lataaKuva("Painikkeet/vuoronvaihtopainike.png", "vuoronvaihtopainike");
+        
+        lataaKuva("Ruudut/Ruutu.maa.png", "[maa,avomaa]");
+        lataaKuva("Ruudut/Ruutu.vesi.png", "[vesi,avomaa]");
+        lataaKuva("Ruudut/Ruutu.maa.metsa.png", "[maa,metsa]");
+        
+        lataaKuva("Ruudut/Ruutu.maa.valittu:liikkuminen.png", "[maa,avomaa]:LIIKUTTAVA");
+        lataaKuva("Ruudut/Ruutu.vesi.valittu:liikkuminen.png", "[vesi,avomaa]:LIIKUTTAVA");
+        lataaKuva("Ruudut/Ruutu.maa.metsa.valittu:liikkuminen.png", "[maa,metsa]:LIIKUTTAVA");
+        
+        lataaKuva("Ruudut/Ruutu.maa.valittu:hyokkaaminen.png", "[maa,avomaa]:HYOKATTAVA");
+        lataaKuva("Ruudut/Ruutu.vesi.valittu:hyokkaaminen.png", "[vesi,avomaa]:HYOKATTAVA");
+        lataaKuva("Ruudut/Ruutu.maa.metsa.valittu:hyokkaaminen.png", "[maa,metsa]:HYOKATTAVA");
+        
     }
     
     public static void lataaKuva(String osoite, String nimi){

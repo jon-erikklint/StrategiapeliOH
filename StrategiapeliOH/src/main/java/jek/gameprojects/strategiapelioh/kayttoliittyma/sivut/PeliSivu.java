@@ -2,7 +2,6 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.sivut;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import static java.awt.event.KeyEvent.VK_D;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
@@ -60,7 +59,7 @@ public class PeliSivu implements Sivu{
         pelikartta = new GrafiikkaKartta();
         ikkunat = new GrafiikkaSailio();
         
-        karttakamera = new Kamera(new Vektori(peli.getKartta().getLeveys()*100, peli.getKartta().getKorkeus()*100), new Vektori(0,0), new Vektori(100,100));
+        karttakamera = new Kamera(new Vektori(peli.getKartta().getLeveys()*100, peli.getKartta().getKorkeus()*100), new Vektori(0,0), new Vektori(300,300));
         vakiokamera = new Kamera(new Vektori(1000,1000), new Vektori(0,0), new Vektori(1000,1000));
         
         init();
@@ -125,6 +124,7 @@ public class PeliSivu implements Sivu{
     }
     
     public void alustaPainikkeet(){
+        
         Kuva hyokkaysKuva = new Kuva(KuvaSailio.getKuva("hyokkayspainike"), new Vektori(100, 800), new Vektori(100,100), 0, false);
         Kuva liikutusKuva = new Kuva(KuvaSailio.getKuva("liikutuspainike"), new Vektori(800,800), new Vektori(100,100), 0, false);
         Kuva vuoronLopetusKuva = new Kuva(KuvaSailio.getKuva("vuoronvaihtopainike"), new Vektori(450,0), new Vektori(100,30), 0, true);
@@ -147,7 +147,6 @@ public class PeliSivu implements Sivu{
         vakiokuuntelija.lisaaPainike(liikutus);
         vakiokuuntelija.lisaaPainike(hyokkays);
         vakiokuuntelija.lisaaPainike(vuoronLopettaminen);
-        
         
         kayttoliittyma.lisaaGrafiikkaobjekti(hyokkays);
         kayttoliittyma.lisaaGrafiikkaobjekti(liikutus);
