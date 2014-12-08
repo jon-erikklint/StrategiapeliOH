@@ -27,6 +27,10 @@ public class KuvaSailio {
         lataaKuva("Ruudut/Ruutu.vesi.valittu:hyokkaaminen.png", "[vesi,avomaa]:HYOKATTAVA");
         lataaKuva("Ruudut/Ruutu.maa.metsa.valittu:hyokkaaminen.png", "[maa,metsa]:HYOKATTAVA");
         
+        lataaKuva("Ruudut/Ruutu.maa.valittu:aktiivinen.png", "[maa,avomaa]:AKTIIVINEN");
+        lataaKuva("Ruudut/Ruutu.vesi.valittu:aktiivinen.png", "[vesi,avomaa]:AKTIIVINEN");
+        lataaKuva("Ruudut/Ruutu.maa.metsa.valittu:aktiivinen.png", "[maa,metsa]:AKTIIVINEN");
+
     }
     
     public static void lataaKuva(String osoite, String nimi){
