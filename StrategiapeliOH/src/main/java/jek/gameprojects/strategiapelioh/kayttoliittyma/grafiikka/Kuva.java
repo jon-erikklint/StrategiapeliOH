@@ -32,16 +32,6 @@ public class Kuva implements Grafiikkaobjekti{
                 (int) muunnetutSijainnit[1].getX(), (int) muunnetutSijainnit[1].getY(), null);
         }
     }
-
-    @Override
-    public Vektori sijainti() {
-        return sijainti;
-    }
-
-    @Override
-    public Vektori koko() {
-        return koko;
-    }
     
     public void setImage(Image image) {
         this.image = image;
@@ -51,18 +41,22 @@ public class Kuva implements Grafiikkaobjekti{
         return image;
     }
 
+    @Override
     public Vektori getSijainti() {
         return sijainti;
     }
 
+    @Override
     public Vektori getKoko() {
         return koko;
     }
 
+    @Override
     public void setSijainti(Vektori sijainti) {
         this.sijainti = sijainti;
     }
 
+    @Override
     public void setKoko(Vektori koko) {
         this.koko = koko;
     }

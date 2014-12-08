@@ -16,13 +16,13 @@ public class AjastettuGrafiikkaobjekti implements Grafiikkaobjekti{
     }
 
     @Override
-    public Vektori sijainti() {
-        return grafiikkaobjekti.sijainti();
+    public Vektori getSijainti() {
+        return grafiikkaobjekti.getSijainti();
     }
 
     @Override
-    public Vektori koko() {
-        return grafiikkaobjekti.koko();
+    public Vektori getKoko() {
+        return grafiikkaobjekti.getKoko();
     }
 
     @Override
@@ -74,6 +74,16 @@ public class AjastettuGrafiikkaobjekti implements Grafiikkaobjekti{
     @Override
     public void setTaso(int taso) {
         grafiikkaobjekti.setTaso(taso);
+    }
+
+    @Override
+    public void setSijainti(Vektori sijainti) {
+        grafiikkaobjekti.setSijainti(sijainti);
+    }
+
+    @Override
+    public void setKoko(Vektori koko) {
+        grafiikkaobjekti.setKoko(koko);
     }
 
 }

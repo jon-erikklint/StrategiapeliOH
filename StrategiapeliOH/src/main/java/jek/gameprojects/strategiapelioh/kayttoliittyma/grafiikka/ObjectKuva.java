@@ -1,10 +1,9 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
 
 import java.awt.Image;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.KuvaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
-public class ObjectKuva<T> extends Kuva{
+public abstract class ObjectKuva<T> extends Kuva{
 
     private T t;
     
@@ -16,8 +15,10 @@ public class ObjectKuva<T> extends Kuva{
 
     @Override
     public void paivita() {
-        setImage(KuvaSailio.getKuva(t.toString()));
+        paivitaKuva();
     }
+    
+    public abstract void paivitaKuva();
 
     public T getT() {
         return t;

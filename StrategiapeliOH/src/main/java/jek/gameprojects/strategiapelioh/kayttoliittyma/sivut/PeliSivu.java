@@ -14,6 +14,7 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.AlustaLiikuttavatR
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.HyokkaaRuutuun;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.LiikuRuutuun;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.LiikutaKameraa;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.MuutaKameranKokoa;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.RuudunValintaEfekti;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.VuoronLopetus;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.EhdollinenGrafiikkapainike;
@@ -24,6 +25,9 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kuva;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectKuva;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectTeksti;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.RuudunKuva;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ToStringObjectKuva;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.YksikoidenKuva;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.HiirenToiminnot;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.MonitasoinenPainikkeidenKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.PainikkeidenKuuntelija;
@@ -100,7 +104,7 @@ public class PeliSivu implements Sivu{
         for(int i=0;i<kartta.getKorkeus();i++){
             for(int j=0;j<kartta.getLeveys();j++){
                 
-                ObjectKuva<Ruutu> ruutu = luoRuutu( new Koordinaatti(j,i), kartta.getRuutu(new Koordinaatti(j,i)) );
+                RuudunKuva ruutu = luoRuutu( new Koordinaatti(j,i), kartta.getRuutu(new Koordinaatti(j,i)) );
                 
                 pelikartta.addRuutu(ruutu);
                 
@@ -108,15 +112,18 @@ public class PeliSivu implements Sivu{
         }
     }
     
-    private ObjectKuva<Ruutu> luoRuutu(Koordinaatti sijainti, Ruutu ruutu){
+    private RuudunKuva luoRuutu(Koordinaatti sijainti, Ruutu ruutu){
         Vektori ruudunSijainti = new Vektori(sijainti.getX()*100,sijainti.getY()*100);
         Vektori ruudunKoko = new Vektori(100,100);
         
-        ObjectKuva<Ruutu> ruudunKuva = new ObjectKuva<>(KuvaSailio.getKuva(ruutu.toString()), ruudunSijainti, ruudunKoko, 1, true, ruutu);
-        
+        ToStringObjectKuva<Ruutu> ruudunKuva = new ToStringObjectKuva<>(KuvaSailio.getKuva(ruutu.toString()), ruudunSijainti, ruudunKoko, 1, true, ruutu);
         lisaaRuudunPainike(sijainti,ruudunKuva);
         
-        return ruudunKuva;
+        YksikoidenKuva yksikoidenKuva = new YksikoidenKuva(KuvaSailio.getKuva("Yksikkoja:"+ruutu.yksikoidenMaara()), ruudunSijainti, ruudunKoko, 1, true, ruutu);
+        
+        RuudunKuva ruutuKuva = new RuudunKuva(ruudunKuva, yksikoidenKuva);
+        
+        return ruutuKuva;
     }
     
     private void lisaaRuudunPainike(Koordinaatti sijainti, ObjectKuva<Ruutu> ruutu){
@@ -183,15 +190,24 @@ public class PeliSivu implements Sivu{
         LiikutaKameraa ylos = new LiikutaKameraa(pelitila, karttakamera, new Vektori(0,-5));
         LiikutaKameraa alas = new LiikutaKameraa(pelitila, karttakamera, new Vektori(0,5));
         
+        MuutaKameranKokoa pienemmaksi = new MuutaKameranKokoa(pelitila, karttakamera, new Vektori(-10,-10));
+        MuutaKameranKokoa isommaksi = new MuutaKameranKokoa(pelitila, karttakamera, new Vektori(10,10));
+        
         EfektiNappaimenKuuntelija oikealleKuuntelija = new EfektiNappaimenKuuntelija(68, oikealle);
         EfektiNappaimenKuuntelija vasemmalleKuuntelija = new EfektiNappaimenKuuntelija(65, vasemmalle);
         EfektiNappaimenKuuntelija ylosKuuntelija = new EfektiNappaimenKuuntelija(87, ylos);
         EfektiNappaimenKuuntelija alasKuuntelija = new EfektiNappaimenKuuntelija(83, alas);
         
+        EfektiNappaimenKuuntelija pienemmaksiKuuntelija = new EfektiNappaimenKuuntelija(40, pienemmaksi);
+        EfektiNappaimenKuuntelija isommaksiKuuntelija = new EfektiNappaimenKuuntelija(38, isommaksi);
+        
         nappaimistonToiminnot.lisaaNappaimenKuuntelija(oikealleKuuntelija);
         nappaimistonToiminnot.lisaaNappaimenKuuntelija(vasemmalleKuuntelija);
         nappaimistonToiminnot.lisaaNappaimenKuuntelija(alasKuuntelija);
         nappaimistonToiminnot.lisaaNappaimenKuuntelija(ylosKuuntelija);
+        
+        nappaimistonToiminnot.lisaaNappaimenKuuntelija(pienemmaksiKuuntelija);
+        nappaimistonToiminnot.lisaaNappaimenKuuntelija(isommaksiKuuntelija);
         
     }
     

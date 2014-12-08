@@ -35,6 +35,16 @@ public class Ruutu {
         return joukot.get(0);
     }
     
+    public int yksikoidenMaara(){
+        int maara = 0;
+        
+        for(Joukko joukko : joukot){
+            maara+=joukko.getYksikot().size();
+        }
+        
+        return maara;
+    }
+    
     public boolean lisaaJoukko(Joukko joukko){
         if(joukot.isEmpty()){
             joukot.add(joukko);

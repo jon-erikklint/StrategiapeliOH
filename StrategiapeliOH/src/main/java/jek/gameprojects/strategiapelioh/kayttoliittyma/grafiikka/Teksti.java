@@ -33,16 +33,6 @@ public class Teksti implements Grafiikkaobjekti{
     }
     
     @Override
-    public Vektori sijainti() {
-        return sijainti;
-    }
-
-    @Override
-    public Vektori koko() {
-        return koko;
-    }
-
-    @Override
     public void paint(Graphics2D g, Kamera kamera) {
         g.setPaint(color);
         if(font!=null){
@@ -83,22 +73,23 @@ public class Teksti implements Grafiikkaobjekti{
         this.font = font;
     }
 
+    @Override
     public void setSijainti(Vektori sijainti) {
         this.sijainti = sijainti;
     }
 
+    @Override
     public void setKoko(Vektori koko) {
         this.koko = koko;
     }
 
+    @Override
     public void setTaso(int taso) {
         this.taso = taso;
     }
 
     @Override
-    public void paivita() {
-        
-    }
+    public void paivita() {}
 
     @Override
     public void setNakyvyys(boolean nakyvyys) {
@@ -108,6 +99,16 @@ public class Teksti implements Grafiikkaobjekti{
     @Override
     public boolean getNakyvyys() {
         return nakyva;
+    }
+
+    @Override
+    public Vektori getSijainti() {
+        return sijainti;
+    }
+
+    @Override
+    public Vektori getKoko() {
+        return koko;
     }
     
 }

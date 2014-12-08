@@ -18,6 +18,11 @@ public class Vektori {
         this.x+=vektori.x;
         this.y+=vektori.y;
     }
+    
+    public void kerro(double kerroin){
+        x *= kerroin;
+        y *= kerroin;
+    }
 
     public double getX() {
         return x;

@@ -54,13 +54,21 @@ public class GrafiikkaSailio implements Grafiikkaobjekti{
     }
 
     @Override
-    public Vektori sijainti() {
-        return null;
+    public Vektori getSijainti() {
+        if(grafiikkaobjektit.isEmpty()){
+            return null;
+        }
+        
+        return grafiikkaobjektit.get(0).getSijainti();
     }
 
     @Override
-    public Vektori koko() {
-        return null;
+    public Vektori getKoko() {
+        if(grafiikkaobjektit.isEmpty()){
+            return null;
+        }
+        
+        return grafiikkaobjektit.get(0).getKoko();
     }
 
     @Override
@@ -69,15 +77,7 @@ public class GrafiikkaSailio implements Grafiikkaobjekti{
             return 0;
         }
         
-        int taso = grafiikkaobjektit.get(0).getTaso();
-        
-        for(Grafiikkaobjekti grafiikkaobjekti : grafiikkaobjektit){
-            if(grafiikkaobjekti.getTaso()< taso){
-                taso = grafiikkaobjekti.getTaso();
-            }
-        }
-        
-        return taso;
+        return grafiikkaobjektit.get(0).getTaso();
     }
 
     @Override
@@ -98,6 +98,24 @@ public class GrafiikkaSailio implements Grafiikkaobjekti{
     }
 
     @Override
-    public void setTaso(int taso) {}
+    public void setTaso(int taso) {
+        for(Grafiikkaobjekti grafiikkaobjekti : grafiikkaobjektit){
+            grafiikkaobjekti.setTaso(taso);
+        }
+    }
+
+    @Override
+    public void setSijainti(Vektori sijainti) {
+        for(Grafiikkaobjekti grafiikkaobjekti : grafiikkaobjektit){
+            grafiikkaobjekti.setSijainti(sijainti);
+        }
+    }
+
+    @Override
+    public void setKoko(Vektori koko) {
+        for(Grafiikkaobjekti grafiikkaobjekti : grafiikkaobjektit){
+            grafiikkaobjekti.setKoko(koko);
+        }
+    }
 
 }

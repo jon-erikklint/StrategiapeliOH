@@ -5,9 +5,11 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
 public interface Grafiikkaobjekti extends Nakyva{
     
-    public Vektori sijainti();
-    public Vektori koko();
-    public int getTaso();
+    public Vektori getSijainti();
+    public void setSijainti(Vektori sijainti);
+    
+    public Vektori getKoko();
+    public void setKoko(Vektori koko);
     
     public void paint(Graphics2D g, Kamera kamera);
     

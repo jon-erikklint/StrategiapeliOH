@@ -11,7 +11,7 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
 public class GrafiikkaKartta implements Grafiikkaobjekti{
     
-    private Map<Koordinaatti, ObjectKuva<Ruutu>> ruudut;
+    private Map<Koordinaatti, RuudunKuva> ruudut;
     private boolean onkoNakyva;
     
     public GrafiikkaKartta(){
@@ -20,27 +20,29 @@ public class GrafiikkaKartta implements Grafiikkaobjekti{
         ruudut = new HashMap<>();
     }
     
-    public List<ObjectKuva<Ruutu>> getRuudut(){
-        List<ObjectKuva<Ruutu>> ruudut = new ArrayList<>();
+    public List<RuudunKuva> getRuudut(){
+        List<RuudunKuva> ruudut = new ArrayList<>();
         
         ruudut.addAll(this.ruudut.values());
         
         return ruudut;
     }
     
-    public ObjectKuva<Ruutu> getRuutu(Koordinaatti koordinaatti){
+    public RuudunKuva getRuutu(Koordinaatti koordinaatti){
         return ruudut.get(koordinaatti);
     }
     
-    public void addRuutu(ObjectKuva<Ruutu> ruutu){
-        ruudut.put(ruutu.getT().getSijainti(), ruutu);
+    public void addRuutu(RuudunKuva ruudunKuva){
+        Ruutu ruutu = (Ruutu) ruudunKuva.getRuutu().getT();
+        
+        ruudut.put(ruutu.getSijainti(), ruudunKuva);
     }
     
     @Override
     public void paint(Graphics2D g, Kamera kamera){
         if(onkoNakyva){
             
-            for(ObjectKuva<Ruutu> ruutu : ruudut.values()){
+            for(RuudunKuva ruutu : ruudut.values()){
                 ruutu.paint(g, kamera);
             }
             
@@ -48,12 +50,12 @@ public class GrafiikkaKartta implements Grafiikkaobjekti{
     }
 
     @Override
-    public Vektori sijainti() {
+    public Vektori getSijainti() {
         return null;
     }
 
     @Override
-    public Vektori koko() {
+    public Vektori getKoko() {
         return null;
     }
 
@@ -74,16 +76,16 @@ public class GrafiikkaKartta implements Grafiikkaobjekti{
 
     @Override
     public void paivita() {
-        for(ObjectKuva<Ruutu> ruutu : ruudut.values()){
+        for(RuudunKuva ruutu : ruudut.values()){
             ruutu.paivita();
         }
     }
 
-    public Map<Koordinaatti, ObjectKuva<Ruutu>> getRuutuKartta() {
+    public Map<Koordinaatti, RuudunKuva> getRuutuKartta() {
         return ruudut;
     }
 
-    public void setRuutuKartta(Map<Koordinaatti, ObjectKuva<Ruutu>> ruudut) {
+    public void setRuutuKartta(Map<Koordinaatti, RuudunKuva> ruudut) {
         this.ruudut = ruudut;
     }
 
@@ -97,5 +99,19 @@ public class GrafiikkaKartta implements Grafiikkaobjekti{
 
     @Override
     public void setTaso(int taso) {}
+
+    @Override
+    public void setSijainti(Vektori sijainti) {
+        for(Koordinaatti koordinaatti : ruudut.keySet()){
+            ruudut.get(koordinaatti).setSijainti(sijainti);
+        }
+    }
+
+    @Override
+    public void setKoko(Vektori koko) {
+        for(Koordinaatti koordinaatti : ruudut.keySet()){
+            ruudut.get(koordinaatti).setKoko(koko);
+        }
+    }
     
 }
