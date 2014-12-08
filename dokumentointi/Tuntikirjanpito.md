@@ -85,3 +85,7 @@
 #5.12.2014
 **Määrä:** 1h
 **Mitä tein:** Tein kuvia peliin ja korjasin bugeja
+
+#8.12.2014
+**Määrä:** 5,5h
+**Mitä tein:** Korjasin bugeja, tein lisää grafiikkaa ja lisäsin puuttuvia ominaisuuksia
