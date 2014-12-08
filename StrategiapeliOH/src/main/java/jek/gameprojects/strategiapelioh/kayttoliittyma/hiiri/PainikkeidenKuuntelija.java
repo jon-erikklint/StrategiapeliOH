@@ -65,7 +65,7 @@ public class PainikkeidenKuuntelija implements HiirenToiminnot, Tasollinen{
             Point point = e.getPoint();
             Vektori sijainti = new Vektori(point.x, point.y);
             
-            if(painike.onkoPaalla(sijainti, kamera)){
+            if(painike.onkoPaalla(sijainti, kamera) && painike.getNakyvyys()){
                 painike.toimi();
                 toimiko = true;
                 

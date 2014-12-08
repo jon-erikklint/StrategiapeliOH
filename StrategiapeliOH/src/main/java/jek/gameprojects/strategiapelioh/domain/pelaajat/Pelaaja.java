@@ -67,4 +67,9 @@ public class Pelaaja {
         return hash;
     }
     
+    @Override
+    public String toString(){
+        return nimi;
+    }
+    
 }

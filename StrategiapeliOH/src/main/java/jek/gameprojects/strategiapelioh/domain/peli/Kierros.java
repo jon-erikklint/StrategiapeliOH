@@ -1,5 +1,6 @@
 package jek.gameprojects.strategiapelioh.domain.peli;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +15,8 @@ public class Kierros {
     private List<Vuoro> vuorot;
     
     public Kierros(int kierros){
+        vuorot = new ArrayList<>();
+        
         this.kierros = kierros;
     }
     
@@ -31,6 +34,11 @@ public class Kierros {
 
     public List<Vuoro> getVuorot() {
         return vuorot;
+    }
+    
+    @Override
+    public String toString(){
+        return "Kierros: "+kierros;
     }
     
 }

@@ -25,11 +25,12 @@ public class Kuva implements Grafiikkaobjekti{
     
     @Override
     public void paint(Graphics2D g, Kamera kamera) {
-        Vektori[] muunnetutSijainnit = kamera.koordinaatinmuutos(sijainti, koko);
+        if(nakyva){
+            Vektori[] muunnetutSijainnit = kamera.koordinaatinmuutos(sijainti, koko);
         
-        g.drawImage(image, (int) muunnetutSijainnit[0].getX(), (int)muunnetutSijainnit[0].getY(), 
+            g.drawImage(image, (int) muunnetutSijainnit[0].getX(), (int)muunnetutSijainnit[0].getY(), 
                 (int) muunnetutSijainnit[1].getX(), (int) muunnetutSijainnit[1].getY(), null);
-        
+        }
     }
 
     @Override

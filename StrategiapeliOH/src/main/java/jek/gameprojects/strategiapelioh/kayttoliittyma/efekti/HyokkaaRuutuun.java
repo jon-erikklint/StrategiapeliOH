@@ -1,7 +1,7 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
 import jek.gameprojects.strategiapelioh.logiikka.hyokkaaminen.Hyokkayshallinnoija;
 
 public class HyokkaaRuutuun extends PelitilaEfekti{

@@ -3,8 +3,8 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.KuvaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectKuva;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Tilat;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Tilat;
 
 public class AktivoiRuutu extends PelitilaEfekti{
     
@@ -22,23 +22,44 @@ public class AktivoiRuutu extends PelitilaEfekti{
         
         if(tilat.getValittuRuutu()==null){
             
-            tilat.setValittuRuutu(ruutuKuva.getT());
-            tilat.setValitutYksikot(ruutuKuva.getT().annaEnsimmainenJoukko());
+            if(varmistaRuudunKelpoisuusValittavaksi()){
+                valitseRuutu(tilat);
+            }
             
-            ruutuKuva.setImage(KuvaSailio.getKuva( ruutuKuva.getT().toString()+":AKTIIVINEN") );
             
-        }else if(!tilat.getValittuRuutu().equals(ruutuKuva.getT())){
+        }else if(!tilat.getValittuRuutu().equals(ruutuKuva)){
             
-            tilat.setValittuRuutu(ruutuKuva.getT());
-            tilat.setValitutYksikot(ruutuKuva.getT().annaEnsimmainenJoukko());
+            if(varmistaRuudunKelpoisuusValittavaksi()){
+                
+                valitseRuutu(tilat);
+                tilat.getValittuRuutu().paivita();
             
-            ruutuKuva.setImage(KuvaSailio.getKuva( ruutuKuva.getT().toString()+":AKTIIVINEN") );
+            }
             
         }else{
             
+            tilat.getValittuRuutu().paivita();
             tilat.nollaaTilanne();
             
         }
+    }
+    
+    public boolean varmistaRuudunKelpoisuusValittavaksi(){
+//        if(ruutuKuva.getT().getJoukot().isEmpty()){
+//            return false;
+//        }
+//        
+//        return pelitila.getPeli().getVuoro().getPelaaja().equals(ruutuKuva.getT().kenenHallussa());
+        
+        return true;
+    }
+    
+    public void valitseRuutu(Tilat tilat){
+        
+        tilat.setValittuRuutu(ruutuKuva);
+        tilat.setValitutYksikot(ruutuKuva.getT().annaEnsimmainenJoukko());
+            
+        ruutuKuva.setImage(KuvaSailio.getKuva( ruutuKuva.getT().toString()+":AKTIIVINEN") );
     }
     
 }

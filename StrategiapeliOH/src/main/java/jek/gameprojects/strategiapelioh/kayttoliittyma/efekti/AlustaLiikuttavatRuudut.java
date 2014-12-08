@@ -6,7 +6,7 @@ import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.KuvaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectKuva;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
 
 public class AlustaLiikuttavatRuudut extends PelitilaEfekti{
 

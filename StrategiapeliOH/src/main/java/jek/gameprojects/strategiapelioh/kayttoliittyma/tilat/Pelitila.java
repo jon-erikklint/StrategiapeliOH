@@ -1,9 +1,12 @@
-package jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka;
+package jek.gameprojects.strategiapelioh.kayttoliittyma.tilat;
 
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Tilat;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaKartta;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.MonitasoinenPainikkeidenKuuntelija;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoija;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.PerusNappaimistonToiminnot;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 
@@ -44,6 +47,9 @@ public class Pelitila {
     public void paivita(){
         peli.nollaaLogiikka();
         tilat.nollaaTilanne();
+        
+        tilat.getKierros().setT(peli.getKierros());
+        tilat.getVuoro().setT(peli.getVuoro());
         
         kartta.paivita();
         ikkunat.paivita();

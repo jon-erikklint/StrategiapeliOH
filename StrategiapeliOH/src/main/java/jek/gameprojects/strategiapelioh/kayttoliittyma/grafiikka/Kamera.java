@@ -37,7 +37,7 @@ public class Kamera{
         double sx = sijainti.getX();
         double sy = sijainti.getY();
         
-        return new Vektori(sx - this.sijainti.getX() * kokosuhdeX(), sy - this.sijainti.getY() * kokosuhdeY());
+        return new Vektori((sx - this.sijainti.getX()) * kokosuhdeX(), (sy - this.sijainti.getY()) * kokosuhdeY());
     }
     
     public Vektori muutaKoko(Vektori koko){

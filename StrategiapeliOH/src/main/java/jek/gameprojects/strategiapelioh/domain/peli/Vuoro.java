@@ -19,4 +19,9 @@ public class Vuoro {
     public Pelaaja getPelaaja(){
         return pelaaja;
     }
+    
+    @Override
+    public String toString(){
+        return pelaaja.toString();
+    }
 }

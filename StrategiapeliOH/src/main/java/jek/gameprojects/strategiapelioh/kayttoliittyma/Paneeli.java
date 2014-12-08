@@ -15,6 +15,7 @@ public class Paneeli extends JPanel implements Runnable{
     public Paneeli(){
         super.setPreferredSize(new Dimension(1000,1000));
         super.setBackground(Color.BLACK);
+        super.setFocusable(true);
         
         KuvaSailio.lataaKuvat();
                 

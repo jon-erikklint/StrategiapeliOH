@@ -10,7 +10,7 @@ public enum Maastotyyppi {
     
     METSA("metsa"), AVOMAA("avomaa");
     
-    private String nimi;
+    private final String nimi;
     
     Maastotyyppi(String nimi){
         this.nimi=nimi;

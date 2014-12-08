@@ -49,7 +49,9 @@ public class Teksti implements Grafiikkaobjekti{
             g.setFont(font);
         }
         
-        g.drawString(teksti, (int) sijainti.getX(), (int) sijainti.getY());
+        Vektori muutettuSijainti = kamera.muutaSijainti(sijainti);
+        
+        g.drawString(teksti, (int) muutettuSijainti.getX(), (int) muutettuSijainti.getY());
     }
 
     @Override

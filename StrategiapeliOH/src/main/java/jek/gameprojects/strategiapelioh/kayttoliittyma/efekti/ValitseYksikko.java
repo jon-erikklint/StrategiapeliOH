@@ -2,7 +2,7 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
 
 public class ValitseYksikko extends PelitilaEfekti{
     

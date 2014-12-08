@@ -2,10 +2,9 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
 
 import java.awt.Color;
 import java.awt.Font;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Paivittyva;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
-public class ObjectTeksti<T> extends Teksti implements Paivittyva{
+public class ObjectTeksti<T> extends Teksti{
 
     private T t;
     

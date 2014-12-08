@@ -1,6 +1,6 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
 
 public class RuudunValintaEfekti extends ValintaEfekti{
 

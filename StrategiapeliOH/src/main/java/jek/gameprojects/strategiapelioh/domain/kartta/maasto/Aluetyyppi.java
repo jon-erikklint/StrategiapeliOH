@@ -10,7 +10,7 @@ public enum Aluetyyppi {
     
     MAA("maa"), VESI("vesi");
     
-    private String nimi;
+    private final String nimi;
     
     Aluetyyppi(String nimi){
         this.nimi=nimi;

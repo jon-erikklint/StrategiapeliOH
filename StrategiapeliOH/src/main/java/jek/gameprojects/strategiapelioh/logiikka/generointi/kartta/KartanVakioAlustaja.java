@@ -18,10 +18,10 @@ public class KartanVakioAlustaja implements KartanAlustaja{
         
         for(int i=0; i<10; i++){
             for(int j=0; j<10 ;j++){
-                if(i+j%3!=0){
+                if((i+j)%3!=0){
                     ruudut[i][j] = new Ruutu(new Koordinaatti(i,j), vakiomaasto);
                 }else{
-                    ruudut[i][j] = new Ruutu(new Koordinaatti(i,j), vakiomaasto);
+                    ruudut[i][j] = new Ruutu(new Koordinaatti(i,j), vakiomaasto2);
                 }
                 
             }

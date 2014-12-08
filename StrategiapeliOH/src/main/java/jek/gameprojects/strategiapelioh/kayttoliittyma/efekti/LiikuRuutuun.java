@@ -2,7 +2,7 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
 import jek.gameprojects.strategiapelioh.logiikka.liikkuminen.Liikuttaja;
 
 public class LiikuRuutuun extends PelitilaEfekti{

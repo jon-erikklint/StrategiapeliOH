@@ -1,10 +1,12 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.sivut;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
+import jek.gameprojects.strategiapelioh.domain.peli.Kierros;
+import jek.gameprojects.strategiapelioh.domain.peli.Vuoro;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.KuvaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.AktivoiRuutu;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.AlustaHyokattavatRuudut;
@@ -14,23 +16,25 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.LiikuRuutuun;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.LiikutaKameraa;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.RuudunValintaEfekti;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.VuoronLopetus;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.EhdollinenGrafiikkapainike;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaKartta;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Grafiikkapainike;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kuva;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectKuva;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectTeksti;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.HiirenToiminnot;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.MonitasoinenPainikkeidenKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.PainikkeidenKuuntelija;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Pelitila;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoija;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Tilat;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Tila;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Tilat;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.EfektiNappaimenKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.NappaimistonToiminnot;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.PerusNappaimistonToiminnot;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.EhdollinenNelioPainike;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.NelioPainike;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 
@@ -54,6 +58,7 @@ public class PeliSivu implements Sivu{
         
         pelitila.setSivujenHallinnoija(sivujenHallinnoija);
         pelitila.setPeli(peli);
+        pelitila.setRuudunKoko(new Vektori((peli.getKartta().getLeveys()*100), (peli.getKartta().getKorkeus())*100));
         
         kayttoliittyma = new GrafiikkaSailio();
         pelikartta = new GrafiikkaKartta();
@@ -70,12 +75,16 @@ public class PeliSivu implements Sivu{
         alustaPainikkeidenKuuntelijat();
         alustaRuudut();
         alustaPainikkeet();
+        alustaMuutGrafiikkaobjektit();
         alustaNappaimistonToiminnot();
         alustaPelitila();
     }
     
     private void alustaTilat(){
-        Tilat pelinTilat = new Tilat(0, null, null);
+        Tila<Vuoro> vuoro = new Tila<>(pelitila.getPeli().getVuoro());
+        Tila<Kierros> kierros = new Tila<>(pelitila.getPeli().getKierros());
+        
+        Tilat pelinTilat = new Tilat(0, null, null, vuoro, kierros);
         pelitila.setTilat(pelinTilat);
     }
     
@@ -130,16 +139,20 @@ public class PeliSivu implements Sivu{
         Kuva vuoronLopetusKuva = new Kuva(KuvaSailio.getKuva("vuoronvaihtopainike"), new Vektori(450,0), new Vektori(100,30), 0, true);
         
         AlustaHyokattavatRuudut alustaHyokattavatRuudut = new AlustaHyokattavatRuudut(pelitila);
-        EhdollinenNelioPainike hyokkayspainike = new EhdollinenNelioPainike(alustaHyokattavatRuudut, new Vektori(100, 800), new Vektori(100,100), 0, hyokkaysKuva, pelitila);
+        NelioPainike hyokkayspainike = new NelioPainike(alustaHyokattavatRuudut, new Vektori(100, 800), new Vektori(100,100), 0);
         
         AlustaLiikuttavatRuudut alustaLiikuttavatRuudut = new AlustaLiikuttavatRuudut(pelitila);
-        EhdollinenNelioPainike liikutuspainike = new EhdollinenNelioPainike(alustaLiikuttavatRuudut, new Vektori(800, 800), new Vektori(100,100), 0, liikutusKuva, pelitila);
+        NelioPainike liikutuspainike = new NelioPainike(alustaLiikuttavatRuudut, new Vektori(800, 800), new Vektori(100,100), 0);
         
         VuoronLopetus vuoronLopetus = new VuoronLopetus(pelitila);
-        NelioPainike lopetuspainike = new NelioPainike(vuoronLopetus, new Vektori(800, 800), new Vektori(100,100), 0);
+        NelioPainike lopetuspainike = new NelioPainike(vuoronLopetus, new Vektori(450, 0), new Vektori(100,30), 0);
         
-        Grafiikkapainike hyokkays = new Grafiikkapainike(hyokkayspainike, hyokkaysKuva);
-        Grafiikkapainike liikutus = new Grafiikkapainike(liikutuspainike, liikutusKuva);
+        EhdollinenGrafiikkapainike hyokkays = new EhdollinenGrafiikkapainike(hyokkayspainike, hyokkaysKuva, pelitila);
+        EhdollinenGrafiikkapainike liikutus = new EhdollinenGrafiikkapainike(liikutuspainike, liikutusKuva, pelitila);
+        
+        hyokkays.setNakyvyys(false);
+        liikutus.setNakyvyys(false);
+        
         Grafiikkapainike vuoronLopettaminen = new Grafiikkapainike(lopetuspainike, vuoronLopetusKuva);
         
         PainikkeidenKuuntelija vakiokuuntelija = painikkeidenKuuntelijat.getPainikkeidenKuuntelija(0);
@@ -153,24 +166,32 @@ public class PeliSivu implements Sivu{
         kayttoliittyma.lisaaGrafiikkaobjekti(vuoronLopettaminen);
     }
     
+    public void alustaMuutGrafiikkaobjektit(){
+        ObjectTeksti<Tila<Vuoro>> kenenVuoro = new ObjectTeksti<>(new Vektori(10,10), new Vektori(), 0, "", Color.WHITE, null, true, pelitila.getTilat().getVuoro());
+        ObjectTeksti<Tila<Kierros>> moneskoKierros = new ObjectTeksti<>(new Vektori(10,20), new Vektori(), 0, "", Color.WHITE, null, true, pelitila.getTilat().getKierros());
+        
+        kayttoliittyma.lisaaGrafiikkaobjekti(kenenVuoro);
+        kayttoliittyma.lisaaGrafiikkaobjekti(moneskoKierros);
+    }
+    
     public void alustaNappaimistonToiminnot(){
         
         nappaimistonToiminnot = new PerusNappaimistonToiminnot();
         
-        LiikutaKameraa oikealle = new LiikutaKameraa(pelitila, karttakamera, new Vektori(1,0));
-        LiikutaKameraa vasemmalle = new LiikutaKameraa(pelitila, karttakamera, new Vektori(-1,0));
-        LiikutaKameraa ylos = new LiikutaKameraa(pelitila, karttakamera, new Vektori(0,-1));
-        LiikutaKameraa alas = new LiikutaKameraa(pelitila, karttakamera, new Vektori(0,1));
+        LiikutaKameraa oikealle = new LiikutaKameraa(pelitila, karttakamera, new Vektori(5,0));
+        LiikutaKameraa vasemmalle = new LiikutaKameraa(pelitila, karttakamera, new Vektori(-5,0));
+        LiikutaKameraa ylos = new LiikutaKameraa(pelitila, karttakamera, new Vektori(0,-5));
+        LiikutaKameraa alas = new LiikutaKameraa(pelitila, karttakamera, new Vektori(0,5));
         
-        EfektiNappaimenKuuntelija oikealleKuuntelija = new EfektiNappaimenKuuntelija(KeyEvent.VK_D, oikealle);
-        EfektiNappaimenKuuntelija vasemmalleKuuntelija = new EfektiNappaimenKuuntelija(KeyEvent.VK_A, vasemmalle);
-        EfektiNappaimenKuuntelija ylosKuuntelija = new EfektiNappaimenKuuntelija(KeyEvent.VK_W, ylos);
-        EfektiNappaimenKuuntelija alasKuuntelija = new EfektiNappaimenKuuntelija(KeyEvent.VK_S, alas);
+        EfektiNappaimenKuuntelija oikealleKuuntelija = new EfektiNappaimenKuuntelija(68, oikealle);
+        EfektiNappaimenKuuntelija vasemmalleKuuntelija = new EfektiNappaimenKuuntelija(65, vasemmalle);
+        EfektiNappaimenKuuntelija ylosKuuntelija = new EfektiNappaimenKuuntelija(87, ylos);
+        EfektiNappaimenKuuntelija alasKuuntelija = new EfektiNappaimenKuuntelija(83, alas);
         
-        nappaimistonToiminnot.lisaaNappaimenKuuntelija(oikealleKuuntelija, 0);
-        nappaimistonToiminnot.lisaaNappaimenKuuntelija(vasemmalleKuuntelija, 0);
-        nappaimistonToiminnot.lisaaNappaimenKuuntelija(alasKuuntelija, 0);
-        nappaimistonToiminnot.lisaaNappaimenKuuntelija(ylosKuuntelija, 0);
+        nappaimistonToiminnot.lisaaNappaimenKuuntelija(oikealleKuuntelija);
+        nappaimistonToiminnot.lisaaNappaimenKuuntelija(vasemmalleKuuntelija);
+        nappaimistonToiminnot.lisaaNappaimenKuuntelija(alasKuuntelija);
+        nappaimistonToiminnot.lisaaNappaimenKuuntelija(ylosKuuntelija);
         
     }
     
