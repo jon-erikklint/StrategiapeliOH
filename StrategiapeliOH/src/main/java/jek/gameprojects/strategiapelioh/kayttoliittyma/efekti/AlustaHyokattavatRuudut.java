@@ -23,6 +23,8 @@ public class AlustaHyokattavatRuudut extends PelitilaEfekti{
             ruudut.get(sijainti).getRuutu().setImage(KuvaSailio.getKuva(ruudut.get(sijainti).toString()+":HYOKATTAVA"));
             
         }
+        
+        pelitila.getTilat().setPelitila(1);
     }
     
 }

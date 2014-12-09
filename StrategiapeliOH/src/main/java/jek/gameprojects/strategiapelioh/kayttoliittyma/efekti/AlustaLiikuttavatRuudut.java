@@ -25,6 +25,8 @@ public class AlustaLiikuttavatRuudut extends PelitilaEfekti{
             ruutu.getRuutu().setImage(KuvaSailio.getKuva(ruutu.getRuutu().getT().toString()+":LIIKUTTAVA"));
             
         }
+        
+        pelitila.getTilat().setPelitila(2);
     }
     
 }

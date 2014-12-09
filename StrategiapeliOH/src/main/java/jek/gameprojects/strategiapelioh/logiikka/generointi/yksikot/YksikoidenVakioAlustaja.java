@@ -62,7 +62,7 @@ public class YksikoidenVakioAlustaja implements YksikoidenAlustaja{
         for(int i=0; i<2; i++){
             Joukko lisattava = valitseJoukkoJakojaannoksella(puolustusjoukko1, puolustusjoukko2, i);
             
-            alustaYksikko(yksikkotyypit.get("Puolustuslinnoitus"), pelaaja, lisattava, sijoitusKoordinaatit.get(i));
+            alustaYksikko(yksikkotyypit.get("Puolustuslinnoitus"), pelaaja, lisattava, sijoitusKoordinaatit.get(i+2));
         }
         
         for(int i=0; i<2; i++){
@@ -71,7 +71,7 @@ public class YksikoidenVakioAlustaja implements YksikoidenAlustaja{
             alustaYksikko(yksikkotyypit.get("Tykki"), pelaaja, lisattava, sijoitusKoordinaatit.get(i+2));
         }
         
-        alustaYksikko(yksikkotyypit.get("Tarkka-ampuja"), pelaaja, puolustusjoukko1, sijoitusKoordinaatit.get(3));
+        alustaYksikko(yksikkotyypit.get("Tarkka-ampuja"), pelaaja, puolustusjoukko2, sijoitusKoordinaatit.get(3));
         
         pelaaja.lisaaJoukko(puolustusjoukko1);
         pelaaja.lisaaJoukko(puolustusjoukko2);

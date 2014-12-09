@@ -2,7 +2,6 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.tilat;
 
 import java.util.Set;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Tilat;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaKartta;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
@@ -60,14 +59,7 @@ public class Pelitila {
     }
     
     public void tyhjennaValinnat(){
-        RuudunKuva ruutu = tilat.getValittuRuutu();
-        
-        if(ruutu != null){
-            ruutu.paivita();
-        }
-        
-        paivitaHyokattavatRuudut();
-        paivitaLiikuttavatRuudut();
+        kartta.paivita();
         
         tilat.nollaaTilanne();
     }
