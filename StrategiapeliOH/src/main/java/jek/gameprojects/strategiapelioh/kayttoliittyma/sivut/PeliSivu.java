@@ -116,21 +116,27 @@ public class PeliSivu implements Sivu{
         Vektori ruudunSijainti = new Vektori(sijainti.getX()*100,sijainti.getY()*100);
         Vektori ruudunKoko = new Vektori(100,100);
         
-        ToStringObjectKuva<Ruutu> ruudunKuva = new ToStringObjectKuva<>(KuvaSailio.getKuva(ruutu.toString()), ruudunSijainti, ruudunKoko, 1, true, ruutu);
-        lisaaRuudunPainike(sijainti,ruudunKuva);
+        ToStringObjectKuva<Ruutu> ruutuKuva = new ToStringObjectKuva<>(KuvaSailio.getKuva(ruutu.toString()), ruudunSijainti, ruudunKoko, 1, true, ruutu);
         
-        YksikoidenKuva yksikoidenKuva = new YksikoidenKuva(KuvaSailio.getKuva("Yksikkoja:"+ruutu.yksikoidenMaara()), ruudunSijainti, ruudunKoko, 1, true, ruutu);
+        int alkuMaara = ruutu.yksikoidenMaara();
+        if(alkuMaara>3){
+            alkuMaara=3;
+        }
         
-        RuudunKuva ruutuKuva = new RuudunKuva(ruudunKuva, yksikoidenKuva);
+        YksikoidenKuva yksikoidenKuva = new YksikoidenKuva(KuvaSailio.getKuva("Yksikoita:"+alkuMaara), ruudunSijainti, ruudunKoko, 1, true, ruutu);
         
-        return ruutuKuva;
+        RuudunKuva ruudunKuva = new RuudunKuva(ruutuKuva, yksikoidenKuva);
+        
+        lisaaRuudunPainike(sijainti, ruudunKuva, ruutu);
+        
+        return ruudunKuva;
     }
     
-    private void lisaaRuudunPainike(Koordinaatti sijainti, ObjectKuva<Ruutu> ruutu){
+    private void lisaaRuudunPainike(Koordinaatti sijainti, RuudunKuva ruutuKuva, Ruutu ruutu){
         
-        AktivoiRuutu aktivoiRuutu = new AktivoiRuutu(pelitila, ruutu);
-        HyokkaaRuutuun hyokkaaRuutuun = new HyokkaaRuutuun(pelitila, ruutu.getT());
-        LiikuRuutuun liikuRuutuun = new LiikuRuutuun(pelitila, ruutu.getT());
+        AktivoiRuutu aktivoiRuutu = new AktivoiRuutu(pelitila, ruutuKuva);
+        HyokkaaRuutuun hyokkaaRuutuun = new HyokkaaRuutuun(pelitila, ruutu);
+        LiikuRuutuun liikuRuutuun = new LiikuRuutuun(pelitila, ruutu);
         
         RuudunValintaEfekti efekti = new RuudunValintaEfekti(pelitila, aktivoiRuutu, hyokkaaRuutuun, liikuRuutuun);
         

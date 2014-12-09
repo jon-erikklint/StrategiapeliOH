@@ -25,7 +25,7 @@ public class LiikuRuutuun extends PelitilaEfekti{
             
         }
         
-        pelitila.paivita();
+        pelitila.tyhjennaValinnat();
         
     }
     

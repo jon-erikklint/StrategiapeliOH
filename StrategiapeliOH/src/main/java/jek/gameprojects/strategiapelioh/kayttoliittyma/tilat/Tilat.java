@@ -5,17 +5,18 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.peli.Kierros;
 import jek.gameprojects.strategiapelioh.domain.peli.Vuoro;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectKuva;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.RuudunKuva;
 
 public class Tilat {
     
     private int pelitila;
-    private ObjectKuva<Ruutu> valittuRuutu;
+    private RuudunKuva valittuRuutu;
     private Joukko valitutYksikot;
     
     private Tila<Vuoro> vuoro;
     private Tila<Kierros> kierros;
 
-    public Tilat(int pelitila, ObjectKuva<Ruutu> valittuRuutu, Joukko valitutYksikot, Tila<Vuoro> vuoro, Tila<Kierros> kierros) {
+    public Tilat(int pelitila, RuudunKuva valittuRuutu, Joukko valitutYksikot, Tila<Vuoro> vuoro, Tila<Kierros> kierros) {
         this.pelitila = pelitila;
         this.valittuRuutu = valittuRuutu;
         this.valitutYksikot = valitutYksikot;
@@ -38,11 +39,11 @@ public class Tilat {
         this.pelitila = pelitila;
     }
 
-    public ObjectKuva<Ruutu> getValittuRuutu() {
+    public RuudunKuva getValittuRuutu() {
         return valittuRuutu;
     }
 
-    public void setValittuRuutu(ObjectKuva<Ruutu> valittuRuutu) {
+    public void setValittuRuutu(RuudunKuva valittuRuutu) {
         this.valittuRuutu = valittuRuutu;
     }
 

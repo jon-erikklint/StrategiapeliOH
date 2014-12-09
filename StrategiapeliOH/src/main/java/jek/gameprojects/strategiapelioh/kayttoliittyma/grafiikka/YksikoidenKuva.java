@@ -15,7 +15,11 @@ public class YksikoidenKuva extends ObjectKuva<Ruutu>{
     public void paivitaKuva() {
         Ruutu ruutu = super.getT();
         
-        super.setImage(KuvaSailio.getKuva("Yksikkoja:"+ruutu.yksikoidenMaara()));
+        int yksikoidenMaara = ruutu.yksikoidenMaara();
+        if(yksikoidenMaara>3){
+            yksikoidenMaara = 3;
+        }
+        super.setImage(KuvaSailio.getKuva("Yksikoita:"+yksikoidenMaara));
     }
     
 }

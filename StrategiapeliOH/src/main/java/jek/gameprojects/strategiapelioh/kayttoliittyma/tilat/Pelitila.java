@@ -1,9 +1,12 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.tilat;
 
+import java.util.Set;
+import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Tilat;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaKartta;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.RuudunKuva;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.MonitasoinenPainikkeidenKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
@@ -54,6 +57,41 @@ public class Pelitila {
         kartta.paivita();
         ikkunat.paivita();
         kayttoliittyma.paivita();
+    }
+    
+    public void tyhjennaValinnat(){
+        RuudunKuva ruutu = tilat.getValittuRuutu();
+        
+        if(ruutu != null){
+            ruutu.paivita();
+        }
+        
+        paivitaHyokattavatRuudut();
+        paivitaLiikuttavatRuudut();
+        
+        tilat.nollaaTilanne();
+    }
+    
+    public void paivitaHyokattavatRuudut(){
+        Set<Koordinaatti> hyokattavat = peli.getHyokkayshallinnoija().getJoukonHyokattavatRuudut(tilat.getValitutYksikot());
+        
+        if(hyokattavat != null){
+            paivitaRuudut(hyokattavat);
+        }
+    }
+    
+    public void paivitaLiikuttavatRuudut(){
+        Set<Koordinaatti> liikuttavat = peli.getLiikuttaja().annaJoukonMahdollisetLiikkeet(tilat.getValitutYksikot());
+        
+        if(liikuttavat != null){
+            paivitaRuudut(liikuttavat);
+        }
+    }
+    
+    public void paivitaRuudut(Set<Koordinaatti> sijainnit){
+        for(Koordinaatti sijainti : sijainnit){
+            kartta.getRuutu(sijainti).paivita();
+        }
     }
     
     public Peli getPeli() {

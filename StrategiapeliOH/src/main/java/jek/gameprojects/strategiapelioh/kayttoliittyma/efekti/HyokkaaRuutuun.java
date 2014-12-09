@@ -24,7 +24,7 @@ public class HyokkaaRuutuun extends PelitilaEfekti{
             
         }
         
-        pelitila.paivita();
+        pelitila.tyhjennaValinnat();
     }
     
 }

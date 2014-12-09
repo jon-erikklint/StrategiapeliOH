@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
+import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
@@ -76,6 +77,8 @@ public class YksikoidenVakioAlustaja implements YksikoidenAlustaja{
         pelaaja.lisaaJoukko(puolustusjoukko2);
         pelaaja.lisaaJoukko(hyokkaysjoukko1);
         pelaaja.lisaaJoukko(hyokkaysjoukko2);
+        
+        asetaJoukotRuutuihin(puolustusjoukko1, puolustusjoukko2, hyokkaysjoukko1, hyokkaysjoukko2);
     }
     
     private Joukko valitseJoukkoJakojaannoksella(Joukko a, Joukko b, int n){
@@ -88,6 +91,14 @@ public class YksikoidenVakioAlustaja implements YksikoidenAlustaja{
     
     private Yksikko alustaYksikko(Yksikkotyyppi yksikkotyyppi, Pelaaja omistaja, Joukko joukko, Koordinaatti sijainti){
         return new Yksikko(yksikkotyyppi, sijainti, omistaja, joukko, yksikoidenIndeksoija.nextIndex());
+    }
+    
+    private void asetaJoukotRuutuihin(Joukko... joukot){
+        for(Joukko joukko : joukot){
+            Ruutu sijainti = kartta.getRuutu(joukko.getSijainti());
+            
+            sijainti.lisaaJoukko(joukko);
+        }
     }
     
 }
