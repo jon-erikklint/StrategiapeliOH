@@ -7,6 +7,7 @@ import java.util.HashSet;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuva;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
+import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
@@ -25,12 +26,16 @@ public class Liikuttaja {
     private Reitinhakija reitinhakija;
     private JoukkojenHallinnoija joukkojenHallinnoija;
     
-    public Liikuttaja(Kartta kartta){
+    private Kartta kartta;
+    
+    public Liikuttaja(Kartta kartta, JoukkojenHallinnoija joukkojenHallinnoija){
         yksikoidenMahdollisetLiikkeet=new HashMap<>();
         joukkojenMahdollisetLiikkeet=new HashMap<>();
         
         reitinhakija=new Reitinhakija(kartta);
-        joukkojenHallinnoija=new JoukkojenHallinnoija();
+        this.joukkojenHallinnoija=joukkojenHallinnoija;
+        
+        this.kartta = kartta;
         
     }
     //
@@ -95,8 +100,11 @@ public class Liikuttaja {
         liikkuva.liiku( yksikoidenMahdollisetLiikkeet.get(liikkuva).get(sijainti),sijainti);
     }
     
-    public void joukkohallinnointi(Joukko joukko){
+    public void siirronJalkeinenHallinnointi(Joukko joukko, Ruutu ruutu){
+        kartta.getRuutu(joukko.getSijainti()).poistaJoukko(joukko);
         joukkojenHallinnoija.paivitaJoukonSijaintiVastaamaanYksikoita(joukko);
+        
+        ruutu.lisaaJoukko(joukko);
     }
     
     public void liikutaJoukko(Joukko joukko, Koordinaatti sijainti){
@@ -104,7 +112,8 @@ public class Liikuttaja {
             liikutaLiikkuva(yksikko, sijainti);
         }
         
-        joukkohallinnointi(joukko);
+        siirronJalkeinenHallinnointi(joukko, kartta.getRuutu(sijainti));
+        
     }
     //
     //

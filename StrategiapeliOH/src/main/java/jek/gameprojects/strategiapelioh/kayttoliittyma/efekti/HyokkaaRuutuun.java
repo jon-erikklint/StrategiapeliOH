@@ -1,5 +1,7 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
+import java.util.Set;
+import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
 import jek.gameprojects.strategiapelioh.logiikka.hyokkaaminen.Hyokkayshallinnoija;
@@ -18,7 +20,9 @@ public class HyokkaaRuutuun extends PelitilaEfekti{
     public void toimi() {
         Hyokkayshallinnoija hal= pelitila.getPeli().getHyokkayshallinnoija();
         
-        if(hal.getJoukonHyokattavatRuudut(pelitila.getTilat().getValitutYksikot()).contains(ruutu.getSijainti())){
+        Set<Koordinaatti> hyokattavatRuudut = hal.getJoukonHyokattavatRuudut(pelitila.getTilat().getValitutYksikot());
+        
+        if(hyokattavatRuudut != null && hyokattavatRuudut.contains(ruutu.getSijainti())){
             
             hal.hyokkaaJoukollaRuutuun(pelitila.getTilat().getValitutYksikot(), ruutu.getSijainti());
             

@@ -13,14 +13,16 @@ public class Hyokkays {
     private boolean onkoHyokkaava;
     
     private int maksimiElamat;
+    private int hyokkaystenMaara;
     
     private List<Ase> aseet;
     private List<Panssari> panssarit;
 
-    public Hyokkays(int elamat, List<Ase> aseet, List<Panssari> panssarit) {
+    public Hyokkays(int elamat, int hyokkaystenMaara, List<Ase> aseet, List<Panssari> panssarit) {
         onkoHyokkaava = true;
         
-        this.maksimiElamat=elamat;
+        this.maksimiElamat = elamat;
+        this.hyokkaystenMaara = hyokkaystenMaara;
         
         this.aseet=aseet;
         this.panssarit=panssarit;
@@ -61,7 +63,12 @@ public class Hyokkays {
     public void setPanssarit(List<Panssari> panssarit) {
         this.panssarit = panssarit;
     }
-    
-    
-    
+
+    public int getHyokkaystenMaara() {
+        return hyokkaystenMaara;
+    }
+
+    public void setHyokkaystenMaara(int hyokkaystenMaara) {
+        this.hyokkaystenMaara = hyokkaystenMaara;
+    }
 }

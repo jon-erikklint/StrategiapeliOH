@@ -2,7 +2,10 @@ package jek.gameprojects.strategiapelioh.logiikka.yksikot;
 
 import java.util.ArrayList;
 import java.util.List;
+import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
+import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 
 /**
@@ -12,6 +15,33 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
  */
 
 public class JoukkojenHallinnoija {
+    
+    private List<Pelaaja> pelaajat;
+    private Kartta kartta;
+    
+    public JoukkojenHallinnoija(List<Pelaaja> pelaajat, Kartta kartta){
+        this.pelaajat = pelaajat;
+        this.kartta = kartta;
+    }
+    
+    public void poistaTyhjatJoukot(){
+        for(Pelaaja pelaaja : pelaajat){
+            List<Joukko> poistettavatJoukot = new ArrayList<>();
+            
+            for(Joukko joukko : pelaaja.getJoukot()){
+                if(joukko.getYksikot().isEmpty()){
+                    poistettavatJoukot.add(joukko);
+                }
+            }
+            
+            for(Joukko poistettava : poistettavatJoukot){
+                Ruutu missa = kartta.getRuutu(poistettava.getSijainti());
+                
+                missa.poistaJoukko(poistettava);
+                pelaaja.poistaJoukko(poistettava);
+            }
+        }
+    }
     
     public void siirraYksikkoJoukkoon(Yksikko yksikko, Joukko joukko){
         Joukko vanhaJoukko = yksikko.getJoukko();

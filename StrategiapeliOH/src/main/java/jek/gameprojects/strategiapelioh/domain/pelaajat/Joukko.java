@@ -99,6 +99,12 @@ public class Joukko implements Omistettava{
         
         Joukko toinenJoukko=(Joukko) o;
         
+        if(this.yksikot.isEmpty()){
+            
+            return toinenJoukko.getYksikot().isEmpty() && toinenJoukko.sijainti == this.sijainti;
+            
+        }
+        
         return toinenJoukko.getYksikot().get(0).equals(yksikot.get(0));
     }
 

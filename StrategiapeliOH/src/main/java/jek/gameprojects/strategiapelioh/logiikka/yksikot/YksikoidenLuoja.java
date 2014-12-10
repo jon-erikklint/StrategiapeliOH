@@ -21,13 +21,13 @@ public class YksikoidenLuoja {
     private JoukkojenHallinnoija joukkojenHallinnoija;
     private Indeksoija yksikoidenIndeksoija;
     
-    public YksikoidenLuoja(Kartta kartta, Map<Integer, Pelaaja> pelaajat, Map<String, Yksikkotyyppi> yksikkotyypit, Indeksoija yksikoidenIndeksoija){
+    public YksikoidenLuoja(Kartta kartta, Map<Integer, Pelaaja> pelaajat, Map<String, Yksikkotyyppi> yksikkotyypit, Indeksoija yksikoidenIndeksoija, JoukkojenHallinnoija joukkojenHallinnoija){
         this.kartta = kartta;
         this.pelaajat = pelaajat;
         this.yksikkotyypit = yksikkotyypit;
         
         this.yksikoidenIndeksoija = yksikoidenIndeksoija;
-        this.joukkojenHallinnoija = new JoukkojenHallinnoija();
+        this.joukkojenHallinnoija = joukkojenHallinnoija;
     }
     
 }

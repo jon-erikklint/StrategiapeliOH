@@ -35,13 +35,13 @@ public class Hyokkayshallinnoija {
     private Map<Joukko,Set<Koordinaatti>> joukonHyokattavatRuudut;
     private Map<Hyokkaava,Set<Koordinaatti>> hyokkaavanHyokattavatRuudut;
     
-    public Hyokkayshallinnoija(Kartta kartta, Map<Asetyyppi, Map<Panssarityyppi,Double>> panssarienVahvuudet){
+    public Hyokkayshallinnoija(JoukkojenHallinnoija joukkojenHallinnoija, Kartta kartta, Map<Asetyyppi, Map<Panssarityyppi,Double>> panssarienVahvuudet){
         this.kartta = kartta;
         
         this.kantamanLaskija = new KantamanLaskija(kartta);
-        this.taistelulaskuri = new Taistelulaskuri(panssarienVahvuudet);
+        this.taistelulaskuri = new Taistelulaskuri(panssarienVahvuudet, joukkojenHallinnoija);
         
-        joukkojenHallinnoija = new JoukkojenHallinnoija();
+        this.joukkojenHallinnoija = joukkojenHallinnoija;
         
         joukonHyokattavatRuudut = new HashMap<>();
         hyokkaavanHyokattavatRuudut = new HashMap<>();
@@ -58,7 +58,7 @@ public class Hyokkayshallinnoija {
     }
     
     public Set<Koordinaatti> alustaJoukonHyokattavatRuudut(Joukko joukko){
-        if(!onkoJoukkoHyokkaava(joukko)){
+        if(!voikoJoukkoHyokata(joukko)){
             return new HashSet<>();
         }
         
@@ -89,6 +89,22 @@ public class Hyokkayshallinnoija {
         for(Koordinaatti poistettava:poistettavat){
             mista.remove(poistettava);
         }
+    }
+    
+    public boolean voikoJoukkoHyokata(Joukko joukko){
+        if(!onkoJoukkoHyokkaava(joukko)){
+            return false;
+        }
+        
+        for(Yksikko yksikko : joukko.getYksikot()){
+            Sotilas sotilas = (Sotilas) yksikko;
+            
+            if(!sotilas.voikoHyokata()){
+                return false;
+            }
+        }
+        
+        return true;
     }
     ///
     //
@@ -123,11 +139,23 @@ public class Hyokkayshallinnoija {
         
         asetaTaistelulaskuri(joukkoHyokkaavaksi(joukko), annaHyokkaavatRuudusta(kartta.getRuutu(koordinaatti)));
         taistelulaskuri.taistele();
+        
+        hyokkayksenJalkeinenHallinnointi(joukko);
     }
     
     public void asetaTaistelulaskuri(List<Hyokkaava> hyokkaavat, List<Hyokkaava> puolustajat){
         taistelulaskuri.setHyokkaajat(hyokkaavat);
         taistelulaskuri.setPuolustajat(puolustajat);
+    }
+    
+    public void hyokkayksenJalkeinenHallinnointi(Joukko hyokkaavat){
+        for(Yksikko yksikko : hyokkaavat.getYksikot()){
+            Sotilas sotilas = (Sotilas) yksikko;
+            
+            sotilas.menetaHyokkayksia(-1);
+        }
+        
+        nollaa();
     }
     ///
     //

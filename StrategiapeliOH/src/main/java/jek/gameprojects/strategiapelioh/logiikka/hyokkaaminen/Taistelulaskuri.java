@@ -1,5 +1,6 @@
 package jek.gameprojects.strategiapelioh.logiikka.hyokkaaminen;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -9,6 +10,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Hyokkaava;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssari;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Sotilas;
+import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 import jek.gameprojects.strategiapelioh.logiikka.yksikot.YksikoidenPoistaja;
 
 /**
@@ -28,9 +30,9 @@ public class Taistelulaskuri {
     private List<Hyokkaava> hyokkaajat;
     private List<Hyokkaava> puolustajat;
     
-    public Taistelulaskuri(Map<Asetyyppi,Map<Panssarityyppi,Double>> asetyyppienVahvuudet){
+    public Taistelulaskuri(Map<Asetyyppi,Map<Panssarityyppi,Double>> asetyyppienVahvuudet, JoukkojenHallinnoija joukkojenHallinnoija){
         random = new Random();
-        yksikoidenPoistaja = new YksikoidenPoistaja();
+        yksikoidenPoistaja = new YksikoidenPoistaja(joukkojenHallinnoija);
         
         this.asetyyppienVahvuudet = asetyyppienVahvuudet;
     }
@@ -39,12 +41,25 @@ public class Taistelulaskuri {
     /// Taistelu
     public void taistele(){
         for(Hyokkaava hyokkaaja:hyokkaajat){
+            if(puolustajat.isEmpty()){
+                break;
+            }
+            
             sotilasTaistelee(hyokkaaja);
         }
         
+        List<Hyokkaava> kuolevat = new ArrayList<>();
+        
         for(Hyokkaava hyokkaaja:hyokkaajat){
-            hallinnoiMahdollinenKuolema(hyokkaaja, true);
+            if(hyokkaaja.onkoKuollut()){
+                kuolevat.add(hyokkaaja);
+            }
         }
+        
+        for(Hyokkaava kuoleva : kuolevat){
+            hallinnoiKuolema(kuoleva, true);
+        }
+        
     }
     
     public void sotilasTaistelee(Hyokkaava hyokkaaja){
@@ -57,7 +72,10 @@ public class Taistelulaskuri {
             taisteluta(puolustaja, hyokkaaja);
         }
         
-        hallinnoiMahdollinenKuolema(puolustaja, false);
+        if(puolustaja.onkoKuollut()){
+            hallinnoiKuolema(puolustaja, false);
+        }
+        
     }
     
     public void taisteluta(Hyokkaava iskija, Hyokkaava vastaanottaja){
@@ -68,18 +86,15 @@ public class Taistelulaskuri {
         vastaanottaja.menetaElamaa(isku);
     }
     
-    public void hallinnoiMahdollinenKuolema(Hyokkaava hyokkaava, boolean onkoHyokkaaja){
-        if(hyokkaava.onkoKuollut()){
-            
-            if(onkoHyokkaaja){
-                hyokkaajat.remove(hyokkaava);
-            }else{
-                puolustajat.remove(hyokkaava);
-            }
-            
-            if(hyokkaava.getClass() == Sotilas.class){
-                yksikoidenPoistaja.poistaYksikko((Sotilas) hyokkaava);
-            }
+    public void hallinnoiKuolema(Hyokkaava hyokkaava, boolean onkoHyokkaaja){
+        if(onkoHyokkaaja){
+            hyokkaajat.remove(hyokkaava);
+        }else{
+            puolustajat.remove(hyokkaava);
+        }
+
+        if(hyokkaava.getClass() == Sotilas.class){
+            yksikoidenPoistaja.poistaYksikko((Sotilas) hyokkaava);
         }
     }
     

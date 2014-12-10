@@ -20,7 +20,7 @@ public class AlustaHyokattavatRuudut extends PelitilaEfekti{
         
         for(Koordinaatti sijainti : hyokattavat){
             
-            ruudut.get(sijainti).getRuutu().setImage(KuvaSailio.getKuva(ruudut.get(sijainti).toString()+":HYOKATTAVA"));
+            ruudut.get(sijainti).getObjectKuvaRuutu().setImage(KuvaSailio.getKuva(ruudut.get(sijainti).getRuutu().toString()+":HYOKATTAVA"));
             
         }
         

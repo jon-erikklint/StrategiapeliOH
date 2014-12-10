@@ -27,6 +27,10 @@ public class Pelaaja {
     public void lisaaJoukko(Joukko joukko){
         joukot.add(joukko);
     }
+    
+    public void poistaJoukko(Joukko joukko){
+        joukot.remove(joukko);
+    }
 
     public List<Joukko> getJoukot() {
         return joukot;

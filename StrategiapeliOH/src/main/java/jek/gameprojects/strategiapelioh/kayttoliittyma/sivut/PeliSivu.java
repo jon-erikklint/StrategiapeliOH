@@ -199,6 +199,8 @@ public class PeliSivu implements Sivu{
         MuutaKameranKokoa pienemmaksi = new MuutaKameranKokoa(pelitila, karttakamera, new Vektori(-10,-10));
         MuutaKameranKokoa isommaksi = new MuutaKameranKokoa(pelitila, karttakamera, new Vektori(10,10));
         
+        VuoronLopetus lopetaVuoro = new VuoronLopetus(pelitila);
+        
         EfektiNappaimenKuuntelija oikealleKuuntelija = new EfektiNappaimenKuuntelija(68, oikealle);
         EfektiNappaimenKuuntelija vasemmalleKuuntelija = new EfektiNappaimenKuuntelija(65, vasemmalle);
         EfektiNappaimenKuuntelija ylosKuuntelija = new EfektiNappaimenKuuntelija(87, ylos);
@@ -207,6 +209,8 @@ public class PeliSivu implements Sivu{
         EfektiNappaimenKuuntelija pienemmaksiKuuntelija = new EfektiNappaimenKuuntelija(40, pienemmaksi);
         EfektiNappaimenKuuntelija isommaksiKuuntelija = new EfektiNappaimenKuuntelija(38, isommaksi);
         
+        EfektiNappaimenKuuntelija vuoronLopetusKuuntelija = new EfektiNappaimenKuuntelija(10, lopetaVuoro);
+        
         nappaimistonToiminnot.lisaaNappaimenKuuntelija(oikealleKuuntelija);
         nappaimistonToiminnot.lisaaNappaimenKuuntelija(vasemmalleKuuntelija);
         nappaimistonToiminnot.lisaaNappaimenKuuntelija(alasKuuntelija);
@@ -214,6 +218,8 @@ public class PeliSivu implements Sivu{
         
         nappaimistonToiminnot.lisaaNappaimenKuuntelija(pienemmaksiKuuntelija);
         nappaimistonToiminnot.lisaaNappaimenKuuntelija(isommaksiKuuntelija);
+        
+        nappaimistonToiminnot.lisaaNappaimenKuuntelija(vuoronLopetusKuuntelija);
         
     }
     

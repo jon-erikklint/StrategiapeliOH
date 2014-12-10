@@ -16,11 +16,11 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
 
 public class YksikkotyyppienVakioAlustaja implements YksikkotyyppienAlustaja{
 
-    Ase lahitykki = new Ase(15, Asetyyppi.RAJAHDE, 0.2, 1, false);
-    Ase kaukotykki = new Ase(8, Asetyyppi.RAJAHDE, 0, 4, true);
-    Ase machineGun = new Ase(6, Asetyyppi.LUOTI, 0.1, 2, true);
-    Ase tarkkuuskivaari = new Ase(5, Asetyyppi.LASER, 0.2, 6, true);
-    Ase kivaari = new Ase(4, Asetyyppi.LUOTI, 0.1, 2, true);
+    Ase lahitykki = new Ase(30, Asetyyppi.RAJAHDE, 0.2, 1, false);
+    Ase kaukotykki = new Ase(16, Asetyyppi.RAJAHDE, 0, 4, true);
+    Ase machineGun = new Ase(20, Asetyyppi.LUOTI, 0.1, 2, true);
+    Ase tarkkuuskivaari = new Ase(10, Asetyyppi.LASER, 0.2, 6, true);
+    Ase kivaari = new Ase(8, Asetyyppi.LUOTI, 0.1, 2, true);
 
     Panssari kevytPanssari = new Panssari(0.9, Panssarityyppi.TERAS);
     Panssari raskasPanssari = new Panssari(0.5, Panssarityyppi.TERAS);
@@ -48,7 +48,7 @@ public class YksikkotyyppienVakioAlustaja implements YksikkotyyppienAlustaja{
         aseet1.add(lahitykki);
         panssarit1.add(raskasPanssari);
         
-        Hyokkays hyokkays1 = new Hyokkays(30, aseet1, panssarit1);
+        Hyokkays hyokkays1 = new Hyokkays(30, 1, aseet1, panssarit1);
         Liikkuvuus liikkuvuus1 = new Liikkuvuus(voikoLiikkua, normaali, 3);
         luoYksikkotyyppi("Tuhoaja", liikkuvuus1, hyokkays1);
         
@@ -57,7 +57,7 @@ public class YksikkotyyppienVakioAlustaja implements YksikkotyyppienAlustaja{
         
         aseet2.add(kaukotykki);
         
-        Hyokkays hyokkays2 = new Hyokkays(20, aseet2, panssarit2);
+        Hyokkays hyokkays2 = new Hyokkays(20, 1, aseet2, panssarit2);
         Liikkuvuus liikkuvuus2 = new Liikkuvuus(voikoLiikkua, normaali, 2);
         luoYksikkotyyppi("Tykki", liikkuvuus2, hyokkays2);
         
@@ -67,7 +67,7 @@ public class YksikkotyyppienVakioAlustaja implements YksikkotyyppienAlustaja{
         aseet3.add(machineGun);
         panssarit3.add(raskasPanssari);
         
-        Hyokkays hyokkays3 = new Hyokkays(50, aseet3, panssarit3);
+        Hyokkays hyokkays3 = new Hyokkays(50, 1, aseet3, panssarit3);
         Liikkuvuus liikkuvuus3 = new Liikkuvuus(voikoLiikkua, normaali, 1);
         luoYksikkotyyppi("Puolustuslinnoitus", liikkuvuus3, hyokkays3);
         
@@ -76,7 +76,7 @@ public class YksikkotyyppienVakioAlustaja implements YksikkotyyppienAlustaja{
         
         aseet4.add(tarkkuuskivaari);
         
-        Hyokkays hyokkays4 = new Hyokkays(10, aseet4,panssarit4);
+        Hyokkays hyokkays4 = new Hyokkays(10, 1, aseet4,panssarit4);
         Liikkuvuus liikkuvuus4 = new Liikkuvuus(voikoLiikkua, nopea, 2);
         luoYksikkotyyppi("Tarkka-ampuja", liikkuvuus4, hyokkays4);
         
@@ -86,7 +86,7 @@ public class YksikkotyyppienVakioAlustaja implements YksikkotyyppienAlustaja{
         aseet5.add(kivaari);
         panssarit5.add(kevytPanssari);
         
-        Hyokkays hyokkays5 = new Hyokkays(20, aseet5, panssarit5);
+        Hyokkays hyokkays5 = new Hyokkays(20, 2, aseet5, panssarit5);
         Liikkuvuus liikkuvuus5 = new Liikkuvuus(voikoLiikkua, nopea, 4);
         luoYksikkotyyppi("Tiedustelija", liikkuvuus5, hyokkays5);
         

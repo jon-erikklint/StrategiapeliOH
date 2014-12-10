@@ -1,5 +1,6 @@
 package jek.gameprojects.strategiapelioh.logiikka.liikkuminen;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +15,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.liikkuminen.Liikkuvuus;
+import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,6 +49,8 @@ public class LiikuttajaTest {
     
     @Before
     public void setUp() {
+        Pelaaja pelaaja = new Pelaaja(0, "S");
+        
         Ruutu[][] ruudut = new Ruutu[4][4];
         
         Maasto perusmaasto = new Maasto(Aluetyyppi.MAA, Maastotyyppi.AVOMAA, 0);
@@ -59,12 +63,12 @@ public class LiikuttajaTest {
         
         Kartta kartta = new Kartta(ruudut, 4, 4);
         
-        liikuttaja = new Liikuttaja(kartta);
+        liikuttaja = new Liikuttaja(kartta, new JoukkojenHallinnoija(Arrays.asList(pelaaja), kartta));
         testiReitinhakija = new Reitinhakija(kartta);
         
         // ------------------------------------------------
         
-        Pelaaja pelaaja = new Pelaaja(0, "S");
+        
         
         Map<Aluetyyppi, Boolean> aluetyypit1 = new HashMap<>();
         Map<Aluetyyppi, Boolean> aluetyypit2 = new HashMap<>();

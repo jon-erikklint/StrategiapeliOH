@@ -10,6 +10,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Sotilas;
 import jek.gameprojects.strategiapelioh.logiikka.Indeksoija;
 
 public class YksikoidenVakioAlustaja implements YksikoidenAlustaja{
@@ -90,7 +91,7 @@ public class YksikoidenVakioAlustaja implements YksikoidenAlustaja{
     }
     
     private Yksikko alustaYksikko(Yksikkotyyppi yksikkotyyppi, Pelaaja omistaja, Joukko joukko, Koordinaatti sijainti){
-        return new Yksikko(yksikkotyyppi, sijainti, omistaja, joukko, yksikoidenIndeksoija.nextIndex());
+        return new Sotilas(yksikkotyyppi, sijainti, omistaja, joukko, yksikoidenIndeksoija.nextIndex());
     }
     
     private void asetaJoukotRuutuihin(Joukko... joukot){

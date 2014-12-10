@@ -69,8 +69,8 @@ public class KantamanLaskijaTest {
         List<Ase> aseet2 = new ArrayList<>();
         aseet2.add(new Ase(0, Asetyyppi.LASER, 0, 6, true));
         
-        Hyokkays hyokkays1 = new Hyokkays(1, aseet, new ArrayList<Panssari>());
-        Hyokkays hyokkays2 = new Hyokkays(1, aseet2, new ArrayList<Panssari>());
+        Hyokkays hyokkays1 = new Hyokkays(1, 1, aseet, new ArrayList<Panssari>());
+        Hyokkays hyokkays2 = new Hyokkays(1, 1, aseet2, new ArrayList<Panssari>());
         
         Yksikkotyyppi yksikkotyyppi1 = new Yksikkotyyppi("", liikkuvuus, hyokkays1);
         Yksikkotyyppi yksikkotyyppi2 = new Yksikkotyyppi("", liikkuvuus, hyokkays2);

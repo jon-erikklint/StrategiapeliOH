@@ -33,7 +33,7 @@ public class GrafiikkaKartta implements Grafiikkaobjekti{
     }
     
     public void addRuutu(RuudunKuva ruudunKuva){
-        Ruutu ruutu = (Ruutu) ruudunKuva.getRuutu().getT();
+        Ruutu ruutu = (Ruutu) ruudunKuva.getRuutu();
         
         ruudut.put(ruutu.getSijainti(), ruudunKuva);
     }

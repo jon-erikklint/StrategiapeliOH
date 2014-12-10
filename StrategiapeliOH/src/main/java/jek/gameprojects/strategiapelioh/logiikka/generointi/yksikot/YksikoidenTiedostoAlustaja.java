@@ -9,7 +9,6 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikkotyyppi;
 import jek.gameprojects.strategiapelioh.logiikka.Indeksoija;
 import jek.gameprojects.strategiapelioh.logiikka.generointi.TiedostoAlustaja;
-import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 
 public class YksikoidenTiedostoAlustaja extends TiedostoAlustaja implements YksikoidenAlustaja{
 
@@ -17,14 +16,10 @@ public class YksikoidenTiedostoAlustaja extends TiedostoAlustaja implements Yksi
     private Map<Integer,Pelaaja> pelaajat;
     private Map<String,Yksikkotyyppi> yksikkotyypit;
     
-    private JoukkojenHallinnoija joukkojenHallinnoija;
-    
     private Indeksoija yksikoidenIndeksoija;
     
     public YksikoidenTiedostoAlustaja(String tiedostonNimi) throws Exception{
         super(tiedostonNimi);
-        
-        joukkojenHallinnoija = new JoukkojenHallinnoija();
     }
     
     private void alustus(Kartta kartta, Map<Integer, Pelaaja> pelaajat, Map<String,Yksikkotyyppi> yksikkotyypit, Indeksoija yksikoidenIndeksoija){
@@ -75,7 +70,6 @@ public class YksikoidenTiedostoAlustaja extends TiedostoAlustaja implements Yksi
     
     private void luodunYksikonAlustus(Yksikko yksikko){
         
-        joukkojenHallinnoija.alustaUudenYksikonJoukko(yksikko);
         kartta.getRuutu( yksikko.getSijainti() ).getJoukot().add( yksikko.getJoukko() );
         
     }

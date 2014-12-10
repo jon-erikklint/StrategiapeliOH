@@ -89,3 +89,11 @@
 #8.12.2014
 **Määrä:** 5,5h
 **Mitä tein:** Korjasin bugeja, tein lisää grafiikkaa ja lisäsin puuttuvia ominaisuuksia
+
+#9.12.2014
+**Määrä:** 1,5h
+**Mitä tein:** Korjasin bugit jotka estivät yksiköitä näkymästä kartalla ja korjasin niiden tekstuureja
+
+#10.12.2014
+**Määrä:** 4,5h
+**Mitä tein:** Sain yksiköiden hyökkäämisen ja liikkumisen kartalla toimimaan suurimmaksi osaksi, lisäsin enterin vuoronlopetusnäppäimeksi ja tein yksikkökuvakkeiden luokat

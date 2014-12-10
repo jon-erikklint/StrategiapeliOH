@@ -12,12 +12,14 @@ public class YksikoidenPoistaja {
     
     private JoukkojenHallinnoija joukkojenHallinnoija;
     
-    public YksikoidenPoistaja(){
-        joukkojenHallinnoija = new JoukkojenHallinnoija();
+    public YksikoidenPoistaja(JoukkojenHallinnoija joukkojenHallinnoija){
+        this.joukkojenHallinnoija = joukkojenHallinnoija;
     }
     
     public void poistaYksikko(Yksikko yksikko){
         joukkojenHallinnoija.poistayksikkoJoukostaan(yksikko);
+        
+        joukkojenHallinnoija.poistaTyhjatJoukot();
     }
     
 }

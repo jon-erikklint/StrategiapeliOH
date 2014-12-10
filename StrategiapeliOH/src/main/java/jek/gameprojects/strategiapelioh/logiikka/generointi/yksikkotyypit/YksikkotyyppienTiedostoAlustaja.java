@@ -103,11 +103,12 @@ public class YksikkotyyppienTiedostoAlustaja extends TiedostoAlustaja implements
         }
         
         int elamat = super.tulkitseKokonaisluku();
+        int hyokkaystenMaara = super.tulkitseKokonaisluku();
         
         List<Ase> aseet = alustaAseet();
         List<Panssari> panssarit = alustaPanssarit();
         
-        return new Hyokkays(elamat, aseet, panssarit);
+        return new Hyokkays(elamat, hyokkaystenMaara, aseet, panssarit);
         
     }
     

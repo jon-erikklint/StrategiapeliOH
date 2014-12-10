@@ -1,6 +1,7 @@
 package jek.gameprojects.strategiapelioh.logiikka;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
@@ -47,13 +48,13 @@ public class Peli {
         this.kartta = kartta;
         this.pelaajat = new ArrayList<>(pelaajat.values());
         
-        this.yksikoidenLuoja = new YksikoidenLuoja(kartta, pelaajat, yksikkotyypit, yksikoidenIndeksoija);
-        this.yksikoidenPoistaja = new YksikoidenPoistaja();
+        this.joukkojenHallinnoija = new JoukkojenHallinnoija(this.pelaajat, kartta);
         
-        this.liikuttaja = new Liikuttaja(kartta);
-        this.hyokkayshallinnoija = new Hyokkayshallinnoija(kartta, panssarityyppienVahvuudet);
+        this.yksikoidenLuoja = new YksikoidenLuoja(kartta, pelaajat, yksikkotyypit, yksikoidenIndeksoija, joukkojenHallinnoija);
+        this.yksikoidenPoistaja = new YksikoidenPoistaja(joukkojenHallinnoija);
         
-        this.joukkojenHallinnoija = new JoukkojenHallinnoija();
+        this.liikuttaja = new Liikuttaja(kartta, joukkojenHallinnoija);
+        this.hyokkayshallinnoija = new Hyokkayshallinnoija(joukkojenHallinnoija, kartta, panssarityyppienVahvuudet);
     }
     
     public void eteneVuoro(){

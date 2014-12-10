@@ -60,7 +60,7 @@ public class Reitinhakija {
                 
                 double kuluvaLiikuntamaara = kuluvaLiikuntamaara( nykyinenRuutu.getMaasto(), ruutu.getMaasto() );
                 
-                int kulunutLiikuntamaara = liikkuva.liikkuvuus()-(int)(liikuntamaara-kuluvaLiikuntamaara);
+                int kulunutLiikuntamaara = liikkuva.liikkuvuus()-(int) Math.ceil(liikuntamaara-kuluvaLiikuntamaara);
                 
                 yhdistaLiikkuminenLiikuttaviin(ruutu.getSijainti(), kulunutLiikuntamaara);
                 

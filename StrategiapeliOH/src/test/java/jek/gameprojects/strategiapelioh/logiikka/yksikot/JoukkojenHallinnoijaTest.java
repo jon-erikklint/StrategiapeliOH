@@ -2,8 +2,10 @@ package jek.gameprojects.strategiapelioh.logiikka.yksikot;
 
 import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
+import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maastotyyppi;
@@ -45,12 +47,12 @@ public class JoukkojenHallinnoijaTest {
     @Before
     public void setUp() {
         
-        joukkojenHallinnoija = new JoukkojenHallinnoija();
-        
         Liikkuvuus liikkuvuus = new Liikkuvuus(new EnumMap<Aluetyyppi, Boolean>(Aluetyyppi.class), new EnumMap<Maastotyyppi, Double>(Maastotyyppi.class), 0);
         Yksikkotyyppi yksikkotyyppi = new Yksikkotyyppi("",liikkuvuus);
         
         Pelaaja pelaaja = new Pelaaja(0, "");
+        joukkojenHallinnoija = new JoukkojenHallinnoija(Arrays.asList(pelaaja), new Kartta(null, 0, 0));
+        
         joukko1 = new Joukko();
         joukko2 = new Joukko();
         

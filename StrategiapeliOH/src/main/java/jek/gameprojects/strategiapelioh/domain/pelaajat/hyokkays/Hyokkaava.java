@@ -2,7 +2,6 @@ package jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays;
 
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Omistettava;
-import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 
 /**
  * 
@@ -32,7 +31,10 @@ public interface Hyokkaava extends Omistettava{
     
     public void setAktiivinenAse(Ase ase);
     
-    @Override
-    public Pelaaja getOmistaja();
+    public int getHyokkaystenMaara();
+    
+    public void menetaHyokkayksia(int maara);
+    
+    public boolean voikoHyokata();
     
 }

@@ -13,12 +13,16 @@ public class RuudunKuva implements Grafiikkaobjekti{
         this.ruutu = ruutu;
         this.yksikot = yksikot;
     }
+    
+    public Ruutu getRuutu(){
+        return (Ruutu) ruutu.getT();
+    }
 
-    public ToStringObjectKuva<Ruutu> getRuutu() {
+    public ToStringObjectKuva<Ruutu> getObjectKuvaRuutu() {
         return ruutu;
     }
 
-    public void setRuutu(ToStringObjectKuva<Ruutu> ruutu) {
+    public void setObjectKuvaRuutuRuutu(ToStringObjectKuva<Ruutu> ruutu) {
         this.ruutu = ruutu;
     }
 
