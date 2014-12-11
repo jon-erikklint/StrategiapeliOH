@@ -2,6 +2,7 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.tilat;
 
 import java.util.Set;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaKartta;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
@@ -51,6 +52,11 @@ public class Pelitila {
     public void paivita(){
         tyhjennaValinnat();
         peli.nollaaLogiikka();
+        
+        Pelaaja voittaja = peli.tarkistaVoittaja();
+        if(voittaja != null){
+            
+        }
         
         tilat.getKierros().setT(peli.getKierros());
         tilat.getVuoro().setT(peli.getVuoro());

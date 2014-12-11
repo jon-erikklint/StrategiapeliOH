@@ -35,11 +35,35 @@ public class JoukkojenHallinnoija {
             }
             
             for(Joukko poistettava : poistettavatJoukot){
-                Ruutu missa = kartta.getRuutu(poistettava.getSijainti());
-                
-                missa.poistaJoukko(poistettava);
-                pelaaja.poistaJoukko(poistettava);
+                poistaJoukko(poistettava);
             }
+        }
+    }
+    
+    public void poistaTyhjatJoukotRuudusta(Ruutu ruutu){
+        List<Joukko> joukot = ruutu.getJoukot();
+        List<Joukko> poistettavat = new ArrayList<>();
+        
+        for(Joukko joukko : joukot){
+            
+            if(joukko.getYksikot().isEmpty()){
+                poistettavat.add(joukko);
+            }
+            
+        }
+        
+        for(Joukko poistettava : poistettavat){
+            poistaJoukko(poistettava);
+        }
+    }
+    
+    public void poistaJoukko(Joukko joukko){
+        Ruutu paikka = kartta.getRuutu(joukko.getSijainti());
+        
+        paikka.poistaJoukko(joukko);
+        
+        if(joukko.getOmistaja() != null){
+            joukko.getOmistaja().poistaJoukko(joukko);
         }
     }
     
@@ -99,6 +123,8 @@ public class JoukkojenHallinnoija {
         for(int i=1; i<joukot.size();i++){
             siirraJoukkoJoukkoon(uusiJoukko, joukot.get(i));
         }
+        
+        poistaTyhjatJoukotRuudusta(kartta.getRuutu(joukot.get(0).getSijainti()));
         
         return uusiJoukko;
     }

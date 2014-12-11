@@ -57,6 +57,28 @@ public class Peli {
         this.hyokkayshallinnoija = new Hyokkayshallinnoija(joukkojenHallinnoija, kartta, panssarityyppienVahvuudet);
     }
     
+    public Pelaaja tarkistaVoittaja(){
+        int elossaOlevat = pelaajat.size()-1;
+        Pelaaja viimeisinElossaoleva = null;
+        
+        for(Pelaaja pelaaja : pelaajat){
+            int yksikoidenMaara = 0;
+            
+            for(Joukko joukko : pelaaja.getJoukot()){
+                if(!joukko.getYksikot().isEmpty()){
+                    break;
+                }
+            }
+            
+            if(yksikoidenMaara == 0){
+                viimeisinElossaoleva = pelaaja;
+                elossaOlevat --;
+            }
+        }
+        
+        return viimeisinElossaoleva;
+    }
+    
     public void eteneVuoro(){
         kierros.lisaaVuoro(vuoro);
         

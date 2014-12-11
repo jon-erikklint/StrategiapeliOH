@@ -16,6 +16,7 @@ public class Joukko implements Omistettava{
     private List<Yksikko> yksikot;
     
     private Koordinaatti sijainti;
+    private Pelaaja omistaja;
     
     public Joukko(){
         yksikot=new ArrayList<>();
@@ -29,7 +30,7 @@ public class Joukko implements Omistettava{
     
     @Override
     public Pelaaja getOmistaja(){
-        return yksikot.get(0).getOmistaja();
+        return omistaja;
     }
     
     public boolean lisaaYksikko(Yksikko yksikko){
@@ -37,11 +38,12 @@ public class Joukko implements Omistettava{
             lisaaUusiYksikko(yksikko);
             
             sijainti = yksikko.getSijainti();
+            omistaja = yksikko.getOmistaja();
             
             return true;
         }
         
-        if(yksikko.getOmistaja().equals(getOmistaja())){
+        if(yksikko.getOmistaja().equals(omistaja)){
             lisaaUusiYksikko(yksikko);
             
             return true;
@@ -103,6 +105,10 @@ public class Joukko implements Omistettava{
             
             return toinenJoukko.getYksikot().isEmpty() && toinenJoukko.sijainti == this.sijainti;
             
+        }
+        
+        if(toinenJoukko.yksikot.isEmpty()){
+            return this.getYksikot().isEmpty() && toinenJoukko.sijainti == this.sijainti;
         }
         
         return toinenJoukko.getYksikot().get(0).equals(yksikot.get(0));

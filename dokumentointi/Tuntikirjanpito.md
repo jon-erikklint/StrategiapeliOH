@@ -32,19 +32,19 @@
 
 #17.11.2014
 **Määrä:** 1,5h
-**Mitä tein:* Aloitin pelin alustusten tekemisen
+**Mitä tein:** Aloitin pelin alustusten tekemisen
 
 #18.11.2014
 **Määrä:** 3h
-**Mitä tein:* Tein ensimmäiset mahdolliset pelin alustustavat ja paransin aikaisempien tekeleitteni rakennetta. Lisäksi lisäsin muutamia hyödyllisiä domain- ja logiikkaluokkia ja vähän järjestelin projektin osasia.
+**Mitä tein:** Tein ensimmäiset mahdolliset pelin alustustavat ja paransin aikaisempien tekeleitteni rakennetta. Lisäksi lisäsin muutamia hyödyllisiä domain- ja logiikkaluokkia ja vähän järjestelin projektin osasia.
 
 #20.11.2014
 **Määrä:** 1,5h
-**Mitä tein:* Paransin alustusluokkia ja lisäsin ensimmäisen yksiköidenalustajaluokan
+**Mitä tein:** Paransin alustusluokkia ja lisäsin ensimmäisen yksiköidenalustajaluokan
 
 #21.11.2014
 **Määrä:** 4,5h
-**Mitä tein:* Jatkoin alustusluokkia, tein kokoavia luokkia tulevalle logiikalle, tein lisää testejä ja tein javadocit domain-luokille
+**Mitä tein:** Jatkoin alustusluokkia, tein kokoavia luokkia tulevalle logiikalle, tein lisää testejä ja tein javadocit domain-luokille
 
 #24.11.2014
 **Määrä:** 3h
@@ -97,3 +97,7 @@
 #10.12.2014
 **Määrä:** 4,5h
 **Mitä tein:** Sain yksiköiden hyökkäämisen ja liikkumisen kartalla toimimaan suurimmaksi osaksi, lisäsin enterin vuoronlopetusnäppäimeksi ja tein yksikkökuvakkeiden luokat
+
+#11.12.2014
+**Määrä:** 3,5h
+**Mitä tein:** Laitoin yksiköiden valintalogiikan toimimaan ja aloitin pelin voittoikkunan tekemistä

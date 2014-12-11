@@ -5,6 +5,7 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.KuvaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.YksikonKuvake;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
+import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 
 public class ValitseYksikko extends PelitilaEfekti{
     
@@ -22,6 +23,7 @@ public class ValitseYksikko extends PelitilaEfekti{
         Yksikko yksikko = yksikonKuvake.getYksikko();
         
         if(valittuJoukko.getYksikot().contains(yksikko)){
+            
             if(valittuJoukko.getYksikot().size()>1){
                 
                 pelitila.getPeli().getJoukkojenHallinnoija().luoYksikolleOmaJoukko(yksikko);
@@ -32,7 +34,11 @@ public class ValitseYksikko extends PelitilaEfekti{
             
         }else{
             
-            pelitila.getPeli().getJoukkojenHallinnoija().siirraYksikkoJoukkoon(yksikko, valittuJoukko);
+            JoukkojenHallinnoija hallinnoija = pelitila.getPeli().getJoukkojenHallinnoija();
+            
+            hallinnoija.siirraYksikkoJoukkoon(yksikko, valittuJoukko);
+            hallinnoija.poistaTyhjatJoukotRuudusta( pelitila.getPeli().getKartta().getRuutu(yksikko.getSijainti()) );
+            
             yksikonKuvake.getYksikonKuva().setImage(KuvaSailio.getKuva(yksikko.getYksikkotyyppi().toString()+":valittu"));
             
         }
