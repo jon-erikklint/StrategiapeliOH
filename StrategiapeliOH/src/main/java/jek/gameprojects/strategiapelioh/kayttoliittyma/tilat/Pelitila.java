@@ -5,7 +5,7 @@ import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaKartta;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.RuudunKuva;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kayttoliittyma;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.MonitasoinenPainikkeidenKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
@@ -26,13 +26,13 @@ public class Pelitila {
     private Kamera pelikamera;
     
     private GrafiikkaSailio ikkunat;
-    private GrafiikkaSailio kayttoliittyma;
+    private Kayttoliittyma kayttoliittyma;
     private GrafiikkaKartta kartta;
     
     private MonitasoinenPainikkeidenKuuntelija painikkeidenKuuntelija;
     private PerusNappaimistonToiminnot nappaimistonToiminnot;
 
-    public Pelitila(SivujenHallinnoija sivujenHallinnoija, Peli peli, Tilat tilat, Kamera vakiokamera, Kamera pelikamera, GrafiikkaSailio ikkunat, GrafiikkaSailio kayttoliittyma, GrafiikkaKartta kartta, MonitasoinenPainikkeidenKuuntelija painikkeidenKuuntelija, PerusNappaimistonToiminnot nappaimistonToiminnot) {
+    public Pelitila(SivujenHallinnoija sivujenHallinnoija, Peli peli, Tilat tilat, Kamera vakiokamera, Kamera pelikamera, GrafiikkaSailio ikkunat, Kayttoliittyma kayttoliittyma, GrafiikkaKartta kartta, MonitasoinenPainikkeidenKuuntelija painikkeidenKuuntelija, PerusNappaimistonToiminnot nappaimistonToiminnot) {
         this.sivujenHallinnoija = sivujenHallinnoija;
         this.peli = peli;
         this.tilat = tilat;
@@ -62,6 +62,7 @@ public class Pelitila {
         kartta.paivita();
         
         tilat.nollaaTilanne();
+        kayttoliittyma.setYksikoidenKuvakkeet(null);
     }
     
     public void paivitaHyokattavatRuudut(){
@@ -126,11 +127,11 @@ public class Pelitila {
         this.ikkunat = ikkunat;
     }
 
-    public GrafiikkaSailio getKayttoliittyma() {
+    public Kayttoliittyma getKayttoliittyma() {
         return kayttoliittyma;
     }
 
-    public void setKayttoliittyma(GrafiikkaSailio kayttoliittyma) {
+    public void setKayttoliittyma(Kayttoliittyma kayttoliittyma) {
         this.kayttoliittyma = kayttoliittyma;
     }
 

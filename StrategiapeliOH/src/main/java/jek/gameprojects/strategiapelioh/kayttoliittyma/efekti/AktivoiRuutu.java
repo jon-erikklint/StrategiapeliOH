@@ -2,6 +2,7 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
 import jek.gameprojects.strategiapelioh.kayttoliittyma.KuvaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.RuudunKuva;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.YksikoidenKuvakkeet;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Tilat;
 
@@ -29,7 +30,7 @@ public class AktivoiRuutu extends PelitilaEfekti{
             
         }else if(!valittuRuutu.equals(ruutuKuva)){
             
-            pelitila.tyhjennaValinnat();
+            poistaValinta();
             
             if(varmistaRuudunKelpoisuusValittavaksi()){    
                 valitseRuutu(tilat);
@@ -39,9 +40,13 @@ public class AktivoiRuutu extends PelitilaEfekti{
             
         }else{
             
-            pelitila.tyhjennaValinnat();
+            poistaValinta();
             
         }
+    }
+    
+    public void poistaValinta(){
+        pelitila.tyhjennaValinnat();
     }
     
     public boolean varmistaRuudunKelpoisuusValittavaksi(){
@@ -59,6 +64,15 @@ public class AktivoiRuutu extends PelitilaEfekti{
         tilat.setValitutYksikot(ruutuKuva.getRuutu().annaEnsimmainenJoukko());
             
         ruutuKuva.getObjectKuvaRuutu().setImage(KuvaSailio.getKuva( ruutuKuva.getRuutu().toString()+":AKTIIVINEN") );
+        
+        pelitila.getKayttoliittyma().setYksikoidenKuvakkeet(luoYksikoidenKuvakkeet());
+    }
+    
+    public YksikoidenKuvakkeet luoYksikoidenKuvakkeet(){
+        YksikoidenKuvakkeet uudet = new YksikoidenKuvakkeet();
+        uudet.alustaKuvakkeet(ruutuKuva.getRuutu().getYksikot(), pelitila.getPainikkeidenKuuntelija().getPainikkeidenKuuntelija(0), pelitila);
+        
+        return uudet;
     }
     
 }

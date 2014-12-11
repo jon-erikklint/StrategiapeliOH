@@ -104,7 +104,15 @@ public class YksikonKuvake implements Grafiikkaobjekti{
 
     @Override
     public void paivita() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Yksikko yksikko = yksikonKuva.getT();
+        
+        if(yksikko.getClass() == Sotilas.class){
+            Sotilas sotilas = (Sotilas) yksikko;
+            
+            elamat.setKoko(new Vektori(koko.getX(), koko.getY()*sotilas.hyokkayskerroin()));
+        }
+        
+        
     }
     
     public YksikonKuva getYksikonKuva() {

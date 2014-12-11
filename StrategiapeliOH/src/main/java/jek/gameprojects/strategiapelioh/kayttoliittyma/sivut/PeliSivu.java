@@ -22,6 +22,7 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaKartta
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Grafiikkapainike;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kayttoliittyma;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kuva;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectKuva;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectTeksti;
@@ -46,8 +47,8 @@ public class PeliSivu implements Sivu{
 
     private Pelitila pelitila;
     
-    private GrafiikkaSailio kayttoliittyma;
     private GrafiikkaSailio ikkunat;
+    private Kayttoliittyma kayttoliittyma;
     private GrafiikkaKartta pelikartta;
     
     private MonitasoinenPainikkeidenKuuntelija painikkeidenKuuntelijat;
@@ -64,7 +65,7 @@ public class PeliSivu implements Sivu{
         pelitila.setPeli(peli);
         pelitila.setRuudunKoko(new Vektori((peli.getKartta().getLeveys()*100), (peli.getKartta().getKorkeus())*100));
         
-        kayttoliittyma = new GrafiikkaSailio();
+        kayttoliittyma = new Kayttoliittyma();
         pelikartta = new GrafiikkaKartta();
         ikkunat = new GrafiikkaSailio();
         
@@ -174,9 +175,9 @@ public class PeliSivu implements Sivu{
         vakiokuuntelija.lisaaPainike(hyokkays);
         vakiokuuntelija.lisaaPainike(vuoronLopettaminen);
         
-        kayttoliittyma.lisaaGrafiikkaobjekti(hyokkays);
-        kayttoliittyma.lisaaGrafiikkaobjekti(liikutus);
-        kayttoliittyma.lisaaGrafiikkaobjekti(vuoronLopettaminen);
+        kayttoliittyma.setHyokkayspainike(hyokkays);
+        kayttoliittyma.setLiikkumispainike(liikutus);
+        kayttoliittyma.setVuoronLopetuspainike(vuoronLopettaminen);
     }
     
     public void alustaMuutGrafiikkaobjektit(){
@@ -248,11 +249,11 @@ public class PeliSivu implements Sivu{
         kayttoliittyma.paint(g, vakiokamera);
     }
 
-    public GrafiikkaSailio getKayttoliittyma() {
+    public Kayttoliittyma getKayttoliittyma() {
         return kayttoliittyma;
     }
 
-    public void setKayttoliittyma(GrafiikkaSailio kayttoliittyma) {
+    public void setKayttoliittyma(Kayttoliittyma kayttoliittyma) {
         this.kayttoliittyma = kayttoliittyma;
     }
 

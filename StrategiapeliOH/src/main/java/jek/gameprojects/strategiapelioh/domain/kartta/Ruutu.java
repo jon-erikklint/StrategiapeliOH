@@ -6,6 +6,7 @@ import java.util.Objects;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
+import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 
 /**
  * 
@@ -43,6 +44,16 @@ public class Ruutu {
         }
         
         return maara;
+    }
+    
+    public List<Yksikko> getYksikot(){
+        List<Yksikko> yksikot = new ArrayList<>();
+        
+        for(Joukko joukko : joukot){
+            yksikot.addAll(joukko.getYksikot());
+        }
+        
+        return yksikot;
     }
     
     public boolean lisaaJoukko(Joukko joukko){
