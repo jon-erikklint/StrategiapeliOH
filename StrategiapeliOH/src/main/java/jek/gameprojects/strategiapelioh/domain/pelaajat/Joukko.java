@@ -36,7 +36,7 @@ public class Joukko implements Omistettava{
         if(yksikot.isEmpty()){
             lisaaUusiYksikko(yksikko);
             
-            sijainti=yksikko.getSijainti();
+            sijainti = yksikko.getSijainti();
             
             return true;
         }

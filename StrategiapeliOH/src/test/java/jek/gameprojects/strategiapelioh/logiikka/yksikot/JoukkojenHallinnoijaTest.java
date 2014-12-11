@@ -1,13 +1,14 @@
 package jek.gameprojects.strategiapelioh.logiikka.yksikot;
 
-import jek.gameprojects.strategiapelioh.logiikka.yksikot.JoukkojenHallinnoija;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
+import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Aluetyyppi;
+import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maasto;
 import jek.gameprojects.strategiapelioh.domain.kartta.maasto.Maastotyyppi;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Pelaaja;
@@ -51,7 +52,10 @@ public class JoukkojenHallinnoijaTest {
         Yksikkotyyppi yksikkotyyppi = new Yksikkotyyppi("",liikkuvuus);
         
         Pelaaja pelaaja = new Pelaaja(0, "");
-        joukkojenHallinnoija = new JoukkojenHallinnoija(Arrays.asList(pelaaja), new Kartta(null, 0, 0));
+        
+        Ruutu[][] karttaruutu = new Ruutu[1][1];
+        karttaruutu[0][0] = new Ruutu(new Koordinaatti(0,0), new Maasto(Aluetyyppi.MAA, Maastotyyppi.METSA, 0));
+        joukkojenHallinnoija = new JoukkojenHallinnoija(Arrays.asList(pelaaja), new Kartta(karttaruutu, 0, 0));
         
         joukko1 = new Joukko();
         joukko2 = new Joukko();

@@ -111,8 +111,6 @@ public class YksikonKuvake implements Grafiikkaobjekti{
             
             elamat.setKoko(new Vektori(koko.getX()*sotilas.hyokkayskerroin(), koko.getY()*0.2));
         }
-        
-        
     }
     
     public YksikonKuva getYksikonKuva() {

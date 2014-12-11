@@ -2,6 +2,7 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.KuvaSailio;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.YksikonKuvake;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
 
@@ -21,12 +22,18 @@ public class ValitseYksikko extends PelitilaEfekti{
         Yksikko yksikko = yksikonKuvake.getYksikko();
         
         if(valittuJoukko.getYksikot().contains(yksikko)){
+            if(valittuJoukko.getYksikot().size()>1){
+                
+                pelitila.getPeli().getJoukkojenHallinnoija().luoYksikolleOmaJoukko(yksikko);
+                yksikonKuvake.getYksikonKuva().paivita();
             
-            pelitila.getPeli().getJoukkojenHallinnoija().luoYksikolleOmaJoukko(yksikko);
+            }
+            
             
         }else{
             
-            valittuJoukko.lisaaYksikko(yksikko);
+            pelitila.getPeli().getJoukkojenHallinnoija().siirraYksikkoJoukkoon(yksikko, valittuJoukko);
+            yksikonKuvake.getYksikonKuva().setImage(KuvaSailio.getKuva(yksikko.getYksikkotyyppi().toString()+":valittu"));
             
         }
     }

@@ -49,13 +49,12 @@ public class Pelitila {
     public Pelitila(){}
     
     public void paivita(){
+        tyhjennaValinnat();
         peli.nollaaLogiikka();
-        tilat.nollaaTilanne();
         
         tilat.getKierros().setT(peli.getKierros());
         tilat.getVuoro().setT(peli.getVuoro());
         
-        kartta.paivita();
         ikkunat.paivita();
         kayttoliittyma.paivita();
     }

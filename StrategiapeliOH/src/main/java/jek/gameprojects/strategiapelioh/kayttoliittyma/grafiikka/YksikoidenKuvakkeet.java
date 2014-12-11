@@ -48,6 +48,17 @@ public class YksikoidenKuvakkeet implements Grafiikkaobjekti{
         kuvakkeet.add(yksikonKuvake);
         
     }
+    
+    public YksikonKuvake getKuvakeYksikolla(Yksikko yksikko){
+        
+        for(YksikonKuvake kuvake : kuvakkeet){
+            if(kuvake.getYksikko().equals(yksikko)){
+                return kuvake;
+            }
+        }
+        
+        return null;
+    }
 
     @Override
     public Vektori getSijainti() {

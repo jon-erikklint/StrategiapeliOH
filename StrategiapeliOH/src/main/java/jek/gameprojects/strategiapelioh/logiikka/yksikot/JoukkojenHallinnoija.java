@@ -73,6 +73,7 @@ public class JoukkojenHallinnoija {
         Joukko uusiJoukko = new Joukko();
         
         siirraYksikkoJoukkoon(yksikko, uusiJoukko);
+        kartta.getRuutu(yksikko.getSijainti()).lisaaJoukko(uusiJoukko);
     }
     
     public List<Joukko> hajoitaJoukkoYksittaisenYksikonJoukoiksi(Joukko joukko){
