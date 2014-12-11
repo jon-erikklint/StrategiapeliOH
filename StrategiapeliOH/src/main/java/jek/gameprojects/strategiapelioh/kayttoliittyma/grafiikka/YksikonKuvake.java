@@ -25,7 +25,7 @@ public class YksikonKuvake implements Grafiikkaobjekti{
         
         this.yksikonKuva = new YksikonKuva(KuvaSailio.getKuva(yksikko.getYksikkotyyppi().toString()), sijainti, new Vektori(koko.getX(), koko.getY()-10), taso, nakyva, yksikko);
         
-        elamatPohja = new Kuva(KuvaSailio.getKuva("elamatPohja"), new Vektori(sijainti.getX(), sijainti.getY()+40), new Vektori(koko.getX(), 10), taso+1, nakyva);
+        elamatPohja = new Kuva(KuvaSailio.getKuva("elamat_pohja"), new Vektori(sijainti.getX(), sijainti.getY()+40), new Vektori(koko.getX(), 10), taso+1, nakyva);
         elamat = new Kuva(KuvaSailio.getKuva("elamat"), new Vektori(sijainti.getX(), sijainti.getY()+40), new Vektori(koko.getX(), 10), taso, nakyva);
     }
     
@@ -109,7 +109,7 @@ public class YksikonKuvake implements Grafiikkaobjekti{
         if(yksikko.getClass() == Sotilas.class){
             Sotilas sotilas = (Sotilas) yksikko;
             
-            elamat.setKoko(new Vektori(koko.getX(), koko.getY()*sotilas.hyokkayskerroin()));
+            elamat.setKoko(new Vektori(koko.getX()*sotilas.hyokkayskerroin(), koko.getY()*0.2));
         }
         
         

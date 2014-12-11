@@ -8,6 +8,7 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.KuvanLataaja;
 public class KuvaSailio {
     
     private static final Map<String, Image> kuvat = new HashMap<>();
+    private static final KuvanLataaja lataaja = new KuvanLataaja();
     
     public static void lataaKuvat(){
         lataaKuva("Painikkeet/aloituspainike.png", "aloituspainike");
@@ -34,11 +35,24 @@ public class KuvaSailio {
         lataaKuva("Ruudut/Yksikoita1.png", "Yksikoita:1");
         lataaKuva("Ruudut/Yksikoita2.png", "Yksikoita:2");
         lataaKuva("Ruudut/Yksikoita3.png", "Yksikoita:3");
+        
+        lataaKuva("Yksikot/elamat.png", "elamat");
+        lataaKuva("Yksikot/elamat_pohja.png", "elamat_pohja");
+        
+        lataaKuva("Yksikot/puolustuslinnoitus.png", "Puolustuslinnoitus");
+        lataaKuva("Yksikot/tarkka-ampuja.png", "Tarkka-ampuja");
+        lataaKuva("Yksikot/tiedustelija.png", "Tiedustelija");
+        lataaKuva("Yksikot/tuhoaja.png","Tuhoaja");
+        lataaKuva("Yksikot/tykki.png", "Tykki");
+        
+        lataaKuva("Yksikot/puolustuslinnoitus:valittu.png", "Puolustuslinnoitus:valittu");
+        lataaKuva("Yksikot/tarkka-ampuja:valittu.png", "Tarkka-ampuja:valittu");
+        lataaKuva("Yksikot/tiedustelija:valittu.png", "Tiedustelija:valittu");
+        lataaKuva("Yksikot/tuhoaja:valittu.png", "Tuhoaja:valittu");
+        lataaKuva("Yksikot/tykki:valittu.png", "Tykki:valittu");
     }
     
     public static void lataaKuva(String osoite, String nimi){
-        KuvanLataaja lataaja = new KuvanLataaja();
-        
         Image kuva = lataaja.lataaKuva(osoite);
         kuvat.put(nimi, kuva);
     }

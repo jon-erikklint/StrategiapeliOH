@@ -7,9 +7,11 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.GrafiikkaSailio
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kamera;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.Kayttoliittyma;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.MonitasoinenPainikkeidenKuuntelija;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.PainikkeidenKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.PerusNappaimistonToiminnot;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.Painike;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 
 public class Pelitila {
@@ -62,7 +64,16 @@ public class Pelitila {
         kartta.paivita();
         
         tilat.nollaaTilanne();
-        kayttoliittyma.setYksikoidenKuvakkeet(null);
+        
+        if(kayttoliittyma.getYksikoidenKuvakkeet() != null){
+            PainikkeidenKuuntelija kuuntelija = painikkeidenKuuntelija.getPainikkeidenKuuntelija(0);
+            
+            for(Painike painike :kayttoliittyma.getYksikoidenKuvakkeet().getPainikkeet()){
+                kuuntelija.poistaPainike(painike);
+            }
+            
+            kayttoliittyma.setYksikoidenKuvakkeet(null);
+        }
     }
     
     public void paivitaHyokattavatRuudut(){

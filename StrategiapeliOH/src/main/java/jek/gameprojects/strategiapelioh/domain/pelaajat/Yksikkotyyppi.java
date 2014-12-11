@@ -84,4 +84,9 @@ public class Yksikkotyyppi {
         return hash;
     }
     
+    @Override
+    public String toString(){
+        return this.nimi;
+    }
+    
 }

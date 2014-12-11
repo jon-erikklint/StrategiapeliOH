@@ -7,7 +7,6 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.Yksikko;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.efekti.ValitseYksikko;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.hiiri.PainikkeidenKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.EfektiPainike;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.NelioPainike;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.tilat.Pelitila;
 
@@ -15,8 +14,11 @@ public class YksikoidenKuvakkeet implements Grafiikkaobjekti{
     
     private List<YksikonKuvake> kuvakkeet;
     
+    private List<NelioPainike> painikkeet;
+    
     public YksikoidenKuvakkeet(){
         kuvakkeet = new ArrayList<>();
+        painikkeet = new ArrayList<>();
     }
     
     public void alustaKuvakkeet(List<Yksikko> yksikot, PainikkeidenKuuntelija kuuntelijaJohonLisataanPainikkeet, Pelitila pelitila){
@@ -28,7 +30,7 @@ public class YksikoidenKuvakkeet implements Grafiikkaobjekti{
         Vektori koko = new Vektori(kuvakkeenLeveys, kuvakkeenLeveys);
         
         for(int i=0 ; i<yksikot.size() ; i++){
-            Vektori sijainti = new Vektori(alkukohta + i*kuvakkeenLeveys + i*kuvakevali , pelitila.getRuudunKoko().getY()-kuvakkeenLeveys);
+            Vektori sijainti = new Vektori(alkukohta + i*kuvakkeenLeveys + i*kuvakevali , pelitila.getRuudunKoko().getY()-kuvakkeenLeveys*2);
             
             luoYksikonKuvake(yksikot.get(i), sijainti, koko, kuuntelijaJohonLisataanPainikkeet, pelitila);
         }
@@ -39,8 +41,9 @@ public class YksikoidenKuvakkeet implements Grafiikkaobjekti{
         YksikonKuvake yksikonKuvake = new YksikonKuvake(yksikko, sijainti, koko, 0, true);
         
         ValitseYksikko valitseYksikko = new ValitseYksikko(pelitila, yksikonKuvake);
-        EfektiPainike efektiPainike = new NelioPainike(valitseYksikko, koko, sijainti, 0);
-        kuuntelija.lisaaPainike(efektiPainike);
+        NelioPainike nelioPainike = new NelioPainike(valitseYksikko, sijainti, koko, 0);
+        kuuntelija.lisaaPainike(nelioPainike);
+        painikkeet.add(nelioPainike);
         
         kuvakkeet.add(yksikonKuvake);
         
@@ -98,6 +101,22 @@ public class YksikoidenKuvakkeet implements Grafiikkaobjekti{
         for(YksikonKuvake kuvake : kuvakkeet){
             kuvake.paivita();
         }
+    }
+
+    public List<YksikonKuvake> getKuvakkeet() {
+        return kuvakkeet;
+    }
+
+    public void setKuvakkeet(List<YksikonKuvake> kuvakkeet) {
+        this.kuvakkeet = kuvakkeet;
+    }
+
+    public List<NelioPainike> getPainikkeet() {
+        return painikkeet;
+    }
+
+    public void setPainikkeet(List<NelioPainike> painikkeet) {
+        this.painikkeet = painikkeet;
     }
     
 }
