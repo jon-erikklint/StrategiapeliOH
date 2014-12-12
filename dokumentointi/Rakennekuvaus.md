@@ -1,0 +1,5 @@
+Ohjelmani luokat on jaettu kolmeen eri päätyyppiin: domain- logiikka ja käyttöliittymäluokkiin. Domain-luokat ovat pääasiassa tietoluokkia, joita logiikkaluokat käyttävät hyödyksi laskennassaan ja toiminnassaan. Käyttöliittymäluokat taas ovat ohjelman näkyvä pinta, ja ne käyttävät hyväkseen logiikkatyyppisten luokkien palveluita tehdessään asioita.
+
+Peruspohjana pelissä on kartta, joka koostuu ruuduista. Näissä ruuduissa on jokaisessa oma maastonsa ja jokin määrä joukkoja. Joukot taas koostuvat yksiköistä, ja yksiköt ovat aina kiinni jossaki joukossa. Yksiköillä taas on omia sen hetkisiä tietoja sekä yksikkötyyppi, mikä kertoo suurimman osan yksikön ominaisuuksista. Yksikköjen alatyyppi on sotilaat, jotka ovat yksiköitä jotka kykenevät hyökkäämään.
+
+Logiikassa on tällä hetkellä kaksi suurempaa kokonaisuutta, hyökkääminen ja liikkuminen, sekä muutamia pienempiä logiikkakokonaisuuksia. Hyökkäämislogiikka laskee taistelussa sotilaile ja muille hyökkääville koituvia vahinkoja ja laskee eri hyökkäävien kantamia ja mihin ne voivat hyökätä. Liikutuslogiikka taas laskee mihin liikkuvat objektit voivat liikkua.
