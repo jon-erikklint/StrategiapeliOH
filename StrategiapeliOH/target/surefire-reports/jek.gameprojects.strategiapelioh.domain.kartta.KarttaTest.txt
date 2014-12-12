@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: jek.gameprojects.strategiapelioh.domain.kartta.KarttaTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 sec
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 sec
