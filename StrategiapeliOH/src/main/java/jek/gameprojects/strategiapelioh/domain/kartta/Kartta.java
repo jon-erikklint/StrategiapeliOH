@@ -22,6 +22,14 @@ public class Kartta {
         this.korkeus=korkeus;
     }
     
+    /**
+     * Metodi antaa jonkin koordinaatin vieressä olevat ruudut. Kartalla voi liikkua vain pysty tai vaakasuunnassa, 
+     * joten metodi palauttaa vain ne, eikä sivuttain vierustavia.
+     * 
+     * @param sijainti haluttu sijainti
+     * 
+     * @return lista sijaintia vierustavista ruuduista
+     */
     public List<Ruutu> getViereisetRuudut(Koordinaatti sijainti){
         List<Ruutu> viereisetRuudut=new ArrayList<>();
         
@@ -44,10 +52,25 @@ public class Kartta {
         return viereisetRuudut;
     }
     
+    
+    /**
+     * Metodi palauttaa annettua koordinaattia vastaavan ruudun
+     * 
+     * @param sijainti halutun ruudun sijainti
+     * 
+     * @return sijaintia vastaava ruutu
+     */
     public Ruutu getRuutu(Koordinaatti sijainti){
         return ruudut[sijainti.getX()][sijainti.getY()];
     }
     
+    
+    /**
+     * Kertoo onko annettu koordinaatti kartalla
+     * 
+     * @param koordinaatti Koordinaatti jota tutkitaan
+     * @return onko kartalla
+     */
     public boolean onkoKartalla(Koordinaatti koordinaatti){
         if(koordinaatti.getX()<0 || koordinaatti.getX()>=leveys){
             return false;

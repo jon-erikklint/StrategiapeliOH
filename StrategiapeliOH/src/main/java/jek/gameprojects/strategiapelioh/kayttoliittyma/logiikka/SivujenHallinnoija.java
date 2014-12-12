@@ -6,6 +6,11 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.HiirenKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.NappaimistonKuuntelija;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.sivut.Sivu;
 
+/**
+ * 
+ * Hallinnoi mitä sivuja ohjelmassa on ja vaihtaa aktiivista pyydettäessä
+ * 
+ */
 public class SivujenHallinnoija {
     
     private List<Sivu> sivut;
@@ -15,17 +20,29 @@ public class SivujenHallinnoija {
     private NappaimistonKuuntelija nappaimistonKuuntelija;
 
     public SivujenHallinnoija(HiirenKuuntelija hiirenKuuntelija, NappaimistonKuuntelija nappaimistonKuuntelija) {
-        this.hiirenKuuntelija = hiirenKuuntelija;
-        this.nappaimistonKuuntelija = nappaimistonKuuntelija;
-        
         sivut = new ArrayList<>();
+        
+        this.nappaimistonKuuntelija = nappaimistonKuuntelija;
+        this.hiirenKuuntelija = hiirenKuuntelija;
     }
     
+    /**
+     * Luo ensimmäisen sivun ja laittaa sen näkymään
+     * 
+     * @param ensimmainenSivu 
+     */
     public void alusta(Sivu ensimmainenSivu){
         lisaaSivu(ensimmainenSivu);
         vaihdaSivu(0);
     }
     
+    /**
+     * Asettaa annettua indeksiä vastaavan sivun näkymään ja asettaa sen 
+     * hiiren- ja näppäimistön kuuntelijat aktiivisiksi
+     * 
+     * @param sivunNumero
+     * @return onko sallittu indeksi
+     */
     public boolean vaihdaSivu(int sivunNumero){
         
         if(sivunNumero<0 || sivunNumero>=sivut.size()){
@@ -40,18 +57,38 @@ public class SivujenHallinnoija {
         return true;
     }
     
-    public void lisaaSivu(Sivu ruutu){
-        sivut.add(ruutu);
+    /**
+     * Lisää uuden sivun
+     * 
+     * @param sivu 
+     */
+    public void lisaaSivu(Sivu sivu){
+        sivut.add(sivu);
     }
     
-    public boolean poistaSivu(Sivu ruutu){
-        return sivut.remove(ruutu);
+    /**
+     * Poistaa annetun sivun
+     * 
+     * @param sivu
+     */
+    public void poistaSivu(Sivu sivu){
+        sivut.remove(sivu);
     }
     
+    /**
+     * Palauttaa olemassaolevien sivujen määrän
+     * 
+     * @return sivujen määrä
+     */
     public int sivujenMaara(){
         return sivut.size();
     }
     
+    /**
+     * Palauttaa nykyisin aktiivisena olevan sivun
+     * 
+     * @return aktiivinen sivu
+     */
     public Sivu nykyinenSivu(){
         return nykyinenSivu;
     }

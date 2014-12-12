@@ -33,7 +33,12 @@ public class VoititPelinSivu implements Sivu{
     }
     
     private void init(){
-        voititPelin = new Teksti(new Vektori(450, 490), new Vektori(100,20), 0, voittajanNimi+" voitti pelin", Color.WHITE, true);
+        String teksti = voittajanNimi;
+        if(!voittajanNimi.equals("Ei voittajaa")){
+            teksti += " voitti pelin";
+        }
+        
+        voititPelin = new Teksti(new Vektori(450, 490), new Vektori(100,20), 0, teksti, Color.WHITE, true);
     }
 
     @Override

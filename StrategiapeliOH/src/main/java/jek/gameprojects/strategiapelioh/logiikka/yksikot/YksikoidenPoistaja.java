@@ -16,6 +16,11 @@ public class YksikoidenPoistaja {
         this.joukkojenHallinnoija = joukkojenHallinnoija;
     }
     
+    /**
+     * Poistaa yksikön pelistä
+     * 
+     * @param yksikko poistettava
+     */
     public void poistaYksikko(Yksikko yksikko){
         joukkojenHallinnoija.poistayksikkoJoukostaan(yksikko);
         

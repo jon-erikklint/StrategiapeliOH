@@ -20,10 +20,20 @@ public class Kierros {
         this.kierros = kierros;
     }
     
+    /**
+     * Lisää vuoron kierroksen tietoihin.
+     * 
+     * @param vuoro lisättävä vuoro
+     */
     public void lisaaVuoro(Vuoro vuoro){
         vuorot.add(vuoro);
     }
     
+    /**
+     * Palauttaa itseään seuraavan kierroksen
+     * 
+     * @return uusi kierros
+     */
     public Kierros getSeuraavaKierros(){
         return new Kierros(kierros+1);
     }

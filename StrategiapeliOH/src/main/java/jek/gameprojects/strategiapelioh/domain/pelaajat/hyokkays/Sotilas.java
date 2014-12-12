@@ -39,7 +39,7 @@ public class Sotilas extends Yksikko implements Hyokkaava{
     }
     
     @Override
-    public double hyokkayskerroin(){
+    public double elamakerroin(){
         return elamat.getArvo()/(double)elamat.getYlaraja();
     }
     

@@ -1,7 +1,6 @@
 package jek.gameprojects.strategiapelioh.logiikka;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import jek.gameprojects.strategiapelioh.domain.kartta.Kartta;
@@ -57,28 +56,54 @@ public class Peli {
         this.hyokkayshallinnoija = new Hyokkayshallinnoija(joukkojenHallinnoija, kartta, panssarityyppienVahvuudet);
     }
     
+    /**
+     * Tarkistaa onko joku voittanut pelin. Jos vain yksi pelaaja on jäljellä, 
+     * palauttaa kyseisen pelaajan, jos monta henkilöä on jäljellä, palauttaa nullin
+     * ja jos ketään ei ole jäljellä, palauttaa uuden pelaajan nimellä "Ei voittajaa" ja indeksillä -1
+     * 
+     * @return kuka on voittanut
+     */
     public Pelaaja tarkistaVoittaja(){
-        int elossaOlevat = pelaajat.size()-1;
+        int elossaOlevat = pelaajat.size();
         Pelaaja viimeisinElossaoleva = null;
         
         for(Pelaaja pelaaja : pelaajat){
-            int yksikoidenMaara = 0;
-            
-            for(Joukko joukko : pelaaja.getJoukot()){
-                if(!joukko.getYksikot().isEmpty()){
-                    break;
-                }
-            }
-            
-            if(yksikoidenMaara == 0){
+            if(onkoPelaajaElossa(pelaaja)){
                 viimeisinElossaoleva = pelaaja;
-                elossaOlevat --;
+            }else{
+                elossaOlevat--;
             }
         }
         
-        return viimeisinElossaoleva;
+        return annaVoittaja(elossaOlevat, viimeisinElossaoleva);
     }
     
+    private boolean onkoPelaajaElossa(Pelaaja pelaaja){
+        for(Joukko joukko : pelaaja.getJoukot()){
+            if(!joukko.getYksikot().isEmpty()){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    private Pelaaja annaVoittaja(int elossaOlevat, Pelaaja viimeisinElossaoleva){
+        if(elossaOlevat>1){
+            return null;
+        }else if(elossaOlevat == 1){
+            return viimeisinElossaoleva;
+        }else{
+            return new Pelaaja(-1, "Ei voittajaa");
+        }
+    }
+    
+    /**
+     * 
+     * Siirtää logiikan vuoron eteenpäin. Päivittää tällöin vuoroa ja mahdollisesti 
+     * kierrosta sekä palauttaa pelaajien toiminnot.
+     * 
+     */
     public void eteneVuoro(){
         kierros.lisaaVuoro(vuoro);
         
@@ -93,6 +118,11 @@ public class Peli {
         
     }
     
+    /**
+     * Palauttaa kaikki pelaajan yksiköt toimintakuntoon
+     * 
+     * @param pelaaja 
+     */
     public void taytaPelaajanToiminnot(Pelaaja pelaaja){
         List<Joukko> pelaajanJoukot = pelaaja.getJoukot();
         
@@ -101,6 +131,11 @@ public class Peli {
         }
     }
     
+    /**
+     * 
+     * Tyhjentää logiikkaluokkien tilanteen
+     * 
+     */
     public void nollaaLogiikka(){
         liikuttaja.nollaa();
         hyokkayshallinnoija.nollaa();

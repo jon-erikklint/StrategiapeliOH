@@ -28,6 +28,12 @@ public class KantamanLaskija {
         hyokattavat=new HashSet<>();
     }
     
+    /**
+     * Laskee ruudut joihin annettu hyökkäävä voi hyökätä
+     * 
+     * @param hyokkaava
+     * @return hyökättävät ruudut
+     */
     public Set<Koordinaatti> laskeHyokattavatRuudut(Hyokkaava hyokkaava){
         nollaa();
         this.hyokkaava = hyokkaava;
@@ -75,7 +81,12 @@ public class KantamanLaskija {
         return 1;
     }
     
+    /**
+     * Nollaa kantaman laskijan tiedot
+     */
     public void nollaa(){
         hyokattavat = new HashSet<>();
+        
+        hyokkaava = null;
     }
 }

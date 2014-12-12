@@ -13,6 +13,11 @@ public class Indeksoija{
         this.arvo=alkuarvo;
     }
     
+    /**
+     * Antaa seuraavan indeksin arvon, joka kasvaa aina yhdellä kutsukertaa kohden
+     * 
+     * @return seuraavaIndeksi
+     */
     public int nextIndex(){
         int nyt=arvo;
         

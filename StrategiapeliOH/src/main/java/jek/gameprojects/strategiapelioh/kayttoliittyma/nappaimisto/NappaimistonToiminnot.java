@@ -2,6 +2,11 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto;
 
 import java.awt.event.KeyEvent;
 
+/**
+ * 
+ * Rajapinta, jonka toteuttavat luokat pystyvät käsittelemään näppäimistön tapahtumia
+ * 
+ */
 public interface NappaimistonToiminnot {
     
     public void keyTyped(KeyEvent e);

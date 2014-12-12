@@ -1,5 +1,10 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka;
 
+/**
+ * Luokka joka pitää sisällään kaksi liukulukua ja toimii esim. sijaintikoordinaatteina
+ * 
+ * @author klint
+ */
 public class Vektori {
     
     private double x;

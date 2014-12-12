@@ -7,6 +7,11 @@ import jek.gameprojects.strategiapelioh.logiikka.generointi.pelaajat.PelaajienAl
 import jek.gameprojects.strategiapelioh.logiikka.generointi.kartta.KartanAlustaja;
 import java.util.List;
 
+/**
+ * 
+ * Tietopaketti, joka sisältää kaikki pelin alustamiseen tarvittavat alustajat
+ * 
+ */
 public class AloitusMaarittely {
     
     private PelaajienAlustaja pelaajienAlustaja;

@@ -3,6 +3,10 @@ package jek.gameprojects.strategiapelioh.logiikka.generointi;
 import java.util.List;
 import jek.gameprojects.strategiapelioh.domain.kartta.Koordinaatti;
 
+/**
+ * Alustajatyyppi joka lukee alustettavia tietoja tiedostosta. Sisältää yleishyödyllisiä metodeja tiedoston tulkitsemiseen
+ * 
+ */
 public abstract class TiedostoAlustaja {
     
     List<String> tiedostonTiedot;
@@ -16,6 +20,12 @@ public abstract class TiedostoAlustaja {
         lukukohta=0;
     }
     
+    /**
+     * Tulkitsee totuusarvon seuraavan rivin ensimmäisestä kirjaimesta
+     * 
+     * @return totuusarvo
+     * @throws Exception Rivi ei ollut tulkittavissa totuusarvona
+     */
     public boolean tulkitseTotuusarvo()throws Exception{
         char totuuskirjain = annaString().charAt(0);
         
@@ -27,6 +37,13 @@ public abstract class TiedostoAlustaja {
         
     }
     
+    /**
+     * Tulkitsee anetun kirjaimen totuusarvoksi
+     * 
+     * @param kirjain
+     * @return totuusarvo
+     * @throws Exception kirjain ei ollut tulkittavissa totuusarvoksi
+     */
     public boolean tulkitseTotuusarvo(char kirjain) throws Exception{
         if(kirjain == '0'){
             return false;
@@ -37,6 +54,12 @@ public abstract class TiedostoAlustaja {
         }
     }
     
+    /**
+     * Tulkitsee kokonaisluvun seuraavalta lukuriviltä
+     * 
+     * @return kokonaisluku
+     * @throws Exception rivi ei ollut tulkittavissa kokonaisluvuksi
+     */
     public int tulkitseKokonaisluku() throws Exception{
         String rivi = annaString();
         
@@ -47,6 +70,13 @@ public abstract class TiedostoAlustaja {
         return palautettava;
     }
     
+    /**
+     * Tulkitsee annetun stringin kokonaislukuna
+     * 
+     * @param teksti
+     * @return kokonaisluku
+     * @throws Exception Stringi ei ollut tulkittavissa kokonaislukuna
+     */
     public int tulkitseKokonaisluku(String teksti) throws Exception{
         try{
             return Integer.parseInt(teksti);
@@ -55,6 +85,12 @@ public abstract class TiedostoAlustaja {
         }
     }
     
+    /**
+     * Tulkitsee seuraavan rivin liukulukuna
+     * 
+     * @return liukuluku
+     * @throws Exception Rivi ei ollut tulkittavissa liukulukuna
+     */
     public double tulkitseLiukuluku() throws Exception{
         String rivi = annaString();
         
@@ -65,6 +101,13 @@ public abstract class TiedostoAlustaja {
         return palautettava;
     }
     
+    /**
+     * Tulkitsee annetun tekstin liukulukuna
+     * 
+     * @param teksti
+     * @return liukuluku
+     * @throws Exception tekstiä ei voinut tulkita liukuluvuksi
+     */
     public double tulkitseLiukuluku(String teksti)throws Exception{
         try{
             return Double.parseDouble(teksti);
@@ -73,6 +116,12 @@ public abstract class TiedostoAlustaja {
         }
     }
     
+    /**
+     * Tulkitsee seuraavan rivin koordinaattina
+     * 
+     * @return koordinaatti
+     * @throws Exception rivi ei tulkittavissa koordinaattina
+     */
     public Koordinaatti tulkitseKoordinaatti() throws Exception{
         String rivi = nykyinen();
         
@@ -83,6 +132,13 @@ public abstract class TiedostoAlustaja {
         return palautettava;
     }
     
+    /**
+     * Tulkitsee annetun stringin koordinaattina
+     * 
+     * @param rivi
+     * @return koordinaatti
+     * @throws Exception stringi ei tulkittavissa koordinaattina
+     */
     public Koordinaatti tulkitseKoordinaatti(String rivi) throws Exception{
         int kohta = 0;
         for(int i=0;i<rivi.length();i++){
@@ -102,6 +158,12 @@ public abstract class TiedostoAlustaja {
         return new Koordinaatti(x,y);
     }
     
+    /**
+     * Antaa seuraavan rivin stringinä
+     * 
+     * @return string
+     * @throws Exception tiedostossa ei ole seuraavaa riviä 
+     */
     public String annaString() throws Exception{
         String palautettava;
         
@@ -116,20 +178,40 @@ public abstract class TiedostoAlustaja {
         return palautettava;
     }
     
+    /**
+     * Tarkistaa onko lukukohta tiedoston sisällä
+     * 
+     * @throws Exception lukukohta ei ole tiedoston sisällä
+     */
     public void tarkistaLukukohta() throws Exception{
         if(lukukohta>=tiedostonTiedot.size()){
             throw new Exception("Kaikkia tietoja ei voitu ladata: tiedosto liian pieni/toistolause ei loppunut");
         }
     }
     
+    /**
+     * Siirtää lukukohtaa annetun määrän
+     * 
+     * @param maara 
+     */
     public void kasvata(int maara){
         lukukohta+=maara;
     }
     
+    /**
+     * Antaa nykyisen rivin tiedot
+     * 
+     * @return rivi
+     */
     public String nykyinen(){
         return tiedostonTiedot.get(lukukohta);
     }
     
+    /**
+     * Palauttaa lukukohdan
+     * 
+     * @return lukukohta
+     */
     public int lukukohta(){
         return this.lukukohta;
     }

@@ -39,6 +39,12 @@ public class Taistelulaskuri {
     
     //
     /// Taistelu
+    
+    /**
+     * 
+     * Taisteluttaa tämänhetkiset hyökkääjät ja puolustajat
+     * 
+     */
     public void taistele(){
         for(Hyokkaava hyokkaaja:hyokkaajat){
             if(puolustajat.isEmpty()){
@@ -62,6 +68,11 @@ public class Taistelulaskuri {
         
     }
     
+    /**
+     * Yksittäinen hyökkäävä taistelee yhtä puolustajaa vastaan
+     * 
+     * @param hyokkaaja 
+     */
     public void sotilasTaistelee(Hyokkaava hyokkaaja){
         
         Hyokkaava puolustaja = haePahinPuolustaja(hyokkaaja);
@@ -78,6 +89,12 @@ public class Taistelulaskuri {
         
     }
     
+    /**
+     * Laskee hyökkääjän tekemän vahingon ja laittaa puolustajan menettämään sen verran elämäpisteitä
+     * 
+     * @param iskija hyökkääjä
+     * @param vastaanottaja puolustaja
+     */
     public void taisteluta(Hyokkaava iskija, Hyokkaava vastaanottaja){
         double hyokkayskerroin = haeVahvinPanssari(iskija.getAktiivinenAse().getAsetyyppi(), vastaanottaja.hyokkays().getPanssarit());
         
@@ -86,6 +103,12 @@ public class Taistelulaskuri {
         vastaanottaja.menetaElamaa(isku);
     }
     
+    /**
+     * Hoitaa kuolleen yksikön poistamisen pelistä ja taistelulaskurista
+     * 
+     * @param hyokkaava
+     * @param onkoHyokkaaja 
+     */
     public void hallinnoiKuolema(Hyokkaava hyokkaava, boolean onkoHyokkaaja){
         if(onkoHyokkaaja){
             hyokkaajat.remove(hyokkaava);
@@ -98,16 +121,29 @@ public class Taistelulaskuri {
         }
     }
     
-    public int vahinko(double hyokkayskerroin, Ase ase){
+    /**
+     * Laskee tehdyn vahingon annetulla asellaa ja elämäkertoimella
+     * 
+     * @param elamakerroin
+     * @param ase
+     * @return tehty vahinko
+     */
+    public int vahinko(double elamakerroin, Ase ase){
         double odotusisku = ase.getIsku();
         
         odotusisku*=annaSatunnaisuuskerroin(ase.getTarkkuus());
         
-        odotusisku*=hyokkayskerroin;
+        odotusisku*=elamakerroin;
         
         return (int)odotusisku;
     } 
     
+    /**
+     * Antaa aseen tarkkuudesta riippuvan satunnaisuuskertoimen
+     * 
+     * @param tarkkuus
+     * @return satunnaisuuskerroin
+     */
     public double annaSatunnaisuuskerroin(double tarkkuus){
         double randomkerroin=random.nextDouble();
         randomkerroin+=tarkkuus;
@@ -123,10 +159,23 @@ public class Taistelulaskuri {
         return randomkerroin;
     }
     
+    /**
+     * Kertoo voiko puolustaja tehdä vastaiskun hyökkääjään
+     * 
+     * @param hyokkaaja
+     * @param puolustaja
+     * @return 
+     */
     public boolean puolustajaVoiTehdaVastaiskun(Hyokkaava hyokkaaja, Hyokkaava puolustaja){
         return !hyokkaaja.getAktiivinenAse().isKaukotaistelu();
     }
     
+    /**
+     * Etsii puolustajista sen, joka kestää parhaitan hyökkääjän iskua
+     * 
+     * @param hyokkaava
+     * @return pahin puolustaja
+     */
     public Hyokkaava haePahinPuolustaja(Hyokkaava hyokkaava){
         Hyokkaava puolustaja = puolustajat.get(0);
         double hyokkayskerroin = haeVahvinPanssari(hyokkaava.getAktiivinenAse().getAsetyyppi(), puolustaja.hyokkays().getPanssarit());
@@ -143,6 +192,13 @@ public class Taistelulaskuri {
         return puolustaja;
     }
     
+    /**
+     * Etsii panssareista sen, joka on vahvin annettua asetyyppiä vastaan
+     * 
+     * @param asetyyppi
+     * @param panssarit
+     * @return 
+     */
     public double haeVahvinPanssari(Asetyyppi asetyyppi, List<Panssari> panssarit){
         
         if(panssarit.isEmpty()){
@@ -168,6 +224,11 @@ public class Taistelulaskuri {
     ///
     //
     
+    /**
+     * 
+     * Nollaa taistelulaskurin muistin
+     * 
+     */
     public void nollaa(){
         hyokkaajat.clear();
         puolustajat.clear();

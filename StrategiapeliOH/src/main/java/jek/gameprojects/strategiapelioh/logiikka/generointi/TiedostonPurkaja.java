@@ -4,8 +4,20 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * Purkaa tiedostoja string-listoiksi
+ * 
+ */
 public class TiedostonPurkaja {
     
+    /**
+     * Muuttaa annetun tiedoston listaksi tekstijonoja. Jako tapahtuu rivinvaihtojen perusteella.
+     * 
+     * @param tiedostonNimi
+     * @return tiedosto string-listana
+     * @throws Exception tiedostoa ei voitu lukea
+     */
     public List<String> lueTiedosto(String tiedostonNimi) throws Exception{
         
         List<String> sisalto = new ArrayList<>();

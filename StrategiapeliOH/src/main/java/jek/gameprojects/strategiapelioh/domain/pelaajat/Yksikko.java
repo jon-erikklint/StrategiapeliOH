@@ -36,6 +36,11 @@ public class Yksikko implements Liikkuva{
         this.joukko.lisaaYksikko(this);
     }
     
+    /**
+     * 
+     * Palauttaa yksikkön toiminnat uudelle vuorolle.
+     * 
+     */
     public void palaututaToiminnot(){
         liikkuvuus.setArvo(liikkuvuus.getYlaraja());
     }

@@ -1,12 +1,15 @@
 package jek.gameprojects.strategiapelioh.kayttoliittyma.tilat;
 
-import jek.gameprojects.strategiapelioh.domain.kartta.Ruutu;
 import jek.gameprojects.strategiapelioh.domain.pelaajat.Joukko;
 import jek.gameprojects.strategiapelioh.domain.peli.Kierros;
 import jek.gameprojects.strategiapelioh.domain.peli.Vuoro;
-import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.ObjectKuva;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka.RuudunKuva;
 
+/**
+ * 
+ * Luokka joka sisältää tämänhetkiset valintatilat ja tiedon vuorosta ja kierroksesta
+ * 
+ */
 public class Tilat {
     
     private int pelitila;
@@ -25,6 +28,11 @@ public class Tilat {
         this.kierros = kierros;
     }
     
+    /**
+     * 
+     * Asettaa valintatilat oletustiloihinsa. Pelitila nollaksi ja valittu ruutu sekä valitut yksiköt nulleiksi
+     * 
+     */
     public void nollaaTilanne(){
         pelitila = 0;
         valittuRuutu = null;

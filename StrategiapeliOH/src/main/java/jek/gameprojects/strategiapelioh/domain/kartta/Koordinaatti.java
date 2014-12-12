@@ -20,11 +20,22 @@ public class Koordinaatti {
         this(0,0);
     }
     
+    /**
+     * Summaa annetun vektorin tähän vektoriin
+     * 
+     * @param vektori summattava
+     */
     public void summaa(Koordinaatti vektori){
         this.X+=vektori.X;
         this.Y+=vektori.Y;
     }
     
+    /**
+     * Palauttaa vektorin joka on tämän ja annetun vektorin summa. Ei muuta kummankaan arvoja.
+     * 
+     * @param vektori summattava
+     * @return vektorien summa
+     */
     public Koordinaatti summaVektori(Koordinaatti vektori){
         return new Koordinaatti(this.X+vektori.X, this.Y+vektori.Y);
     }

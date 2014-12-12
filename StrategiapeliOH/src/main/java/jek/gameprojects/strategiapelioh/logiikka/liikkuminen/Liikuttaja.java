@@ -38,8 +38,16 @@ public class Liikuttaja {
         this.kartta = kartta;
         
     }
+    
     //
     //Alustukset/Reitinhakijan laskut
+    
+    /**
+     * Alustaa annetun yksikön mahdolliset liikunnat reitinhakijan avulla ja tallentaa ne
+     * 
+     * @param liikkuva
+     * @return liikkuvan mahdolliset liikkeet
+     */
     public Map<Koordinaatti, Integer> alustaLiikkuvanMahdollisetLiikkeet(Liikkuva liikkuva){
         Map<Koordinaatti,Integer> mahdollisetLiikkeet=reitinhakija.ruudutJoihinVoiLiikkua(liikkuva);
         
@@ -48,6 +56,12 @@ public class Liikuttaja {
         return mahdollisetLiikkeet;
     }
     
+    /**
+     * Alustaa joukon mahdolliset liikkeet
+     * 
+     * @param joukko
+     * @return ruudut joihin joukko pystyy liikkumaan
+     */
     public Set<Koordinaatti> alustaJoukonMahdollisetLiikkeet(Joukko joukko){
         Map<Koordinaatti, Integer> kuinkaMontaYksikkoaVoiLiikkuaRuutuun=new HashMap<>();
         
@@ -96,28 +110,46 @@ public class Liikuttaja {
     
     //
     //Liikuttaminen
+    
+    /**
+     * Liikuttaa annetun liikkuvan annettuun sijaintiin
+     * 
+     * @param liikkuva
+     * @param sijainti 
+     */
     public void liikutaLiikkuva(Liikkuva liikkuva, Koordinaatti sijainti){
         liikkuva.liiku( yksikoidenMahdollisetLiikkeet.get(liikkuva).get(sijainti),sijainti);
     }
     
-    public void siirronJalkeinenHallinnointi(Joukko joukko, Ruutu ruutu){
-        kartta.getRuutu(joukko.getSijainti()).poistaJoukko(joukko);
-        joukkojenHallinnoija.paivitaJoukonSijaintiVastaamaanYksikoita(joukko);
-        
-        ruutu.lisaaJoukko(joukko);
-    }
-    
+    /**
+     * 
+     * Liikuttaa joukon ja kaikki sen sisältämät yksiköt annettuun sijaintiin
+     * 
+     * @param joukko
+     * @param sijainti 
+     */
     public void liikutaJoukko(Joukko joukko, Koordinaatti sijainti){
         for(Yksikko yksikko:joukko.getYksikot()){
             liikutaLiikkuva(yksikko, sijainti);
         }
         
-        siirronJalkeinenHallinnointi(joukko, kartta.getRuutu(sijainti));
+        joukko.setSijainti(sijainti);
         
     }
+    
+    private void siirronJalkeinenHallinnointi(Joukko joukko, Ruutu ruutu){
+        kartta.getRuutu(joukko.getSijainti()).poistaJoukko(joukko);
+        
+        ruutu.lisaaJoukko(joukko);
+}
     //
     //
     
+    /**
+     * 
+     * Nollaa tallennetut tiedot
+     * 
+     */
     public void nollaa(){
         yksikoidenMahdollisetLiikkeet.clear();
         joukkojenMahdollisetLiikkeet.clear();

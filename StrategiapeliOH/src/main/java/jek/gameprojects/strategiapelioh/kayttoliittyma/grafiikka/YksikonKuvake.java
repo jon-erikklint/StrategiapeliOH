@@ -60,7 +60,7 @@ public class YksikonKuvake implements Grafiikkaobjekti{
         elamatPohja.setKoko(new Vektori(koko.getX(), 0.2*koko.getY()));
         
         Sotilas sotilas = (Sotilas) yksikonKuva.getT();
-        double kerroin = sotilas.hyokkayskerroin();
+        double kerroin = sotilas.elamakerroin();
         
         elamat.setKoko(new Vektori(koko.getX()*kerroin, 0.2*koko.getY()));
     }
@@ -109,7 +109,7 @@ public class YksikonKuvake implements Grafiikkaobjekti{
         if(yksikko.getClass() == Sotilas.class){
             Sotilas sotilas = (Sotilas) yksikko;
             
-            elamat.setKoko(new Vektori(koko.getX()*sotilas.hyokkayskerroin(), koko.getY()*0.2));
+            elamat.setKoko(new Vektori(koko.getX()*sotilas.elamakerroin(), koko.getY()*0.2));
         }
     }
     

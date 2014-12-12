@@ -22,10 +22,20 @@ public class Vuorottaja {
         vuorokierto = new KiertavaLaskuri(pelaajat.size(), 0, 0);
     }
     
+    /**
+     * Kertoo pitääkö siirtyä uudelle kierrokselle
+     * 
+     * @return alkaako uusi kierros
+     */
     public boolean onkoSeuraavaKierros(){
         return vuorokierto.getArvo() == 0;
     }
     
+    /**
+     * Antaa seuraavan vuoron
+     * 
+     * @return uusi vuoro
+     */
     public Vuoro annaSeuraavaVuoro(){
         Pelaaja vuorossaOlija = pelaajat.get(vuorokierto.getArvo());
         vuorokierto.lisaaArvoa(1);

@@ -28,6 +28,11 @@ public class Ruutu {
         joukot=new ArrayList<>();
     }
     
+    /**
+     * Antaa ruudussa olevan ensimmäisen joukon. Tällä hetkellä joukkolistan ensimmäisen jäsenen. Jos sitä ei ole, palauttaa nullin.
+     * 
+     * @return joukkolistan ensimmäinen jäsen
+     */
     public Joukko annaEnsimmainenJoukko(){
         if(joukot.isEmpty()){
             return null;
@@ -36,6 +41,12 @@ public class Ruutu {
         return joukot.get(0);
     }
     
+    
+    /**
+     * Kertoo kuinka monta yksikköä ruudussa on yhteensä.
+     * 
+     * @return yksiköiden määrä
+     */
     public int yksikoidenMaara(){
         int maara = 0;
         
@@ -46,6 +57,11 @@ public class Ruutu {
         return maara;
     }
     
+    /**
+     * Palauttaa kaikki ruudussa olevat yksiköt jokaisesta siinä olevasta joukosta
+     * 
+     * @return ruudussa olevat yksiköt
+     */
     public List<Yksikko> getYksikot(){
         List<Yksikko> yksikot = new ArrayList<>();
         
@@ -56,6 +72,12 @@ public class Ruutu {
         return yksikot;
     }
     
+    /**
+     * Lisää joukon ruutuun. Palauttaa totuusarvon sen mukaan onko siirto mahdollinen ja tapahtuiko se.
+     * 
+     * @param joukko siirrettävä joukko
+     * @return onnistuiko siirto
+     */
     public boolean lisaaJoukko(Joukko joukko){
         if(joukot.isEmpty()){
             joukot.add(joukko);
@@ -70,6 +92,12 @@ public class Ruutu {
         return false;
     }
     
+    /**
+     * Poistaa annetun joukon ruudusta
+     * 
+     * @param joukko poistettava
+     * @return onnistuiko poistaminen
+     */
     public boolean poistaJoukko(Joukko joukko){
         if(joukot.contains(joukko)){
             joukot.remove(joukko);
@@ -80,6 +108,11 @@ public class Ruutu {
         return false;
     }
     
+    /**
+     * Kertoo minkä pelaajan hallussa ruutu on siinä sijaitsevien joukkojen perusteella.
+     * 
+     * @return kenen hallussa ruutu on
+     */
     public Pelaaja kenenHallussa(){
         if(joukot.isEmpty()){
             return null;

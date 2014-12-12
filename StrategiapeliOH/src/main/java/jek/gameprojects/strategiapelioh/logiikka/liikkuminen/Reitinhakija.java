@@ -31,6 +31,12 @@ public class Reitinhakija {
         this.kartta=kartta;
     }
     
+    /**
+     * Palauttaa ruudut joihin liikkuva voi liikkua ja niitä vastaavat liikemaaran kulumiset
+     * 
+     * @param liikkuva
+     * @return mihin voi liikkua ja millä liikemäärillä
+     */
     public Map<Koordinaatti, Integer> ruudutJoihinVoiLiikkua(Liikkuva liikkuva){
         nollaa();
         
@@ -42,6 +48,11 @@ public class Reitinhakija {
         return liikuttavat;
     }
     
+    /**
+     * 
+     * Laskee reitinhakijaan asetetun yksikön mahdoliiset liikunnat
+     * 
+     */
     public void laskeRuudutJoihinVoiLiikkua(){
         liikuttavat.put(liikkuva.getSijainti(),0);
         
@@ -108,7 +119,7 @@ public class Reitinhakija {
         return false;
     }
     
-    public boolean onkoNopeinReittiTallaHetkella(Koordinaatti sijainti, int kulunutLiikkuvuus){
+    private boolean onkoNopeinReittiTallaHetkella(Koordinaatti sijainti, int kulunutLiikkuvuus){
         try{
             int aikaisempiNopein=liikuttavat.get(sijainti);
             return kulunutLiikkuvuus<=aikaisempiNopein;
@@ -117,10 +128,23 @@ public class Reitinhakija {
         }
     } 
     
+    /**
+     * 
+     * Nollaa reitinhakijan tiedot
+     * 
+     */
     public void nollaa(){
-        liikuttavat.clear();
+        liikkuva = null;
+        liikuntakyky = null;
+        
+        liikuttavat = new HashMap<>();
     }
     
+    /**
+     * Palauttaa aikaisemman reitinhaun tulokset
+     * 
+     * @return mihin edellinen laskettu yksikkö voi liikkua ja millä liikemäärillä
+     */
     public Map<Koordinaatti, Integer> getLiikuttavatRuudut(){
         return liikuttavat;
     }

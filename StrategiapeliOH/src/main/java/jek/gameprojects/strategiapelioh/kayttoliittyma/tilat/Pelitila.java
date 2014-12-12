@@ -13,8 +13,14 @@ import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.SivujenHallinnoi
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.nappaimisto.PerusNappaimistonToiminnot;
 import jek.gameprojects.strategiapelioh.kayttoliittyma.painikkeet.Painike;
+import jek.gameprojects.strategiapelioh.kayttoliittyma.sivut.VoititPelinSivu;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 
+/**
+ * 
+ * Luokka joka sisältää kaikki oleelliset tiedot tämänhetkisestä pelitilanteesta
+ * 
+ */
 public class Pelitila {
     
     private SivujenHallinnoija sivujenHallinnoija;
@@ -49,14 +55,16 @@ public class Pelitila {
     
     public Pelitila(){}
     
-    public void paivita(){
+    /**
+     * 
+     * Etenee yhden vuoron eteenpäin
+     * 
+     */
+    public void eteneVuoro(){
         tyhjennaValinnat();
         peli.nollaaLogiikka();
         
-        Pelaaja voittaja = peli.tarkistaVoittaja();
-        if(voittaja != null){
-            
-        }
+        tarkistaVoittaja();
         
         tilat.getKierros().setT(peli.getKierros());
         tilat.getVuoro().setT(peli.getVuoro());
@@ -65,6 +73,25 @@ public class Pelitila {
         kayttoliittyma.paivita();
     }
     
+    /**
+     * 
+     * Tarkistaa voittiko joku pelin, ja jos voitti, reagoi siihen
+     * 
+     */
+    public void tarkistaVoittaja(){
+        Pelaaja voittaja = peli.tarkistaVoittaja();
+        if(voittaja != null){
+            VoititPelinSivu pelinVoitto = new VoititPelinSivu(voittaja.getNimi());
+            sivujenHallinnoija.lisaaSivu(pelinVoitto);
+            sivujenHallinnoija.vaihdaSivu(sivujenHallinnoija.sivujenMaara()-1);
+        }
+    }
+    
+    /**
+     * 
+     * Tyhjentää kaikki valinnat
+     * 
+     */
     public void tyhjennaValinnat(){
         kartta.paivita();
         

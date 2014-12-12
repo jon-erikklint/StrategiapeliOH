@@ -15,6 +15,11 @@ import jek.gameprojects.strategiapelioh.domain.pelaajat.hyokkays.Panssarityyppi;
 import jek.gameprojects.strategiapelioh.logiikka.Peli;
 import jek.gameprojects.strategiapelioh.logiikka.Indeksoija;
 
+/**
+ * 
+ * Luo uuden pelin sille annettujen aloitusmäärittelyjen perusteella
+ * 
+ */
 public class PelinAlustaja {
     
     private PelaajienAlustaja pelaajienAlustaja;
@@ -36,6 +41,12 @@ public class PelinAlustaja {
         pelaajienNimet = aloitusMaarittely.getPelaajienNimet();
     }
     
+    /**
+     * Luo uuden pelin
+     * 
+     * @return uusi peli
+     * @throws Exception virhe peliä luodessa
+     */
     public Peli alustaPeli()throws Exception{
         
         Map<Asetyyppi, Map<Panssarityyppi, Double>> panssarityyppienVahvuudet = panssarivahvuuksienAlustaja.panssarityyppienVahvuudet();

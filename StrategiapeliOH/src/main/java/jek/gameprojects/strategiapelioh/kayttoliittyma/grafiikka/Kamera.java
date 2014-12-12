@@ -2,6 +2,11 @@ package jek.gameprojects.strategiapelioh.kayttoliittyma.grafiikka;
 
 import jek.gameprojects.strategiapelioh.kayttoliittyma.logiikka.Vektori;
 
+/**
+ * 
+ * Muuttaa grafiikkaobjektien kokoja ja sijainteja skaalaten ne eri tavoin
+ * 
+ */
 public class Kamera{
     
     private Vektori kartanKoko;
@@ -16,6 +21,13 @@ public class Kamera{
         this.koko = koko;
     }
     
+    /**
+     * Muuttaa annetun sijainnin ja koon kameran sisäisiksi sijainneiksi ja koiksi 
+     * 
+     * @param sijainti
+     * @param koko
+     * @return muutettu sijainti [0] ja koko [1]
+     */
     public Vektori[] koordinaatinmuutos(Vektori sijainti, Vektori koko){
         Vektori[] sijaintitiedot = new Vektori[2];
         sijaintitiedot[0] = sijainti;
@@ -24,6 +36,12 @@ public class Kamera{
         return koordinaatinmuutos(sijaintitiedot);
     }
     
+    /**
+     * Muuttaa annetun sijainnin ja koon kameran sisäisiksi sijainneiksi ja koiksi 
+     * 
+     * @param sijaintitiedot sijainti [0] ja koko [1]
+     * @return sijainti [0] ja koko [1]
+     */
     public Vektori[] koordinaatinmuutos(Vektori[] sijaintitiedot){
         Vektori[] palautettava = new Vektori[2];
         
@@ -33,6 +51,12 @@ public class Kamera{
         return palautettava;
     }
     
+    /**
+     * Skaalaa annetun sijainnin kameran avaruuteen
+     * 
+     * @param sijainti
+     * @return muutettu sijainti
+     */
     public Vektori muutaSijainti(Vektori sijainti){
         double sx = sijainti.getX();
         double sy = sijainti.getY();
@@ -40,6 +64,12 @@ public class Kamera{
         return new Vektori((sx - this.sijainti.getX()) * kokosuhdeX(), (sy - this.sijainti.getY()) * kokosuhdeY());
     }
     
+    /**
+     * Skaalaa annetun koon kameran avaruuteen
+     * 
+     * @param koko
+     * @return muutettu koko
+     */
     public Vektori muutaKoko(Vektori koko){
         double kx = koko.getX();
         double ky = koko.getY();
@@ -47,10 +77,20 @@ public class Kamera{
         return new Vektori(kx * kokosuhdeX(), ky * kokosuhdeY());
     }
     
+    /**
+     * Kameran koko x-suunnassa verrattuna karttaan
+     * 
+     * @return 
+     */
     public double kokosuhdeX(){
         return kartanKoko.getX()/koko.getX();
     }
     
+    /**
+     * Kameran koko y-suunassa verrattuna karttaan
+     * 
+     * @return 
+     */
     public double kokosuhdeY(){
         return kartanKoko.getY()/koko.getY();
     }

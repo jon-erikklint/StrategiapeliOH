@@ -24,6 +24,9 @@ public class JoukkojenHallinnoija {
         this.kartta = kartta;
     }
     
+    /**
+     * Poistaa kaikki tyhjät joukot kaikilta pelaajilta
+     */
     public void poistaTyhjatJoukot(){
         for(Pelaaja pelaaja : pelaajat){
             List<Joukko> poistettavatJoukot = new ArrayList<>();
@@ -34,12 +37,15 @@ public class JoukkojenHallinnoija {
                 }
             }
             
-            for(Joukko poistettava : poistettavatJoukot){
-                poistaJoukko(poistettava);
-            }
+            poistaJoukot(poistettavatJoukot);
         }
     }
     
+    /**
+     * Poistaa kaikki tyhjät joukot annetusta ruudusta
+     * 
+     * @param ruutu ruutu josta joukto poistetaan
+     */
     public void poistaTyhjatJoukotRuudusta(Ruutu ruutu){
         List<Joukko> joukot = ruutu.getJoukot();
         List<Joukko> poistettavat = new ArrayList<>();
@@ -52,11 +58,14 @@ public class JoukkojenHallinnoija {
             
         }
         
-        for(Joukko poistettava : poistettavat){
-            poistaJoukko(poistettava);
-        }
+        poistaJoukot(poistettavat);
     }
     
+    /**
+     * Poistaa annetun joukon sen omistavalta pelaajalta ja ruudusta jossa se sijaitsee
+     * 
+     * @param joukko poistettava joukko
+     */
     public void poistaJoukko(Joukko joukko){
         Ruutu paikka = kartta.getRuutu(joukko.getSijainti());
         
@@ -67,19 +76,43 @@ public class JoukkojenHallinnoija {
         }
     }
     
+    /**
+     * Poistaa annetut joukot
+     * 
+     * @param joukot poistettavat joukot
+     */
+    public void poistaJoukot(List<Joukko> joukot){
+        for(Joukko joukko : joukot){
+            poistaJoukko(joukko);
+        }
+    }
+    
+    /**
+     * Siirtää yksikön aikaisemmasta joukostaan uuteen joukkoon
+     * 
+     * @param yksikko siirrettävä yksikkö
+     * @param joukko kohdejoukko
+     */
     public void siirraYksikkoJoukkoon(Yksikko yksikko, Joukko joukko){
         Joukko vanhaJoukko = yksikko.getJoukko();
         
         if(joukko.lisaaYksikko(yksikko)){
             
             vanhaJoukko.poistaYksikko(yksikko);
+            
+            if(vanhaJoukko.getYksikot().isEmpty()){
+                poistaJoukko(vanhaJoukko);
+            }
         } 
     }
     
-    private void poistaYksikkoJoukosta(Yksikko yksikko, Joukko joukko){
-        joukko.poistaYksikko(yksikko);
-    }
-    
+    /**
+     * Siirtää toisen annetun joukon kaikki yksiköt toiseen joukkoon
+     * 
+     * @param kohde joukko johon yksiköt siirretään
+     * @param lahde joukko josta yksiköt siirretään
+     * @return uusi joukko joka sisältää molemmat joukot
+     */
     public Joukko siirraJoukkoJoukkoon(Joukko kohde, Joukko lahde){
         
         for(Yksikko yksikko:lahde.getYksikot()){
@@ -87,21 +120,34 @@ public class JoukkojenHallinnoija {
         }
         
         for(Yksikko yksikko:lahde.getYksikot()){
-            poistaYksikkoJoukosta(yksikko, lahde);
+            lahde.poistaYksikko(yksikko);
         }
+        
+        poistaJoukko(lahde);
         
         return kohde;
     }
     
+    /**
+     * Luo yksikölle oman joukkonsa, johon se siirretään
+     * 
+     * @param yksikko yksikkö jolel tehdään oma joukko
+     */
     public void luoYksikolleOmaJoukko(Yksikko yksikko){
         Joukko uusiJoukko = new Joukko();
         
         siirraYksikkoJoukkoon(yksikko, uusiJoukko);
-        kartta.getRuutu(yksikko.getSijainti()).lisaaJoukko(uusiJoukko);
+        lisaaJoukkoTarvittaviinPaikkoihin(uusiJoukko);
     }
     
+    /**
+     * Hajoittaa isomman joukon yhden yksikön joukoiksi
+     * 
+     * @param joukko hajoitettava joukko
+     * @return lista uusista joukoista
+     */
     public List<Joukko> hajoitaJoukkoYksittaisenYksikonJoukoiksi(Joukko joukko){
-        List<Joukko> uudetJoukot=new ArrayList<>();
+        List<Joukko> uudetJoukot = new ArrayList<>();
         
         if(joukko.getYksikot().isEmpty()){
             uudetJoukot.add(joukko);
@@ -117,28 +163,50 @@ public class JoukkojenHallinnoija {
         return uudetJoukot;
     }
     
+    /**
+     * Yhdistää kaikki annetut joukot yhdeksi joukoksi
+     * 
+     * @param joukot yhdistettävät joukot
+     * @return uusi joukko joka sisältää kaikkien annettujen joukkojen yksiköt
+     */
     public Joukko yhdistaJuokotYhdeksiJoukoksi(List<Joukko> joukot){
-        Joukko uusiJoukko = joukot.get(0);
+        Joukko uusiJoukko = new Joukko();
         
-        for(int i=1; i<joukot.size();i++){
-            siirraJoukkoJoukkoon(uusiJoukko, joukot.get(i));
+        for(Joukko joukko : joukot){
+            siirraJoukkoJoukkoon(uusiJoukko, joukko);
         }
         
-        poistaTyhjatJoukotRuudusta(kartta.getRuutu(joukot.get(0).getSijainti()));
+        poistaJoukot(joukot);
         
         return uusiJoukko;
     }
     
-    public void paivitaJoukonSijaintiVastaamaanYksikoita(Joukko joukko){
-        joukko.setSijainti( joukko.getYksikot().get(0).getSijainti() );
-    }
-    
-    public void alustaUudenYksikonJoukko(Yksikko yksikko){
-        yksikko.getJoukko().lisaaYksikko(yksikko);
-    }
-    
+    /**
+     * Poistaa yksikön omasta joukostaan, jolloin yksikkö käytännössä tuhoutuu
+     * 
+     * @param yksikko 
+     */
     public void poistayksikkoJoukostaan(Yksikko yksikko){
         yksikko.getJoukko().poistaYksikko(yksikko);
+    }
+    
+    /**
+     * Lisää annetun joukon sen omistajan joukkoihin ja ruutuun jossa se sijaitsee. Metodia tarvitaan pääasiassa uusien joukkojen luonnissa.
+     * 
+     * @param joukko 
+     */
+    public void lisaaJoukkoTarvittaviinPaikkoihin(Joukko joukko){
+        Pelaaja joukonOmistaja = joukko.getOmistaja();
+        
+        if(!joukonOmistaja.getJoukot().contains(joukko)){
+            joukonOmistaja.lisaaJoukko(joukko);
+        }
+        
+        Ruutu joukonSijainti = kartta.getRuutu(joukko.getSijainti());
+        
+        if(!joukonSijainti.getJoukot().contains(joukko)){
+            joukonSijainti.lisaaJoukko(joukko);
+        }
     }
     
 }

@@ -49,6 +49,13 @@ public class Hyokkayshallinnoija {
     
     //
     ///Alustukset
+    
+    /**
+     * Laskee ne ruudut joihin annettu hyökkäävä voi hyökätä
+     * 
+     * @param hyokkaava
+     * @return hyökättävät ruudut
+     */
     public Set<Koordinaatti> alustaHyokkaavanHyokattavatRuudut(Hyokkaava hyokkaava){
         Set<Koordinaatti> hyokattavat = kantamanLaskija.laskeHyokattavatRuudut(hyokkaava);
         
@@ -57,6 +64,12 @@ public class Hyokkayshallinnoija {
         return hyokattavat;
     }
     
+    /**
+     * Laskee ruudut joihin kaikki joukon yksiköt pystyvät hyökkäämään
+     * 
+     * @param joukko
+     * @return yhteiset hyökättävät ruudut
+     */
     public Set<Koordinaatti> alustaJoukonHyokattavatRuudut(Joukko joukko){
         if(!voikoJoukkoHyokata(joukko)){
             return new HashSet<>();
@@ -91,6 +104,12 @@ public class Hyokkayshallinnoija {
         }
     }
     
+    /**
+     * Kertoo voiko joukko hyökätä ollenkaan tällä vuorolla.
+     * 
+     * @param joukko
+     * @return voiko joukko hyökätä tällä vuorolla
+     */
     public boolean voikoJoukkoHyokata(Joukko joukko){
         if(!onkoJoukkoHyokkaava(joukko)){
             return false;
@@ -111,6 +130,13 @@ public class Hyokkayshallinnoija {
     
     //
     ///Hyokkaaminen
+    
+    /**
+     * Hyökkää annetulla hyökkäävällä annettuun sijaintiin ja laskee tapahtumat
+     * 
+     * @param hyokkaava
+     * @param koordinaatti sijainti
+     */
     public void hyokkaaHyokkaavallaRuutuun(Hyokkaava hyokkaava, Koordinaatti koordinaatti){
         if(!hyokkaavanHyokattavatRuudut.containsKey(hyokkaava)){
             return;
@@ -129,6 +155,12 @@ public class Hyokkayshallinnoija {
         taistelulaskuri.taistele();
     }
     
+    /**
+     * Hyökkää kaikilla annetun joukon yksiköillä annettuun sijaintiin
+     * 
+     * @param joukko
+     * @param koordinaatti sijainti
+     */
     public void hyokkaaJoukollaRuutuun(Joukko joukko, Koordinaatti koordinaatti){
         if(!joukonHyokattavatRuudut.containsKey(joukko)){
             return;
@@ -143,11 +175,22 @@ public class Hyokkayshallinnoija {
         hyokkayksenJalkeinenHallinnointi(joukko);
     }
     
+    /**
+     * Asettaa taistelulaskurin arvoiksi annetut hyökkääjät ja puolustajat
+     * 
+     * @param hyokkaavat
+     * @param puolustajat 
+     */
     public void asetaTaistelulaskuri(List<Hyokkaava> hyokkaavat, List<Hyokkaava> puolustajat){
         taistelulaskuri.setHyokkaajat(hyokkaavat);
         taistelulaskuri.setPuolustajat(puolustajat);
     }
     
+    /**
+     * Nollaa tallennentut tiedot hyökkäyksen jälkeen ja poistaa jokaiselta hyökkäävältä yhden hyökkäyksen
+     * 
+     * @param hyokkaavat 
+     */
     public void hyokkayksenJalkeinenHallinnointi(Joukko hyokkaavat){
         for(Yksikko yksikko : hyokkaavat.getYksikot()){
             Sotilas sotilas = (Sotilas) yksikko;
@@ -190,6 +233,12 @@ public class Hyokkayshallinnoija {
         return palautettava;
     }
     
+    /**
+     * Kertoo onko joukko hyökkäyskykyinen, eli onko jokainen sen jäsen sotilas.
+     * 
+     * @param joukko
+     * @return onko hyökkäävä
+     */
     public boolean onkoJoukkoHyokkaava(Joukko joukko){
         for(Yksikko yksikko:joukko.getYksikot()){
             if(yksikko.getClass()!=Sotilas.class){
@@ -200,10 +249,21 @@ public class Hyokkayshallinnoija {
         return true;
     }
     
+    /**
+     * Palauttaa tietyn joukon hyökättävät ruudut, jotka on jo aiemmin laskettu
+     * 
+     * @param joukko
+     * @return 
+     */
     public Set<Koordinaatti> getJoukonHyokattavatRuudut(Joukko joukko){
         return joukonHyokattavatRuudut.get(joukko);
     }
     
+    /**
+     * 
+     * Nollaa hyökkäyshallinnoijan muistin
+     * 
+     */
     public void nollaa(){
         joukonHyokattavatRuudut.clear();
         hyokkaavanHyokattavatRuudut.clear();

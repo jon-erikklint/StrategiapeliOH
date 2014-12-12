@@ -24,10 +24,20 @@ public class Pelaaja {
         joukot=new ArrayList<>();
     }
     
+    /**
+     * Lisää pelaajalle uuden joukon
+     * 
+     * @param joukko lisättävä
+     */
     public void lisaaJoukko(Joukko joukko){
         joukot.add(joukko);
     }
     
+    /**
+     * Poistaa pelaajalta joukon
+     * 
+     * @param joukko poistettava
+     */
     public void poistaJoukko(Joukko joukko){
         joukot.remove(joukko);
     }

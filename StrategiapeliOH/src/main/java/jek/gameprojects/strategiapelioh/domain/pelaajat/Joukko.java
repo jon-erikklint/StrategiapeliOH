@@ -22,17 +22,24 @@ public class Joukko implements Omistettava{
         yksikot=new ArrayList<>();
     }
     
+    /**
+     * 
+     * Palauttaa joukossa olevat yksiköt täyteen toimintavalmiuteen vuoron vaihtuessa
+     * 
+     */
     public void palautaYksikoidenToiminnot(){
         for(Yksikko yksikko : yksikot){
             yksikko.palaututaToiminnot();
         }
     }
     
-    @Override
-    public Pelaaja getOmistaja(){
-        return omistaja;
-    }
     
+    /**
+     * Lisää yksikön joukkoon. Jos yksikkö on ensimmäinen joukon yksikkö, asettaa metodi alkuarvot joukon sijainnille ja omistajalle.
+     * 
+     * @param yksikko lisättävä yksikkö
+     * @return onnistuiko lisäys
+     */
     public boolean lisaaYksikko(Yksikko yksikko){
         if(yksikot.isEmpty()){
             lisaaUusiYksikko(yksikko);
@@ -57,6 +64,11 @@ public class Joukko implements Omistettava{
         yksikko.setJoukko(this);
     }
     
+    /**
+     * Poistaa yksikön joukosta
+     * 
+     * @param yksikko poistettava
+     */
     public void poistaYksikko(Yksikko yksikko){
         yksikot.remove(yksikko);
     }
@@ -65,22 +77,20 @@ public class Joukko implements Omistettava{
         return yksikot;
     }
     
-    public int liikkuvuus() {
-        int liikkuvuus=yksikot.get(0).liikkuvuus();
-        
-        for(Yksikko yksikko:yksikot){
-            if(yksikko.liikkuvuus()<liikkuvuus){
-                liikkuvuus=yksikko.liikkuvuus();
-            }
-        }
-        
-        return liikkuvuus;
+    @Override
+    public Pelaaja getOmistaja(){
+        return omistaja;
     }
 
     public Koordinaatti getSijainti() {
         return sijainti;
     }
     
+    /**
+     * Asettaa joukon ja kaikki sen sisällä olevat yksiköt annettuun sijaintiin
+     * 
+     * @param sijainti 
+     */
     public void setSijainti(Koordinaatti sijainti){
         for(Yksikko yksikko:yksikot){
             yksikko.setSijainti(sijainti);

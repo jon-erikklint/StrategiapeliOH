@@ -11,7 +11,7 @@ public class VuoronLopetus extends PelitilaEfekti{
     @Override
     public void toimi() {
         pelitila.getPeli().eteneVuoro();
-        pelitila.paivita();
+        pelitila.eteneVuoro();
     }
     
 }

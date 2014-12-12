@@ -1,12 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jek.gameprojects.strategiapelioh.kayttoliittyma.efekti;
 
+/**
+ * 
+ * Reaktio tapahtumaan
+ * 
+ */
 public interface Efekti {
     
+    /**
+     * 
+     * Reaktio, joka tapahtuu jonkun tapahtuman jälkeen
+     * 
+     */
     public void toimi();
     
 }
