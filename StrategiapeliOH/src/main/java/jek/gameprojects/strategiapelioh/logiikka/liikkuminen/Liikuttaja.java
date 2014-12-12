@@ -133,15 +133,16 @@ public class Liikuttaja {
             liikutaLiikkuva(yksikko, sijainti);
         }
         
-        joukko.setSijainti(sijainti);
-        
+        siirronJalkeinenHallinnointi(joukko, kartta.getRuutu(sijainti));
     }
     
     private void siirronJalkeinenHallinnointi(Joukko joukko, Ruutu ruutu){
         kartta.getRuutu(joukko.getSijainti()).poistaJoukko(joukko);
         
+        joukko.setSijainti(ruutu.getSijainti());
+        
         ruutu.lisaaJoukko(joukko);
-}
+    }
     //
     //
     

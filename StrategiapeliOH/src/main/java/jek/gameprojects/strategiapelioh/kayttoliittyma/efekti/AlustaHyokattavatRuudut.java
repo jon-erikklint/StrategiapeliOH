@@ -24,6 +24,7 @@ public class AlustaHyokattavatRuudut extends PelitilaEfekti{
             
         }
         
+        pelitila.poistaYksikoidenKuvakkeet();
         pelitila.getTilat().setPelitila(1);
     }
     

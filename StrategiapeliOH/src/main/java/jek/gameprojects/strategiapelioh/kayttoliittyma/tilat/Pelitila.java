@@ -97,6 +97,10 @@ public class Pelitila {
         
         tilat.nollaaTilanne();
         
+        poistaYksikoidenKuvakkeet();
+    }
+    
+    public void poistaYksikoidenKuvakkeet(){
         if(kayttoliittyma.getYksikoidenKuvakkeet() != null){
             PainikkeidenKuuntelija kuuntelija = painikkeidenKuuntelija.getPainikkeidenKuuntelija(0);
             

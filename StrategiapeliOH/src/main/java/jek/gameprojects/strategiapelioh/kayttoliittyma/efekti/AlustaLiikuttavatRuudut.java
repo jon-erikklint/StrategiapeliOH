@@ -26,6 +26,7 @@ public class AlustaLiikuttavatRuudut extends PelitilaEfekti{
             
         }
         
+        pelitila.poistaYksikoidenKuvakkeet();
         pelitila.getTilat().setPelitila(2);
     }
     
