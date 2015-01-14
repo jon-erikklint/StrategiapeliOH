@@ -1,4 +1,0 @@
-StrategiapeliOH
-===============
-
-jotain
